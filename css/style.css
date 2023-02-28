@@ -47,3 +47,76 @@ textarea,
 select {
   font: inherit;
 }
+
+.logo {
+  height: 5rem;
+  width: 5rem;
+}
+
+.clocks {
+  height: 100%;
+  width: 100%;
+  display: grid;
+}
+.clocks--1,
+.clocks--2,
+.clocks--3 {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  clip-path: circle(40%);
+}
+.clocks--1 {
+  height: 100%;
+  width: 100%;
+}
+.clocks--2 {
+  height: 75%;
+  width: 75%;
+}
+.clocks--3 {
+  height: 50%;
+  width: 50%;
+}
+.clocks__sliced--piece {
+  background-color: transparent;
+  height: 75%;
+  align-self: end;
+}
+
+.container {
+  background-color: #c8bfe7;
+  height: 80vh;
+  width: 80vw;
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
+  position: absolute;
+}
+
+.logo-box {
+  position: absolute;
+  top: 2.5rem;
+  left: 3.5rem;
+}
+
+.clock-box {
+  background-color: #644abd;
+  height: 85%;
+  grid-column: content-start / content-end;
+  align-self: center;
+  justify-content: center;
+  clip-path: circle(40%);
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: #e3def3;
+}
