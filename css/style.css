@@ -1,7 +1,8 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 body,
 h1,
@@ -13,30 +14,36 @@ figure,
 blockquote,
 dl,
 dd {
-  margin: 0; }
+  margin: 0;
+}
 
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+}
 
 body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+}
 
 img,
 picture {
   max-width: 100%;
-  display: block; }
+  display: block;
+}
 
 input,
 button,
 textarea,
 select {
-  font: inherit; }
+  font: inherit;
+}
