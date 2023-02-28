@@ -40,3 +40,16 @@ button,
 textarea,
 select {
   font: inherit; }
+
+.container {
+  background-color: #c8bfe7;
+  height: 80vh;
+  width: 80vw;
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 1fr [content-start] max-content [content-end] 1fr; }
+
+body {
+  background-color: #e3def3; }
