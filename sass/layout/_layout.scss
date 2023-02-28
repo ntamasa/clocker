@@ -13,4 +13,14 @@
   // Grid Layout
   display: grid;
   grid-template-columns: 1fr [content-start] max-content [content-end] 1fr;
+
+  // For the logo positioning
+  position: absolute;
+}
+
+.logo-box {
+  // Positioning
+  position: absolute;
+  top: 2.5rem;
+  left: 3.5rem;
 }

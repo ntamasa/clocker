@@ -41,6 +41,10 @@ textarea,
 select {
   font: inherit; }
 
+.logo {
+  width: 5rem;
+  height: 5rem; }
+
 .container {
   background-color: #c8bfe7;
   height: 80vh;
@@ -49,7 +53,13 @@ select {
   border-radius: 10px;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
-  grid-template-columns: 1fr [content-start] max-content [content-end] 1fr; }
+  grid-template-columns: 1fr [content-start] max-content [content-end] 1fr;
+  position: absolute; }
+
+.logo-box {
+  position: absolute;
+  top: 2.5rem;
+  left: 3.5rem; }
 
 body {
   background-color: #e3def3; }
