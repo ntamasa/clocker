@@ -12,7 +12,7 @@
 
   // Grid Layout
   display: grid;
-  grid-template-columns: 1fr [content-start] max-content [content-end] 1fr;
+  grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
 
   // For the logo positioning
   position: absolute;
@@ -23,4 +23,25 @@
   position: absolute;
   top: 2.5rem;
   left: 3.5rem;
+}
+
+.clock-box {
+  background-color: $color-primary;
+  height: 85%;
+
+  // Placing it in the right grid cell
+  grid-column: content-start / content-end;
+
+  // Alinging it to the center
+  align-self: center;
+  justify-content: center;
+
+  // Making it look like a circle
+  clip-path: circle(40%);
+
+  // Alingning clocks centered inside clock container
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
 }

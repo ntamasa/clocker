@@ -1,0 +1,37 @@
+.clocks {
+  @include square(100%);
+
+  display: grid;
+
+  &--1,
+  &--2,
+  &--3 {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+
+    clip-path: circle(40%);
+    // border-radius: 50%;
+  }
+
+  &--1 {
+    @include square(100%);
+  }
+
+  &--2 {
+    @include square(75%);
+  }
+
+  &--3 {
+    @include square(50%);
+  }
+
+  &__sliced--piece {
+    background-color: transparent;
+    height: 75%;
+    align-self: end;
+  }
+}
