@@ -1,8 +1,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body,
 h1,
@@ -14,77 +13,62 @@ figure,
 blockquote,
 dl,
 dd {
-  margin: 0;
-}
+  margin: 0; }
 
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 html {
-  font-size: 62.5%;
-}
+  font-size: 62.5%; }
 
 body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 img,
 picture {
   max-width: 100%;
-  display: block;
-}
+  display: block; }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
-}
+  font: inherit; }
 
 .logo {
   height: 5rem;
-  width: 5rem;
-}
+  width: 5rem; }
 
 .clocks {
   height: 100%;
   width: 100%;
-  display: grid;
-}
-.clocks--1,
-.clocks--2,
-.clocks--3 {
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  align-self: center;
-  justify-self: center;
-  text-align: center;
-  clip-path: circle(40%);
-}
-.clocks--1 {
-  height: 100%;
-  width: 100%;
-}
-.clocks--2 {
-  height: 75%;
-  width: 75%;
-}
-.clocks--3 {
-  height: 50%;
-  width: 50%;
-}
-.clocks__sliced--piece {
-  background-color: transparent;
-  height: 75%;
-  align-self: end;
-}
+  display: grid; }
+  .clocks--1, .clocks--2, .clocks--3 {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    clip-path: circle(40%); }
+  .clocks--1 {
+    height: 100%;
+    width: 100%; }
+  .clocks--2 {
+    height: 75%;
+    width: 75%; }
+  .clocks--3 {
+    height: 50%;
+    width: 50%; }
+  .clocks__sliced--piece {
+    background-color: transparent;
+    height: 75%;
+    align-self: end; }
 
 .container {
   background-color: #c8bfe7;
@@ -95,14 +79,12 @@ select {
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  position: absolute;
-}
+  position: absolute; }
 
 .logo-box {
   position: absolute;
   top: 2.5rem;
-  left: 3.5rem;
-}
+  left: 3.5rem; }
 
 .clock-box {
   background-color: #644abd;
@@ -114,9 +96,7 @@ select {
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
-  align-items: center;
-}
+  align-items: center; }
 
 body {
-  background-color: #e3def3;
-}
+  background-color: #e3def3; }
