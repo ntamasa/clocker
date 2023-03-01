@@ -96,7 +96,8 @@ select {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 200; }
+  z-index: 200;
+  filter: drop-shadow(0 2rem 4rem rgba(0, 0, 0, 0.2)); }
   .globe-box img {
     height: 100%;
     border-radius: 50%;

@@ -52,9 +52,11 @@
   position: relative;
   z-index: 200;
 
+  filter: drop-shadow(0 2rem 4rem rgba($black, 0.2));
+
   img {
     height: 100%;
-    // border: 2px solid $color-primary;
+    // border: 2px solid red;
     border-radius: 50%;
 
     clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
