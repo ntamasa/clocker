@@ -67,6 +67,9 @@ select {
   .clocks--3 {
     height: 30rem;
     width: 30rem; }
+  .clocks__time-zone, .clocks__country, .clocks__date, .clocks__time {
+    color: #c8bfe7;
+    font-weight: bold; }
 
 .logo-box {
   position: absolute;
