@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box; }
+  box-sizing: border-box; }
 
 body,
 h1,
@@ -14,14 +15,17 @@ blockquote,
 dl,
 dd {
   margin: 0; }
+  margin: 0; }
 
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
   margin: 0;
   padding: 0; }
+  padding: 0; }
 
 html {
+  font-size: 62.5%; }
   font-size: 62.5%; }
 
 body {
@@ -29,10 +33,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
+  align-items: center; }
 
 img,
 picture {
   max-width: 100%;
+  display: block; }
   display: block; }
 
 input,
@@ -40,13 +46,76 @@ button,
 textarea,
 select {
   font: inherit; }
+  font: inherit; }
 
 .logo {
   height: 5rem;
   width: 5rem; }
+  width: 5rem; }
 
 .clocks {
   height: 100%;
+  width: 75%;
+  transform: translateY(17%);
+  display: grid;
+  grid-template-rows: 1fr;
+  clip-path: polygon(-10% -10%, 110% -10%, 110% 45%, -10% 45%); }
+  .clocks--1, .clocks--2, .clocks--3 {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    align-self: center;
+    justify-self: center;
+    border-radius: 10000px;
+    padding-top: 5rem;
+    background-color: #644abd;
+    border: 1px solid #c8bfe7; }
+  .clocks--1 {
+    height: 120%;
+    width: 120%; }
+  .clocks--2 {
+    width: 85%;
+    height: 53%;
+    transform: translateY(-28%); }
+  .clocks--3 {
+    width: 50%;
+    height: 32%;
+    transform: translateY(-40%); }
+
+.logo-box {
+  position: absolute;
+  top: 2.5rem;
+  left: 3.5rem; }
+
+.clock-box {
+  height: 101rem;
+  grid-column: content-start / content-end;
+  grid-row: 1 / 2;
+  align-self: center;
+  text-align: center;
+  clip-path: circle(40%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 200; }
+
+.globe-box {
+  height: 75rem;
+  grid-column: content-start / content-end;
+  grid-row: 1 / 2;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100; }
+  .globe-box img {
+    height: 100%;
+    border: 2px solid #644abd;
+    border-radius: 50%; }
+
+body {
+  background-color: #e3def3; }
   width: 100%;
   display: grid; }
   .clocks--1, .clocks--2, .clocks--3 {
@@ -72,31 +141,11 @@ select {
 
 .container {
   background-color: #c8bfe7;
-  height: 80vh;
   width: 80vw;
   border: 1px solid #999;
   border-radius: 10px;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
+  grid-template-rows: max-content;
   position: absolute; }
-
-.logo-box {
-  position: absolute;
-  top: 2.5rem;
-  left: 3.5rem; }
-
-.clock-box {
-  background-color: #644abd;
-  height: 85%;
-  grid-column: content-start / content-end;
-  align-self: center;
-  justify-content: center;
-  clip-path: circle(40%);
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  align-items: center; }
-
-body {
-  background-color: #e3def3; }

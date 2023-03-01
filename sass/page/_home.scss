@@ -1,3 +1,27 @@
 body {
   background-color: $color-primary-light-2;
+
+  // Remove scrolling
+  // overflow: hidden;
+}
+
+.container {
+  background-color: $color-primary-light-1;
+
+  // Sizing
+  // height: 80vh;
+  width: 80vw;
+
+  // Border, adding prospective to it
+  border: 1px solid $color-grey-5;
+  border-radius: 10px;
+  box-shadow: 0 1rem 4rem rgba($black, 0.15);
+
+  // Grid Layout
+  display: grid;
+  grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
+  grid-template-rows: max-content;
+
+  // For the logo positioning
+  position: absolute;
 }
