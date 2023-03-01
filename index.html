@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>clocker</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -16,15 +22,79 @@
 
       <section class="clock-box">
         <div class="clocks">
-          <div class="clocks--1">Clock 1</div>
-          <div class="clocks--2">Clock 2</div>
-          <div class="clocks--3">Clock 3</div>
+          <div class="clocks--1">
+            <!-- <span class="clocks__zone clocks__zone--local">GMT+1</span>
+            <span class="clocks__country clocks__country--local">Hungary</span>
+            <span class="clocks__date clocks__date--local">március 1.</span> -->
+            <!-- <span class="clocks__time clocks__time--local">15:00</span> -->
+            <span class="clocks__local">Local</span>
+          </div>
 
-          <div class="clocks__sliced--piece"></div>
+          <div class="clocks--2">
+            <!-- <span class="clocks__zone clocks__zone--added">GMT+1</span> -->
+            <!-- <span class="clocks__country clocks__country--added">Hungary</span>
+            <span class="clocks__date clocks__date--added">március 1.</span>
+            <span class="clocks__time clocks__time--added">15:00</span> -->
+          </div>
+
+          <div class="clocks--3">
+            <div class="clocks__details">
+              <span class="clocks__zone clocks__zone--global">GMT+1</span>
+              <span class="clocks__country clocks__country--global"
+                >Hungary</span
+              >
+            </div>
+            <span class="clocks__date clocks__date--global">március 1.</span>
+
+            <span class="clocks__time clocks__time--global">15:00</span>
+            <span class="clocks__global">
+              <span class="clocks__global--w">W</span>
+              <span class="clocks__global--o">o</span>
+              <span class="clocks__global--r">r</span>
+              <span class="clocks__global--l">l</span>
+              <span class="clocks__global--d">d</span>
+            </span>
+          </div>
         </div>
       </section>
 
-      <section class="globe-box">There is the globe</section>
+      <section class="globe-box">
+        <img src="./img/globe.png" alt="globe" class="globe__img" />
+      </section>
+
+      <svg class="curved-text--outer" viewBox="0 0 500 500">
+        <path
+          fill="transparent"
+          id="curve--outer"
+          d="
+            M 90, 250
+            a 100,100 0 0,1 318,0
+            a 100,100 0 0,1 -318,0
+            "
+        />
+        <text width="500">
+          <textPath alignment-baseline="top" xlink:href="#curve--outer">
+            GMT+1 Hungary március1. 15:00
+          </textPath>
+        </text>
+      </svg>
+
+      <svg class="curved-text--middle" viewBox="0 0 500 500">
+        <path
+          fill="transparent"
+          id="curve--middle"
+          d="
+            M 140, 250
+            a 100,100 0 0,1 230,0
+            a 100,100 0 0,1 -230,0
+            "
+        />
+        <text width="500">
+          <textPath alignment-baseline="top" xlink:href="#curve--middle">
+            GMT+1 Hungary március1. 15:00
+          </textPath>
+        </text>
+      </svg>
     </div>
   </body>
 </html>
