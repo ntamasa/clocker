@@ -41,6 +41,9 @@ textarea,
 select {
   font: inherit; }
 
+body {
+  font-family: "Dosis", "serif"; }
+
 .logo {
   height: 5rem;
   width: 5rem; }
@@ -55,9 +58,9 @@ select {
     grid-row: 1 / 2;
     align-self: center;
     justify-self: center;
-    padding-top: 6rem;
     border: 1px solid #c8bfe7;
-    border-radius: 500000px; }
+    border-radius: 500000px;
+    position: relative; }
   .clocks--1 {
     height: 75rem;
     width: 75rem; }
@@ -66,10 +69,66 @@ select {
     width: 47.5rem; }
   .clocks--3 {
     height: 30rem;
-    width: 30rem; }
-  .clocks__time-zone, .clocks__country, .clocks__date, .clocks__time {
-    color: #c8bfe7;
-    font-weight: bold; }
+    width: 30rem;
+    display: flex;
+    align-items: center; }
+  .clocks__date, .clocks__time, .clocks__global, .clocks__local {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba(227, 222, 243, 0.5);
+    letter-spacing: 3px;
+    position: absolute; }
+  .clocks__details {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba(227, 222, 243, 0.5);
+    letter-spacing: 3px;
+    margin: 0 auto;
+    margin-top: 7rem; }
+  .clocks__details .clocks__zone {
+    margin-right: 2rem; }
+  .clocks__date {
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%); }
+  .clocks__time--global {
+    top: 20%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 6.2rem;
+    font-weight: 700;
+    color: #c8bfe7; }
+    .clocks__time--global::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 15rem;
+      background-color: #4a3594;
+      margin-top: -0.7rem; }
+  .clocks__global {
+    top: 0%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 2rem;
+    font-weight: 400;
+    color: red; }
+    .clocks__global--r {
+      transform: translateY(-5px); }
+
+/*
+&--local {
+    }
+
+    &--added {
+    }
+
+    &--global {
+    }
+*/
+.curved-text--outer, .curved-text--middle, .curved-text--inner {
+  grid-column: content-start / content-end;
+  grid-row: 1 / 2;
+  z-index: 5000; }
 
 .logo-box {
   position: absolute;

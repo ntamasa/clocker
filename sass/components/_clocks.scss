@@ -17,11 +17,13 @@
     justify-self: center;
 
     // Spacing
-    padding-top: 6rem;
+    // padding-top: 6rem;
 
     // Rounding circles corners
     border: 1px solid $color-primary-light-1;
     border-radius: 500000px;
+
+    position: relative;
   }
 
   &--1 {
@@ -42,27 +44,120 @@
     height: 30rem;
     width: 30rem;
 
+    display: flex;
+    align-items: center;
     // background-color: red;
   }
 
   // Clocks content
-  &__time-zone,
-  &__country,
   &__date,
-  &__time {
-    color: $color-primary-light-1;
-    font-weight: bold;
+  &__time,
+  &__global,
+  &__local {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba($color-primary-light-2, 0.5);
+    letter-spacing: 3px;
+
+    position: absolute;
   }
 
-  &__time-zone {
+  &__details {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba($color-primary-light-2, 0.5);
+    letter-spacing: 3px;
+
+    // Spacing
+    margin: 0 auto;
+    margin-top: 7rem;
+  }
+
+  &__details &__zone {
+    margin-right: 2rem;
+  }
+
+  &__zone {
   }
 
   &__country {
   }
 
   &__date {
+    top: 50%;
+    right: 50%;
+    transform: translateX(50%);
   }
 
   &__time {
+    &--global {
+      top: 20%;
+      right: 50%;
+      transform: translateX(50%);
+
+      font-size: 6.2rem;
+      font-weight: 700;
+      color: $color-primary-light-1;
+
+      &::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 15rem;
+        background-color: $color-primary-dark-2;
+        margin-top: -0.7rem;
+      }
+    }
+  }
+
+  &__global {
+    top: 0%;
+    right: 50%;
+    transform: translateX(50%);
+
+    font-size: 2rem;
+    font-weight: 400;
+    // color: $color-primary-dark-2;
+    color: red;
+
+    &--w {
+    }
+
+    &--o {
+    }
+
+    &--r {
+      transform: translateY(-5px);
+    }
+
+    &--l {
+    }
+
+    &--d {
+    }
+  }
+
+  &__local {
+  }
+}
+
+/*
+&--local {
+    }
+
+    &--added {
+    }
+
+    &--global {
+    }
+*/
+
+.curved-text {
+  &--outer,
+  &--middle,
+  &--inner {
+    grid-column: content-start / content-end;
+    grid-row: 1 / 2;
+    z-index: 5000;
   }
 }
