@@ -6,9 +6,9 @@
 }
 
 .clock-box {
-  // background-color: $color-primary;
+  background-color: $color-primary;
   // height: 85%;
-  height: 101rem;
+  height: 75rem;
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
@@ -30,12 +30,12 @@
   align-items: center;
 
   position: relative;
-  z-index: 200;
+  z-index: 100;
 }
 
 .globe-box {
   // height: 67.5%;
-  height: 75rem;
+  height: 64.2rem;
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
@@ -50,11 +50,13 @@
   align-items: center;
 
   position: relative;
-  z-index: 100;
+  z-index: 200;
 
   img {
     height: 100%;
-    border: 2px solid $color-primary;
+    // border: 2px solid $color-primary;
     border-radius: 50%;
+
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
   }
 }

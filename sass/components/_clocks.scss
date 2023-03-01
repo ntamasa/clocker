@@ -1,22 +1,20 @@
 .clocks {
-  height: 100%;
-  width: 75%;
+  @include square(100%);
 
   // Centering scaled up interior circles
-  transform: translateY(17%);
+  // transform: translateY(17%);
 
   // Placing every circle on top of each other
   display: grid;
   grid-template-rows: 1fr;
 
   // Cliping bottom to show globe
-  clip-path: polygon(-10% -10%, 110% -10%, 110% 45%, -10% 45%);
+  // clip-path: polygon(-10% -10%, 110% -10%, 110% 45%, -10% 45%);
 
   &--1,
   &--2,
   &--3 {
     // Placing every circle on top of each other
-
     grid-column: 1 / -1;
     grid-row: 1 / 2;
 
@@ -24,33 +22,33 @@
     align-self: center;
     justify-self: center;
 
-    border-radius: 10000px;
+    // Making every little circle a circle
+    // clip-path: circle(40%);
 
-    padding-top: 5rem;
+    padding-top: 6rem;
 
-    background-color: $color-primary;
-
+    // Rounding circles corners
     border: 1px solid $color-primary-light-1;
+    border-radius: 500000px;
   }
 
   &--1 {
-    @include square(120%);
+    height: 75rem;
+    width: 75rem;
 
     // background-color: pink;
   }
 
   &--2 {
-    width: 85%;
-    height: 53%;
-    transform: translateY(-28%);
+    height: 47.5rem;
+    width: 47.5rem;
 
     // background-color: green;
   }
 
   &--3 {
-    width: 50%;
-    height: 32%;
-    transform: translateY(-40%);
+    height: 30rem;
+    width: 30rem;
 
     // background-color: red;
   }

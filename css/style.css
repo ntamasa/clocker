@@ -2,7 +2,6 @@
 *::before,
 *::after {
   box-sizing: border-box; }
-  box-sizing: border-box; }
 
 body,
 h1,
@@ -15,17 +14,14 @@ blockquote,
 dl,
 dd {
   margin: 0; }
-  margin: 0; }
 
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
   margin: 0;
   padding: 0; }
-  padding: 0; }
 
 html {
-  font-size: 62.5%; }
   font-size: 62.5%; }
 
 body {
@@ -33,12 +29,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
-  align-items: center; }
 
 img,
 picture {
   max-width: 100%;
-  display: block; }
   display: block; }
 
 input,
@@ -46,40 +40,33 @@ button,
 textarea,
 select {
   font: inherit; }
-  font: inherit; }
 
 .logo {
   height: 5rem;
   width: 5rem; }
-  width: 5rem; }
 
 .clocks {
   height: 100%;
-  width: 75%;
-  transform: translateY(17%);
+  width: 100%;
   display: grid;
-  grid-template-rows: 1fr;
-  clip-path: polygon(-10% -10%, 110% -10%, 110% 45%, -10% 45%); }
+  grid-template-rows: 1fr; }
   .clocks--1, .clocks--2, .clocks--3 {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     align-self: center;
     justify-self: center;
-    border-radius: 10000px;
-    padding-top: 5rem;
-    background-color: #644abd;
-    border: 1px solid #c8bfe7; }
+    padding-top: 6rem;
+    border: 1px solid #c8bfe7;
+    border-radius: 500000px; }
   .clocks--1 {
-    height: 120%;
-    width: 120%; }
+    height: 75rem;
+    width: 75rem; }
   .clocks--2 {
-    width: 85%;
-    height: 53%;
-    transform: translateY(-28%); }
+    height: 47.5rem;
+    width: 47.5rem; }
   .clocks--3 {
-    width: 50%;
-    height: 32%;
-    transform: translateY(-40%); }
+    height: 30rem;
+    width: 30rem; }
 
 .logo-box {
   position: absolute;
@@ -87,7 +74,8 @@ select {
   left: 3.5rem; }
 
 .clock-box {
-  height: 101rem;
+  background-color: #644abd;
+  height: 75rem;
   grid-column: content-start / content-end;
   grid-row: 1 / 2;
   align-self: center;
@@ -97,10 +85,10 @@ select {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 200; }
+  z-index: 100; }
 
 .globe-box {
-  height: 75rem;
+  height: 64.2rem;
   grid-column: content-start / content-end;
   grid-row: 1 / 2;
   align-self: center;
@@ -108,36 +96,14 @@ select {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 100; }
+  z-index: 200; }
   .globe-box img {
     height: 100%;
-    border: 2px solid #644abd;
-    border-radius: 50%; }
+    border-radius: 50%;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
 
 body {
   background-color: #e3def3; }
-  width: 100%;
-  display: grid; }
-  .clocks--1, .clocks--2, .clocks--3 {
-    grid-column: 1 / -1;
-    grid-row: 1 / 2;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
-    clip-path: circle(40%); }
-  .clocks--1 {
-    height: 100%;
-    width: 100%; }
-  .clocks--2 {
-    height: 75%;
-    width: 75%; }
-  .clocks--3 {
-    height: 50%;
-    width: 50%; }
-  .clocks__sliced--piece {
-    background-color: transparent;
-    height: 75%;
-    align-self: end; }
 
 .container {
   background-color: #c8bfe7;
