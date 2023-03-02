@@ -2,3 +2,8 @@
   height: $size;
   width: $size;
 }
+
+@mixin worldTextPos($y, $deg) {
+  display: inline-block;
+  transform: translateY($y) rotate($deg);
+}
