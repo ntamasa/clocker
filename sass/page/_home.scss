@@ -20,7 +20,8 @@ body {
   // Grid Layout
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  grid-template-rows: max-content;
+  // grid-template-rows: max-content;
+  grid-template-rows: 80vh;
 
   // For the logo positioning
   position: absolute;

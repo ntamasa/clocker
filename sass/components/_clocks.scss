@@ -120,11 +120,10 @@
     transform: translateX(50%);
 
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: $color-primary-dark-2;
-    // color: red;
 
     &--w {
       @include worldTextPos(62%, -20deg);
@@ -147,31 +146,23 @@
       @include worldTextPos(62%, 20deg);
     }
   }
-
-  &__local {
-  }
 }
-
-/*
-&--local {
-    }
-
-    &--added {
-    }
-
-    &--global {
-    }
-*/
 
 .curved-text {
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1.5px;
   fill: $text-light-1;
 
-  &--outer,
-  &--middle,
-  &--inner {
+  padding: -10rem;
+
+  position: absolute;
+  top: -0%;
+  right: 0%;
+
+  &__outer,
+  &__middle,
+  &__inner {
     // Positioning it on top of the circles
     grid-column: content-start / content-end;
     grid-row: 1 / 2;
@@ -181,30 +172,78 @@
     z-index: 5000;
   }
 
-  &__zone {
-    transform: rotate(-5deg);
-  }
+  /////////////////////////
+  /// Outer circle text
+  &__middle {
+    &--zone,
+    &--country,
+    &--time,
+    &--month,
+    &--day {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
-  &__country {
-    transform: rotate(35deg);
-  }
+    &--zone {
+      transform: rotate(-5deg);
+    }
 
-  &__time {
-    font-size: 2.6rem;
-    font-weight: 500;
-    fill: $color-primary-light-1;
+    &--country {
+      transform: rotate(35deg);
+    }
 
-    // transform: rotate(80deg) translateX(-1.5%);
-    transform: rotate(76deg);
-  }
+    &--time {
+      font-size: 2.6rem;
+      font-weight: 500;
+      fill: $color-primary-light-1;
 
-  &__date {
+      // transform: rotate(80deg) translateX(-1.5%);
+      transform: rotate(75.5deg);
+    }
+
     &--month {
       transform: rotate(130deg);
     }
 
     &--day {
       transform: rotate(180deg);
+    }
+  }
+
+  /////////////////////////
+  /// Outer circle text
+  &__outer {
+    font-size: 1rem;
+
+    &--country,
+    &--time,
+    &--month,
+    &--day {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &--country {
+      transform: rotate(40deg);
+    }
+
+    &--time {
+      font-size: 1.8rem;
+      font-weight: 500;
+      fill: $color-primary-light-1;
+
+      // transform: rotate(80deg) translateX(-1.5%);
+      transform: rotate(83deg);
+    }
+
+    &--month {
+      transform: rotate(130deg);
+    }
+
+    &--day {
+      transform: rotate(175deg);
     }
   }
 }
