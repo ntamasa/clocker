@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -46,13 +46,14 @@
             </div>
             <span class="clocks__date clocks__date--global">március 1.</span>
 
-            <span class="clocks__time clocks__time--global">15:00</span>
-            <span class="clocks__global">
-              <span class="clocks__global--w">W</span>
-              <span class="clocks__global--o">o</span>
-              <span class="clocks__global--r">r</span>
-              <span class="clocks__global--l">l</span>
-              <span class="clocks__global--d">d</span>
+            <span class="clocks__time clocks__time--global">05:00</span>
+
+            <span class="clocks__world">
+              <span class="clocks__world--w">W</span>
+              <span class="clocks__world--o">o</span>
+              <span class="clocks__world--r">r</span>
+              <span class="clocks__world--l">l</span>
+              <span class="clocks__world--d">d</span>
             </span>
           </div>
         </div>
@@ -62,7 +63,7 @@
         <img src="./img/globe.png" alt="globe" class="globe__img" />
       </section>
 
-      <svg class="curved-text--outer" viewBox="0 0 500 500">
+      <svg class="curved-text curved-text--outer" viewBox="0 0 500 500">
         <path
           fill="transparent"
           id="curve--outer"
@@ -74,15 +75,20 @@
         />
         <text width="500">
           <textPath alignment-baseline="top" xlink:href="#curve--outer">
-            GMT+1 Hungary március1. 15:00
+            GMT+1 Hungary 15:00 március 1.
           </textPath>
         </text>
       </svg>
 
-      <svg class="curved-text--middle" viewBox="0 0 500 500">
+      <!-- ================================================= -->
+
+      <svg
+        class="curved-text curved-text--middle curved-text__zone"
+        viewBox="0 0 500 500"
+      >
         <path
           fill="transparent"
-          id="curve--middle"
+          id="curve--middle-zone"
           d="
             M 140, 250
             a 100,100 0 0,1 230,0
@@ -90,11 +96,102 @@
             "
         />
         <text width="500">
-          <textPath alignment-baseline="top" xlink:href="#curve--middle">
-            GMT+1 Hungary március1. 15:00
+          <textPath alignment-baseline="top" xlink:href="#curve--middle-zone">
+            GMT+1
           </textPath>
         </text>
       </svg>
+
+      <svg
+        class="curved-text curved-text--middle curved-text__country"
+        viewBox="0 0 500 500"
+      >
+        <path
+          fill="transparent"
+          id="curve--middle-country"
+          d="
+            M 140, 250
+            a 100,100 0 0,1 230,0
+            a 100,100 0 0,1 -230,0
+            "
+        />
+        <text width="500">
+          <textPath
+            alignment-baseline="top"
+            xlink:href="#curve--middle-country"
+          >
+            Hungary
+          </textPath>
+        </text>
+      </svg>
+
+      <svg
+        class="curved-text curved-text--middle curved-text__time"
+        viewBox="0 0 500 500"
+      >
+        <path
+          fill="transparent"
+          id="curve--middle-time"
+          d="
+            M 140, 250
+            a 100,100 0 0,1 230,0
+            a 100,100 0 0,1 -230,0
+            "
+        />
+        <text width="500">
+          <textPath alignment-baseline="top" xlink:href="#curve--middle-time">
+            01:00
+          </textPath>
+        </text>
+      </svg>
+
+      <svg
+        class="curved-text curved-text--middle curved-text__date--month"
+        viewBox="0 0 500 500"
+      >
+        <path
+          fill="transparent"
+          id="curve--middle-date--month"
+          d="
+            M 140, 250
+            a 100,100 0 0,1 230,0
+            a 100,100 0 0,1 -230,0
+            "
+        />
+        <text width="500">
+          <textPath
+            alignment-baseline="top"
+            xlink:href="#curve--middle-date--month"
+          >
+            március
+          </textPath>
+        </text>
+      </svg>
+
+      <svg
+        class="curved-text curved-text--middle curved-text__date--day"
+        viewBox="0 0 500 500"
+      >
+        <path
+          fill="transparent"
+          id="curve--middle-date--day"
+          d="
+            M 140, 250
+            a 100,100 0 0,1 230,0
+            a 100,100 0 0,1 -230,0
+            "
+        />
+        <text width="500">
+          <textPath
+            alignment-baseline="top"
+            xlink:href="#curve--middle-date--day"
+          >
+            31.
+          </textPath>
+        </text>
+      </svg>
+
+      <!-- ================================================= -->
     </div>
   </body>
 </html>

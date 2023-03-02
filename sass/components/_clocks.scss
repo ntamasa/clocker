@@ -52,11 +52,11 @@
   // Clocks content
   &__date,
   &__time,
-  &__global,
+  &__world,
   &__local {
     font-size: 1.6rem;
     font-weight: 300;
-    color: rgba($color-primary-light-2, 0.5);
+    color: $text-light-2;
     letter-spacing: 3px;
 
     position: absolute;
@@ -65,7 +65,7 @@
   &__details {
     font-size: 1.6rem;
     font-weight: 300;
-    color: rgba($color-primary-light-2, 0.5);
+    color: $text-light-2;
     letter-spacing: 3px;
 
     // Spacing
@@ -77,7 +77,9 @@
     margin-right: 2rem;
   }
 
-  &__zone {
+  &__zone,
+  &__country {
+    font-weight: 400;
   }
 
   &__country {
@@ -87,6 +89,8 @@
     top: 50%;
     right: 50%;
     transform: translateX(50%);
+
+    font-size: 1.4rem;
   }
 
   &__time {
@@ -110,30 +114,37 @@
     }
   }
 
-  &__global {
+  &__world {
     top: 0%;
     right: 50%;
     transform: translateX(50%);
 
     font-size: 2rem;
     font-weight: 400;
-    // color: $color-primary-dark-2;
-    color: red;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: $color-primary-dark-2;
+    // color: red;
 
     &--w {
+      @include worldTextPos(62%, -20deg);
     }
 
     &--o {
+      @include worldTextPos(35%, -12deg);
+      margin-left: -0.3rem;
     }
 
     &--r {
-      transform: translateY(-5px);
+      @include worldTextPos(20%, 0deg);
     }
 
     &--l {
+      @include worldTextPos(35%, 12deg);
     }
 
     &--d {
+      @include worldTextPos(62%, 20deg);
     }
   }
 
@@ -153,11 +164,47 @@
 */
 
 .curved-text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  fill: $text-light-1;
+
   &--outer,
   &--middle,
   &--inner {
+    // Positioning it on top of the circles
     grid-column: content-start / content-end;
     grid-row: 1 / 2;
+
+    // Puting it on top of everything
+    position: relative;
     z-index: 5000;
+  }
+
+  &__zone {
+    transform: rotate(-5deg);
+  }
+
+  &__country {
+    transform: rotate(35deg);
+  }
+
+  &__time {
+    font-size: 2.6rem;
+    font-weight: 500;
+    fill: $color-primary-light-1;
+
+    // transform: rotate(80deg) translateX(-1.5%);
+    transform: rotate(76deg);
+  }
+
+  &__date {
+    &--month {
+      transform: rotate(130deg);
+    }
+
+    &--day {
+      transform: rotate(180deg);
+    }
   }
 }

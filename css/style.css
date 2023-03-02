@@ -72,7 +72,7 @@ body {
     width: 30rem;
     display: flex;
     align-items: center; }
-  .clocks__date, .clocks__time, .clocks__global, .clocks__local {
+  .clocks__date, .clocks__time, .clocks__world, .clocks__local {
     font-size: 1.6rem;
     font-weight: 300;
     color: rgba(227, 222, 243, 0.5);
@@ -87,10 +87,13 @@ body {
     margin-top: 7rem; }
   .clocks__details .clocks__zone {
     margin-right: 2rem; }
+  .clocks__zone, .clocks__country {
+    font-weight: 400; }
   .clocks__date {
     top: 50%;
     right: 50%;
-    transform: translateX(50%); }
+    transform: translateX(50%);
+    font-size: 1.4rem; }
   .clocks__time--global {
     top: 20%;
     right: 50%;
@@ -105,15 +108,31 @@ body {
       width: 15rem;
       background-color: #4a3594;
       margin-top: -0.7rem; }
-  .clocks__global {
+  .clocks__world {
     top: 0%;
     right: 50%;
     transform: translateX(50%);
     font-size: 2rem;
     font-weight: 400;
-    color: red; }
-    .clocks__global--r {
-      transform: translateY(-5px); }
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #4a3594; }
+    .clocks__world--w {
+      display: inline-block;
+      transform: translateY(62%) rotate(-20deg); }
+    .clocks__world--o {
+      display: inline-block;
+      transform: translateY(35%) rotate(-12deg);
+      margin-left: -0.3rem; }
+    .clocks__world--r {
+      display: inline-block;
+      transform: translateY(20%) rotate(0deg); }
+    .clocks__world--l {
+      display: inline-block;
+      transform: translateY(35%) rotate(12deg); }
+    .clocks__world--d {
+      display: inline-block;
+      transform: translateY(62%) rotate(20deg); }
 
 /*
 &--local {
@@ -125,10 +144,29 @@ body {
     &--global {
     }
 */
-.curved-text--outer, .curved-text--middle, .curved-text--inner {
-  grid-column: content-start / content-end;
-  grid-row: 1 / 2;
-  z-index: 5000; }
+.curved-text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  fill: rgba(200, 191, 231, 0.5); }
+  .curved-text--outer, .curved-text--middle, .curved-text--inner {
+    grid-column: content-start / content-end;
+    grid-row: 1 / 2;
+    position: relative;
+    z-index: 5000; }
+  .curved-text__zone {
+    transform: rotate(-5deg); }
+  .curved-text__country {
+    transform: rotate(35deg); }
+  .curved-text__time {
+    font-size: 2.6rem;
+    font-weight: 500;
+    fill: #c8bfe7;
+    transform: rotate(76deg); }
+  .curved-text__date--month {
+    transform: rotate(130deg); }
+  .curved-text__date--day {
+    transform: rotate(180deg); }
 
 .logo-box {
   position: absolute;

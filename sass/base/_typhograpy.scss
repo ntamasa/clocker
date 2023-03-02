@@ -1,3 +1,13 @@
 body {
   font-family: "Dosis", "serif";
 }
+
+.curved-text {
+  &--outer {
+    // transform: rotate(68deg);
+  }
+
+  &--middle {
+    // transform: rotate(60deg);
+  }
+}
