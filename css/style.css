@@ -199,6 +199,9 @@ body {
   .curved-text__outer--day {
     transform: rotate(175deg); }
 
+.form-box__checkbox {
+  display: none; }
+
 .logo-box {
   position: absolute;
   top: 2.5rem;
