@@ -2,12 +2,80 @@ body {
   font-family: "Dosis", "serif";
 }
 
-.curved-text {
-  &--outer {
-    // transform: rotate(68deg);
+.clocks {
+  // Clocks content
+  &__date,
+  &__time,
+  &__type,
+  &__local {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: $text-light-2;
+    letter-spacing: 3px;
   }
 
-  &--middle {
-    // transform: rotate(60deg);
+  &__details {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: $text-light-2;
+    letter-spacing: 3px;
+  }
+
+  &__zone,
+  &__country {
+    font-weight: 400;
+  }
+
+  &__date {
+    font-size: 1.4rem;
+  }
+
+  &__time {
+    &--global {
+      font-size: 6.2rem;
+      font-weight: 700;
+      color: $color-primary-light-1;
+    }
+  }
+
+  &__type {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: $color-primary-dark-2;
+  }
+}
+
+.curved-text {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  fill: $text-light-1;
+
+  /////////////////////////
+  /// Outer circle text
+  &__middle {
+    &--time {
+      font-size: 4.4rem;
+      font-weight: 500;
+      fill: $color-primary-light-1;
+    }
+  }
+
+  /////////////////////////
+  /// Outer circle text
+  &__outer {
+    font-size: 1.2rem;
+
+    &--country {
+      transform: rotate(40deg);
+    }
+
+    &--time {
+      font-size: 2.2rem;
+      font-weight: 500;
+      fill: $color-primary-light-1;
+    }
   }
 }

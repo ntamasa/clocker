@@ -16,9 +16,6 @@
     align-self: center;
     justify-self: center;
 
-    // Spacing
-    // padding-top: 6rem;
-
     // Rounding circles corners
     border: 1px solid $color-primary-light-1;
     border-radius: 500000px;
@@ -29,15 +26,11 @@
   &--1 {
     height: 75rem;
     width: 75rem;
-
-    // background-color: pink;
   }
 
   &--2 {
     height: 47.5rem;
     width: 47.5rem;
-
-    // background-color: green;
   }
 
   &--3 {
@@ -46,28 +39,17 @@
 
     display: flex;
     align-items: center;
-    // background-color: red;
   }
 
   // Clocks content
   &__date,
   &__time,
-  &__world,
+  &__type,
   &__local {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: $text-light-2;
-    letter-spacing: 3px;
-
     position: absolute;
   }
 
   &__details {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: $text-light-2;
-    letter-spacing: 3px;
-
     // Spacing
     margin: 0 auto;
     margin-top: 7rem;
@@ -77,20 +59,10 @@
     margin-right: 2rem;
   }
 
-  &__zone,
-  &__country {
-    font-weight: 400;
-  }
-
-  &__country {
-  }
-
   &__date {
     top: 50%;
     right: 50%;
     transform: translateX(50%);
-
-    font-size: 1.4rem;
   }
 
   &__time {
@@ -98,10 +70,6 @@
       top: 20%;
       right: 50%;
       transform: translateX(50%);
-
-      font-size: 6.2rem;
-      font-weight: 700;
-      color: $color-primary-light-1;
 
       &::after {
         content: "";
@@ -114,48 +82,35 @@
     }
   }
 
-  &__world {
+  &__type {
     top: 0%;
     right: 50%;
     transform: translateX(50%);
 
-    font-size: 2rem;
-    font-weight: 500;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: $color-primary-dark-2;
-
-    &--w {
+    &--1 {
       @include worldTextPos(62%, -20deg);
     }
 
-    &--o {
+    &--2 {
       @include worldTextPos(35%, -12deg);
       margin-left: -0.3rem;
     }
 
-    &--r {
+    &--3 {
       @include worldTextPos(20%, 0deg);
     }
 
-    &--l {
+    &--4 {
       @include worldTextPos(35%, 12deg);
     }
 
-    &--d {
+    &--5 {
       @include worldTextPos(62%, 20deg);
     }
   }
 }
 
 .curved-text {
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  fill: $text-light-1;
-
-  padding: -10rem;
-
   position: absolute;
   top: -0%;
   right: 0%;
@@ -194,12 +149,7 @@
     }
 
     &--time {
-      font-size: 2.6rem;
-      font-weight: 500;
-      fill: $color-primary-light-1;
-
-      // transform: rotate(80deg) translateX(-1.5%);
-      transform: rotate(75.5deg);
+      transform: rotate(77deg) translateX(2.5%);
     }
 
     &--month {
@@ -214,8 +164,6 @@
   /////////////////////////
   /// Outer circle text
   &__outer {
-    font-size: 1rem;
-
     &--country,
     &--time,
     &--month,
@@ -230,12 +178,7 @@
     }
 
     &--time {
-      font-size: 1.8rem;
-      font-weight: 500;
-      fill: $color-primary-light-1;
-
-      // transform: rotate(80deg) translateX(-1.5%);
-      transform: rotate(83deg);
+      transform: rotate(82.5deg) translateX(0.5%);
     }
 
     &--month {

@@ -44,6 +44,54 @@ select {
 body {
   font-family: "Dosis", "serif"; }
 
+.clocks__date, .clocks__time, .clocks__type, .clocks__local {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: rgba(227, 222, 243, 0.6);
+  letter-spacing: 3px; }
+
+.clocks__details {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: rgba(227, 222, 243, 0.6);
+  letter-spacing: 3px; }
+
+.clocks__zone, .clocks__country {
+  font-weight: 400; }
+
+.clocks__date {
+  font-size: 1.4rem; }
+
+.clocks__time--global {
+  font-size: 6.2rem;
+  font-weight: 700;
+  color: #c8bfe7; }
+
+.clocks__type {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #4a3594; }
+
+.curved-text {
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  fill: rgba(200, 191, 231, 0.6); }
+  .curved-text__middle--time {
+    font-size: 4.4rem;
+    font-weight: 500;
+    fill: #c8bfe7; }
+  .curved-text__outer {
+    font-size: 1.2rem; }
+    .curved-text__outer--country {
+      transform: rotate(40deg); }
+    .curved-text__outer--time {
+      font-size: 2.2rem;
+      font-weight: 500;
+      fill: #c8bfe7; }
+
 .logo {
   height: 5rem;
   width: 5rem; }
@@ -72,35 +120,21 @@ body {
     width: 30rem;
     display: flex;
     align-items: center; }
-  .clocks__date, .clocks__time, .clocks__world, .clocks__local {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: rgba(227, 222, 243, 0.6);
-    letter-spacing: 3px;
+  .clocks__date, .clocks__time, .clocks__type, .clocks__local {
     position: absolute; }
   .clocks__details {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: rgba(227, 222, 243, 0.6);
-    letter-spacing: 3px;
     margin: 0 auto;
     margin-top: 7rem; }
   .clocks__details .clocks__zone {
     margin-right: 2rem; }
-  .clocks__zone, .clocks__country {
-    font-weight: 400; }
   .clocks__date {
     top: 50%;
     right: 50%;
-    transform: translateX(50%);
-    font-size: 1.4rem; }
+    transform: translateX(50%); }
   .clocks__time--global {
     top: 20%;
     right: 50%;
-    transform: translateX(50%);
-    font-size: 6.2rem;
-    font-weight: 700;
-    color: #c8bfe7; }
+    transform: translateX(50%); }
     .clocks__time--global::after {
       content: "";
       display: block;
@@ -108,38 +142,28 @@ body {
       width: 15rem;
       background-color: #4a3594;
       margin-top: -0.7rem; }
-  .clocks__world {
+  .clocks__type {
     top: 0%;
     right: 50%;
-    transform: translateX(50%);
-    font-size: 2rem;
-    font-weight: 500;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #4a3594; }
-    .clocks__world--w {
+    transform: translateX(50%); }
+    .clocks__type--1 {
       display: inline-block;
       transform: translateY(62%) rotate(-20deg); }
-    .clocks__world--o {
+    .clocks__type--2 {
       display: inline-block;
       transform: translateY(35%) rotate(-12deg);
       margin-left: -0.3rem; }
-    .clocks__world--r {
+    .clocks__type--3 {
       display: inline-block;
       transform: translateY(20%) rotate(0deg); }
-    .clocks__world--l {
+    .clocks__type--4 {
       display: inline-block;
       transform: translateY(35%) rotate(12deg); }
-    .clocks__world--d {
+    .clocks__type--5 {
       display: inline-block;
       transform: translateY(62%) rotate(20deg); }
 
 .curved-text {
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  fill: rgba(200, 191, 231, 0.6);
-  padding: -10rem;
   position: absolute;
   top: -0%;
   right: 0%; }
@@ -157,31 +181,23 @@ body {
   .curved-text__middle--country {
     transform: rotate(35deg); }
   .curved-text__middle--time {
-    font-size: 2.6rem;
-    font-weight: 500;
-    fill: #c8bfe7;
-    transform: rotate(75.5deg); }
+    transform: rotate(77deg) translateX(2.5%); }
   .curved-text__middle--month {
     transform: rotate(130deg); }
   .curved-text__middle--day {
     transform: rotate(180deg); }
-  .curved-text__outer {
-    font-size: 1rem; }
-    .curved-text__outer--country, .curved-text__outer--time, .curved-text__outer--month, .curved-text__outer--day {
-      position: absolute;
-      top: 0;
-      right: 0; }
-    .curved-text__outer--country {
-      transform: rotate(40deg); }
-    .curved-text__outer--time {
-      font-size: 1.8rem;
-      font-weight: 500;
-      fill: #c8bfe7;
-      transform: rotate(83deg); }
-    .curved-text__outer--month {
-      transform: rotate(130deg); }
-    .curved-text__outer--day {
-      transform: rotate(175deg); }
+  .curved-text__outer--country, .curved-text__outer--time, .curved-text__outer--month, .curved-text__outer--day {
+    position: absolute;
+    top: 0;
+    right: 0; }
+  .curved-text__outer--country {
+    transform: rotate(40deg); }
+  .curved-text__outer--time {
+    transform: rotate(82.5deg) translateX(0.5%); }
+  .curved-text__outer--month {
+    transform: rotate(130deg); }
+  .curved-text__outer--day {
+    transform: rotate(175deg); }
 
 .logo-box {
   position: absolute;
