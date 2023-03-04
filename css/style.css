@@ -199,54 +199,54 @@ body {
   .curved-text__outer--day {
     transform: rotate(175deg); }
 
-.form__checkbox {
-  display: none; }
-
-.form__btn {
-  height: 7.5rem;
-  width: 7.5rem;
-  position: absolute;
-  top: 2.5rem;
-  right: 3.5rem;
-  background-color: #644abd;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 9998;
-  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2); }
-
-.form__icon {
-  transition: all 0.2s; }
-  .form__icon--add, .form__icon--close {
+.form {
+  grid-row: 1 / 2;
+  grid-column: 1 / -1;
+  display: grid; }
+  .form__checkbox {
+    display: none; }
+  .form__btn {
+    height: 7.5rem;
+    width: 7.5rem;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-  .form__icon--add {
-    color: #c8bfe7;
-    height: 5rem;
-    width: 5rem;
-    opacity: 1;
-    visibility: visible; }
-  .form__icon--close {
-    color: #c8bfe7;
-    height: 5rem;
-    width: 5rem;
-    opacity: 0;
-    visibility: hidden; }
-
-.form__background {
-  height: 6.5rem;
-  width: 6.5rem;
-  position: absolute;
-  top: 3rem;
-  right: 4rem;
-  background-image: radial-gradient(#644abd, #4a3594);
-  border-radius: 50%;
-  z-index: 9997;
-  transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
-
-.form__checkbox:checked ~ .form__background {
-  transform: scale(80); }
+    top: 2.5rem;
+    right: 3.5rem;
+    background-color: #644abd;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3); }
+  .form__icon {
+    transition: all 0.2s; }
+    .form__icon--add, .form__icon--close {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+    .form__icon--add {
+      color: #c8bfe7;
+      height: 5rem;
+      width: 5rem;
+      opacity: 1;
+      visibility: visible; }
+    .form__icon--close {
+      color: #c8bfe7;
+      height: 5rem;
+      width: 5rem;
+      opacity: 0;
+      visibility: hidden; }
+  .form__background {
+    height: 6.5rem;
+    width: 6.5rem;
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
+    background-image: radial-gradient(#644abd, #3f2d79);
+    border-radius: 50%;
+    z-index: 9997;
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
+  .form__checkbox:checked ~ .form__background {
+    transform: scale(80); }
 
 .logo-box {
   position: absolute;
