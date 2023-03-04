@@ -6,8 +6,13 @@
 }
 
 .clock-box {
-  background-color: $color-primary;
-  // height: 85%;
+  // background-color: $color-primary;
+  background-image: radial-gradient(
+    $color-primary-dark-1 1%,
+    $color-primary-dark-2 30%,
+    $color-primary 70%
+  );
+
   height: 75rem;
 
   // Placing it in the right cell of container grid
@@ -35,8 +40,11 @@
 }
 
 .globe-box {
-  // height: 67.5%;
   height: 64.2rem;
+
+  // Other globe image
+  // height: 73rem;
+  // transform: translateX(0.2%);
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;

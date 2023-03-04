@@ -47,13 +47,13 @@ body {
 .clocks__date, .clocks__time, .clocks__type, .clocks__local {
   font-size: 1.6rem;
   font-weight: 300;
-  color: rgba(227, 222, 243, 0.6);
+  color: #c8bfe7;
   letter-spacing: 3px; }
 
 .clocks__details {
   font-size: 1.6rem;
   font-weight: 300;
-  color: rgba(227, 222, 243, 0.6);
+  color: #c8bfe7;
   letter-spacing: 3px; }
 
 .clocks__zone, .clocks__country {
@@ -65,24 +65,24 @@ body {
 .clocks__time--global {
   font-size: 6.2rem;
   font-weight: 700;
-  color: #c8bfe7; }
+  color: #e3def3; }
 
 .clocks__type {
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: #4a3594; }
+  color: rgba(200, 191, 231, 0.3); }
 
 .curved-text {
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 1.5px;
-  fill: rgba(200, 191, 231, 0.6); }
+  fill: #c8bfe7; }
   .curved-text__middle--time {
     font-size: 4.4rem;
     font-weight: 500;
-    fill: #c8bfe7; }
+    fill: #e3def3; }
   .curved-text__outer {
     font-size: 1.2rem; }
     .curved-text__outer--country {
@@ -90,7 +90,7 @@ body {
     .curved-text__outer--time {
       font-size: 2.2rem;
       font-weight: 500;
-      fill: #c8bfe7; }
+      fill: #e3def3; }
 
 .logo {
   height: 5rem;
@@ -205,7 +205,7 @@ body {
   left: 3.5rem; }
 
 .clock-box {
-  background-color: #644abd;
+  background-image: radial-gradient(#3f2d79 1%, #4a3594 30%, #644abd 70%);
   height: 75rem;
   grid-column: content-start / content-end;
   grid-row: 1 / 2;
@@ -239,11 +239,13 @@ body {
 
 .container {
   background-color: #c8bfe7;
+  overflow: hidden;
+  height: 80vh;
   width: 80vw;
   border: 1px solid #999;
   border-radius: 10px;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  grid-template-rows: 80vh;
+  grid-template-rows: max-content;
   position: absolute; }
