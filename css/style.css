@@ -199,8 +199,55 @@ body {
   .curved-text__outer--day {
     transform: rotate(175deg); }
 
-.form-box__checkbox {
+.form__checkbox {
   display: none; }
+
+.form__btn {
+  height: 7.5rem;
+  width: 7.5rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 3.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.form__icon, .form__icon::before, .form__icon::after {
+  content: "";
+  width: 3.5rem;
+  height: 1px;
+  background-color: #000;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s; }
+
+.form__icon::before {
+  top: -1.1rem; }
+
+.form__icon::after {
+  top: 1.2rem; }
+
+.form__btn:hover .form__icon::before {
+  top: -1.3rem; }
+
+.form__btn:hover .form__icon::after {
+  top: 1.4rem; }
+
+.form__checkbox:checked + .form__btn .form__icon {
+  background-color: transparent; }
+
+.form__checkbox:checked + .form__btn .form__icon::before {
+  top: 0;
+  left: 0;
+  transform: rotate(135deg); }
+
+.form__checkbox:checked + .form__btn .form__icon::after {
+  top: 0;
+  left: 0;
+  transform: rotate(-135deg); }
 
 .logo-box {
   position: absolute;
@@ -251,4 +298,4 @@ body {
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
   grid-template-rows: max-content;
-  position: absolute; }
+  position: relative; }
