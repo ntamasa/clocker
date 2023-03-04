@@ -1,68 +1,90 @@
 .form {
   &__checkbox {
+    // Hide original checkbox
     display: none;
   }
 
   &__btn {
+    // Sizing
     height: 7.5rem;
     width: 7.5rem;
 
+    // Position
     position: absolute;
     top: 2.5rem;
     right: 3.5rem;
 
+    // Background and rounding of the box
     background-color: $white;
     border-radius: 50%;
 
+    // Button cursor
     cursor: pointer;
+
+    // Making it on top of everything but not its elements
+    z-index: 9998;
   }
 
   &__icon {
     &,
     &::before,
     &::after {
+      // Dimensions of the 3 lines
       content: "";
       width: 3.5rem;
       height: 1px;
-      background-color: $black;
       display: block;
 
+      background-color: $black;
+
+      // Centering all lines
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
 
+      // Animation
       transition: all 0.2s;
+
+      // Making it on top of everything
+      z-index: 9999;
     }
 
     &::before {
+      // Positioning first line
       top: -1.1rem;
     }
 
     &::after {
+      // Positioning last line
       top: 1.2rem;
     }
   }
 
   &__btn:hover &__icon::before {
+    // On hover hamburger menu gap expands
     top: -1.3rem;
   }
 
   &__btn:hover &__icon::after {
+    // On hover hamburger menu gap expands
     top: 1.4rem;
   }
 
   &__checkbox:checked + &__btn &__icon {
+    // Hide middle line if clicked
     background-color: transparent;
   }
 
   &__checkbox:checked + &__btn &__icon::before {
+    // Rotate first line to make an X shape
     top: 0;
     left: 0;
     transform: rotate(135deg);
   }
 
   &__checkbox:checked + &__btn &__icon::after {
+    // Rotate last line to make an X shape
     top: 0;
     left: 0;
     transform: rotate(-135deg);
