@@ -13,7 +13,8 @@
     $color-primary 70%
   );
 
-  height: 75rem;
+  // height: 75rem;
+  height: 100%;
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
@@ -40,7 +41,8 @@
 }
 
 .globe-box {
-  height: 64.2rem;
+  // height: 64.2rem;
+  height: 85.5%;
 
   // Other globe image
   // height: 73rem;
