@@ -321,19 +321,55 @@
 
         <div class="form__background">&nbsp;</div>
 
-        <form action="#" class="form__box">
-          <h2 class="heading-secondary">
+        <form action="#" class="form-box">
+          <h2 class="heading-secondary form-box__heading">
             Choose a country or city to add a time zone to
             <span class="brand">clocker</span>
           </h2>
-          <input type="text" id="form__country" />
-          <label for="form__country" class="form__country-text">Country</label>
 
-          <input type="text" id="form__city" />
-          <label for="form__city" class="form__city-text">City</label>
+          <div class="form-box__content">
+            <div class="form-box__content-item">
+              <label for="form-box__country" class="form-box__label"
+                >Country</label
+              >
+              <input
+                type="text"
+                id="form-box__country"
+                class="form-box__country"
+                placeholder="Please add a country  (UK)"
+              />
+            </div>
 
-          <input type="text" id="form__zone" />
-          <label for="form__zone" class="form__zone-text">Time zone</label>
+            <div class="form-box__content-item">
+              <label for="form-box__city" class="form-box__label">City</label>
+              <input
+                type="text"
+                id="form-box__city"
+                class="form-box__city"
+                placeholder="Please add a city (London)"
+              />
+            </div>
+
+            <div class="form-box__content-item">
+              <label for="form-box__zone" class="form-box__label"
+                >Time zone</label
+              >
+              <input
+                type="text"
+                id="form__zone"
+                class="form-box__zone"
+                placeholder="Please add a time zone (GMT+1)"
+              />
+            </div>
+          </div>
+          <footer class="footer">
+            <p class="copyright">
+              &copy; Copyright <span class="footer__year">2023</span> by
+              <span class="brand">clocker</span>. All rights reserved.
+            </p>
+          </footer>
+
+          <div class="form-box__map">&nbsp;</div>
         </form>
       </div>
     </div>
