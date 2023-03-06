@@ -102,11 +102,7 @@
   opacity: 0;
   visibility: hidden;
 
-  // transition: all 1s;
   transition: all 1s;
-
-  // Spacing
-  margin: 6rem 8rem;
 
   // Creating grid for the item placing
   display: grid;
@@ -126,7 +122,7 @@
     justify-self: center;
 
     // Non checked state
-    margin-top: -10%;
+    transform: translateY(-10rem);
 
     // Animation
     transition: all 0.8s;
@@ -151,7 +147,7 @@
     gap: 10rem;
 
     // Non checked state
-    margin-left: -200%;
+    transform: translateX(-200%);
 
     // Animation
     transition: all 0.8s;
@@ -163,9 +159,7 @@
     }
   }
 
-  &__country,
-  &__city,
-  &__zone {
+  &__input {
     // Dimensions of input elements
     height: 4rem;
     width: 30rem;
@@ -184,25 +178,33 @@
 
     // Spacing
     padding: 1rem 2rem;
+
+    // Focus animation
+    transition: all 0.2s;
   }
 
-  &__country::placeholder,
-  &__city::placeholder,
-  &__zone::placeholder {
+  &__input::placeholder {
     // General styling
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 400;
     color: rgba($color-primary-dark-2, 0.5);
   }
 
+  &__input:focus {
+    outline: none;
+    transform: translateY(-0.25rem) scale(1.05);
+    box-shadow: 0 1rem 4rem rgba($black, 0.3);
+  }
+
   &__label {
     // General styling
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 300;
+    letter-spacing: 1.5px;
     color: $white;
 
     // Spacing
-    padding: 0.5rem 2rem;
+    padding: 0.75rem 2rem;
   }
 
   &__map {
@@ -211,14 +213,13 @@
     grid-row: 2 / 4;
 
     // Border
-    // border: 1px solid $color-primary-dark-1;
     border-radius: 10px;
 
     // Shadows
     box-shadow: 0 1rem 4rem rgba($black, 0.3);
 
     // Having a more center looking alignment
-    margin-top: -2rem;
+    transform: translateY(-2rem);
 
     // Non checked state
     width: 0;
@@ -227,9 +228,6 @@
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
-
-    // // TEST
-    background-color: $color-primary-light-2;
   }
 
   .footer {
@@ -239,10 +237,10 @@
 
     // Alignment to the center of its cell
     justify-self: center;
-    align-self: center;
+    align-self: flex-end;
 
-    // Non checked state
-    margin-left: -200%;
+    // Non checked state on X and better looking positioning inside cell with Y
+    transform: translate(-100rem, -3rem);
 
     // Animation
     transition: all 0.8s;
@@ -253,28 +251,24 @@
     // Checked state visibility
     opacity: 1;
     visibility: visible;
+
+    // Spacing (can't be on original selector because it ruins globe and circle)
+    margin: 6rem 8rem;
   }
 
   // Checked state changes
   .form__checkbox:checked ~ & &__heading {
-    margin-top: 0;
-    // opacity: 1;
-    // visibility: visible;
+    // margin-top: 0;
+    transform: translateY(0);
   }
   .form__checkbox:checked ~ & &__content {
-    margin-left: 0;
-    // opacity: 1;
-    // visibility: visible;
+    transform: translateX(0);
   }
   .form__checkbox:checked ~ & &__map {
-    width: 100%;
+    width: 85%;
     border: 1px solid $color-primary-dark-1;
-    // opacity: 1;
-    // visibility: visible;
   }
   .form__checkbox:checked ~ & .footer {
-    margin-left: 0;
-    // opacity: 1;
-    // visibility: visible;
+    transform: translate(0, -3rem);
   }
 }
