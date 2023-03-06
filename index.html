@@ -6,28 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>clocker</title>
 
+    <!-- Font families -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- CSS link -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Main box in the middle on big screens -->
     <div class="container">
+      <!-- Logo -->
       <div class="logo-box">
         <img src="/img/logo.png" alt="clocker logo" class="logo" />
       </div>
 
+      <!-- Globe -->
       <section class="globe-box">
         <img src="./img/globe.png" alt="globe" class="globe__img" />
       </section>
 
+      <!-- Clocks that show time in 3 circles -->
       <section class="clock-box">
         <div class="clocks">
+          <!-- Outer circle -->
           <div class="clocks--1">
-            <!-- ========================================================= -->
+            <!-- element for curved text (time-zone) -->
             <svg
               class="curved-text curved-text__outer curved-text__outer--zone"
               viewBox="0 0 500 500"
@@ -50,6 +58,8 @@
                 </textPath>
               </text>
             </svg>
+
+            <!-- element for curved text (country) -->
             <svg
               class="curved-text curved-text__outer curved-text__outer--country"
               viewBox="0 0 500 500"
@@ -72,6 +82,8 @@
                 </textPath>
               </text>
             </svg>
+
+            <!-- element for curved text (time) -->
             <svg
               class="curved-text curved-text__outer curved-text__outer--time"
               viewBox="0 0 500 500"
@@ -95,6 +107,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (month) -->
             <svg
               class="curved-text curved-text__outer curved-text__outer--month"
               viewBox="0 0 500 500"
@@ -118,6 +131,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (day) -->
             <svg
               class="curved-text curved-text__outer curved-text__outer--day"
               viewBox="0 0 500 500"
@@ -141,8 +155,10 @@
               </text>
             </svg>
           </div>
-          <!-- ========================================================= -->
+
+          <!-- Middle circle -->
           <div class="clocks--2">
+            <!-- element for curved text (time-zone) -->
             <svg
               class="curved-text curved-text__middle curved-text__middle--zone"
               viewBox="0 0 500 500"
@@ -166,6 +182,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (country) -->
             <svg
               class="curved-text curved-text__middle curved-text__middle--country"
               viewBox="0 0 500 500"
@@ -189,6 +206,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (time) -->
             <svg
               class="curved-text curved-text__middle curved-text__middle--time"
               viewBox="0 0 500 500"
@@ -212,6 +230,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (month) -->
             <svg
               class="curved-text curved-text__middle curved-text__middle--month"
               viewBox="0 0 500 500"
@@ -235,6 +254,7 @@
               </text>
             </svg>
 
+            <!-- element for curved text (day) -->
             <svg
               class="curved-text curved-text__middle curved-text__middle--day"
               viewBox="0 0 500 500"
@@ -259,17 +279,23 @@
             </svg>
           </div>
 
+          <!-- Inner circle -->
           <div class="clocks--3">
+            <!-- Bottom line of elements (time-zone, country) -->
             <div class="clocks__details">
               <span class="clocks__zone clocks__zone--global">GMT+1</span>
               <span class="clocks__country clocks__country--global"
                 >Hungary</span
               >
             </div>
+
+            <!-- Month -->
             <span class="clocks__date clocks__date--global">március 1.</span>
 
+            <!-- Time -->
             <span class="clocks__time clocks__time--global">05:00</span>
 
+            <!-- Curved "WORLD" text in the circle -->
             <span class="clocks__type">
               <span class="clocks__type--1">W</span>
               <span class="clocks__type--2">o</span>
@@ -282,8 +308,10 @@
       </section>
 
       <div class="form">
+        <!-- Plus button for adding a time to middle circle -->
         <input type="checkbox" class="form__checkbox" id="btn__toggle" />
         <label for="btn__toggle" class="form__btn">
+          <!-- Plus icon -->
           <span class="form__icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -301,6 +329,7 @@
             </svg>
           </span>
 
+          <!-- Tick icon -->
           <span class="form__icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -319,15 +348,19 @@
           </span>
         </label>
 
+        <!-- Background for when you click the button -->
         <div class="form__background">&nbsp;</div>
 
+        <!-- The form itself -->
         <form action="#" class="form-box">
           <h2 class="heading-secondary form-box__heading">
             Choose a country or city to add a time zone to
             <span class="brand">clocker</span>
           </h2>
 
+          <!-- Form side of the form page -->
           <div class="form-box__content">
+            <!-- A single input for the form with label -->
             <div class="form-box__content-item">
               <label for="form-box__country" class="form-box__label"
                 >Country</label
@@ -340,6 +373,7 @@
               />
             </div>
 
+            <!-- A single input for the form with label -->
             <div class="form-box__content-item">
               <label for="form-box__city" class="form-box__label">City</label>
               <input
@@ -350,6 +384,7 @@
               />
             </div>
 
+            <!-- A single input for the form with label -->
             <div class="form-box__content-item">
               <label for="form-box__zone" class="form-box__label"
                 >Time zone</label
@@ -362,6 +397,8 @@
               />
             </div>
           </div>
+
+          <!-- Footer with copyright -->
           <footer class="footer">
             <p class="copyright">
               &copy; Copyright <span class="footer__year">2023</span> by
@@ -369,6 +406,7 @@
             </p>
           </footer>
 
+          <!-- Map -->
           <div class="form-box__map">&nbsp;</div>
         </form>
       </div>
