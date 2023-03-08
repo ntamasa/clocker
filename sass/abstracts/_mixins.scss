@@ -7,3 +7,13 @@
   display: inline-block;
   transform: translateY($y) rotate($deg);
 }
+
+@mixin hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin visible {
+  opacity: 1;
+  visibility: visible;
+}

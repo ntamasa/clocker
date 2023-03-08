@@ -13,12 +13,11 @@
     $color-primary 70%
   );
 
-  // height: 75rem;
   height: 100%;
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 
   // Alinging it to the center
   align-self: center;
@@ -31,7 +30,6 @@
 
   // Alingning clocks centered inside clock container
   display: flex;
-  // grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
 
@@ -41,7 +39,6 @@
 }
 
 .globe-box {
-  // height: 64.2rem;
   height: 85.5%;
 
   // Other globe image
@@ -50,7 +47,7 @@
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 
   // Alinging it to the center
   align-self: center;
@@ -64,9 +61,6 @@
   position: relative;
   z-index: 200;
 
-  // Shadow
-  filter: drop-shadow(0 2rem 4rem rgba($black, 0.2));
-
   img {
     height: 100%;
     border-radius: 50%;
@@ -75,6 +69,99 @@
   }
 }
 
+//////////////////////////////////////////////
 // Form box for adding a timezone to the clock
-// .form-box {
-// }
+.form {
+  // Placing it through the whole container
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
+
+  align-self: center;
+  justify-self: center;
+
+  ///////////////////////////////
+  /// Form button ///////////////
+  ///////////////////////////////
+  &__checkbox {
+    // Hide original checkbox
+    display: none;
+  }
+
+  &__btn {
+    // Sizing
+    @include square(7.5rem);
+
+    // Position
+    position: absolute;
+    top: 2.5rem;
+    right: 3.5rem;
+
+    // Background and rounding of the box
+    background-color: $color-primary;
+    border-radius: 50%;
+
+    // Button cursor
+    cursor: pointer;
+
+    // Making it on top of everything but not its elements
+    z-index: 9998;
+
+    // Shadows
+    box-shadow: 0 1rem 4rem rgba($black, 0.3);
+  }
+
+  &__icon {
+    // Animation
+    transition: all 0.8s;
+
+    &--add,
+    &--close {
+      // Centering icons
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--add {
+      // General styling
+      @include square(5rem);
+
+      // Visibility
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &--close {
+      // General styling
+      @include square(5rem);
+
+      // Visibility
+      @include hidden;
+    }
+  }
+
+  &__background {
+    // Little bit smaller than button on top
+    @include square(6.5rem);
+
+    // Position under button
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
+
+    // Making it a circle with gradient background
+    background-image: radial-gradient($color-primary, $color-primary-dark-1);
+    border-radius: 50%;
+
+    // Placing it on top of website content
+    z-index: 9997;
+
+    // Animation
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+}

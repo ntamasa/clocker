@@ -2,19 +2,25 @@ body {
   font-family: "Dosis", "serif";
 }
 
+/////////////////////////////////
+/// HEADINGS ////////////////////
+/////////////////////////////////
+
+.heading-secondary {
+  font-size: 3.2rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: $color-primary-light-2;
+}
+
+/////////////////////////////////
+/// CLOCKS //////////////////////
+/////////////////////////////////
 .clocks {
   // Clocks content
   &__date,
   &__time,
   &__type,
-  &__local {
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: $color-primary-light-1;
-    letter-spacing: 3px;
-  }
-
-  // Smallest circle, under time texts
   &__details {
     font-size: 1.6rem;
     font-weight: 300;
@@ -31,12 +37,10 @@ body {
     font-size: 1.4rem;
   }
 
-  &__time {
-    &--global {
-      font-size: 6.2rem;
-      font-weight: 700;
-      color: $color-primary-light-2;
-    }
+  &__time-global {
+    font-size: 6.2rem;
+    font-weight: 700;
+    color: $color-primary-light-2;
   }
 
   // World text in smallest circle
@@ -82,13 +86,6 @@ body {
   }
 }
 
-.heading-secondary {
-  font-size: 3.2rem;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  color: $color-primary-light-2;
-}
-
 .brand {
   font-weight: 700;
 }
@@ -97,4 +94,45 @@ body {
   font-size: 1.4rem;
   letter-spacing: 1.25px;
   color: rgba($color-primary-light-2, 0.75);
+}
+
+/////////////////////////////////
+/// FORM ////////////////////////
+/////////////////////////////////
+
+.form {
+  &__icon {
+    &--add,
+    &--close {
+      // General styling
+      color: $color-primary-light-1;
+    }
+  }
+}
+
+.form-box {
+  &__country,
+  &__city,
+  &__zone {
+    // General styling
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: $color-primary-dark-1;
+  }
+
+  &__country::placeholder,
+  &__city::placeholder,
+  &__zone::placeholder {
+    // General styling
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba($color-primary-dark-2, 0.5);
+  }
+
+  &__label {
+    // General styling
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: $white;
+  }
 }

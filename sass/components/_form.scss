@@ -1,106 +1,6 @@
-.form {
-  // Placing it through the whole container
-  grid-row: 1 / 2;
-  grid-column: 1 / -1;
-
-  ///////////////////////////////
-  /// Form button ///////////////
-  ///////////////////////////////
-  &__checkbox {
-    // Hide original checkbox
-    display: none;
-  }
-
-  &__btn {
-    // Sizing
-    height: 7.5rem;
-    width: 7.5rem;
-
-    // Position
-    position: absolute;
-    top: 2.5rem;
-    right: 3.5rem;
-
-    // Background and rounding of the box
-    background-color: $color-primary;
-    border-radius: 50%;
-
-    // Button cursor
-    cursor: pointer;
-
-    // Making it on top of everything but not its elements
-    z-index: 9998;
-
-    // Shadows
-    box-shadow: 0 1rem 4rem rgba($black, 0.3);
-  }
-
-  &__icon {
-    // Animation
-    transition: all 0.8s;
-
-    &--add,
-    &--close {
-      // Centering icons
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    &--add {
-      // General styling
-      color: $color-primary-light-1;
-      height: 5rem;
-      width: 5rem;
-
-      // Visibility
-      opacity: 1;
-      visibility: visible;
-    }
-
-    &--close {
-      // General styling
-      color: $color-primary-light-1;
-      height: 5rem;
-      width: 5rem;
-
-      // Visibility
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
-  &__background {
-    // Little bit smaller than button on top
-    height: 6.5rem;
-    width: 6.5rem;
-
-    // Position under button
-    position: absolute;
-    top: 3rem;
-    right: 4rem;
-
-    // Making it a circle with gradient background
-    background-image: radial-gradient($color-primary, $color-primary-dark-1);
-    border-radius: 50%;
-
-    // Placing it on top of website content
-    z-index: 9997;
-
-    // Animation
-    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
-  }
-
-  &__checkbox:checked ~ &__background {
-    transform: scale(80);
-  }
-}
-
 .form-box {
   // Hiding all of them on non checked state
-  opacity: 0;
-  visibility: hidden;
+  @include hidden;
 
   // transition: all 1s;
   transition: all 1s;
@@ -126,7 +26,7 @@
     justify-self: center;
 
     // Non checked state
-    margin-top: -10%;
+    transform: translateY(-200rem);
 
     // Animation
     transition: all 0.8s;
@@ -151,7 +51,7 @@
     gap: 10rem;
 
     // Non checked state
-    margin-left: -200%;
+    transform: translateX(-200rem);
 
     // Animation
     transition: all 0.8s;
@@ -174,11 +74,6 @@
     border: 1px solid $color-primary-dark-1;
     border-radius: 10px;
 
-    // General styling
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: $color-primary-dark-1;
-
     // Shadow
     box-shadow: 0 1rem 4rem rgba($black, 0.2);
 
@@ -186,21 +81,7 @@
     padding: 1rem 2rem;
   }
 
-  &__country::placeholder,
-  &__city::placeholder,
-  &__zone::placeholder {
-    // General styling
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: rgba($color-primary-dark-2, 0.5);
-  }
-
   &__label {
-    // General styling
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: $white;
-
     // Spacing
     padding: 0.5rem 2rem;
   }
@@ -211,14 +92,13 @@
     grid-row: 2 / 4;
 
     // Border
-    // border: 1px solid $color-primary-dark-1;
     border-radius: 10px;
 
     // Shadows
     box-shadow: 0 1rem 4rem rgba($black, 0.3);
 
     // Having a more center looking alignment
-    margin-top: -2rem;
+    transform: translateY(-2rem);
 
     // Non checked state
     width: 0;
@@ -227,9 +107,6 @@
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
-
-    // // TEST
-    background-color: $color-primary-light-2;
   }
 
   .footer {
@@ -242,7 +119,7 @@
     align-self: center;
 
     // Non checked state
-    margin-left: -200%;
+    transform: translateX(-200rem);
 
     // Animation
     transition: all 0.8s;
@@ -251,30 +128,21 @@
 
   .form__checkbox:checked ~ & {
     // Checked state visibility
-    opacity: 1;
-    visibility: visible;
+    @include visible;
   }
 
   // Checked state changes
   .form__checkbox:checked ~ & &__heading {
-    margin-top: 0;
-    // opacity: 1;
-    // visibility: visible;
+    transform: translateY(0);
   }
   .form__checkbox:checked ~ & &__content {
-    margin-left: 0;
-    // opacity: 1;
-    // visibility: visible;
+    transform: translateX(0);
   }
   .form__checkbox:checked ~ & &__map {
-    width: 100%;
+    width: 70rem;
     border: 1px solid $color-primary-dark-1;
-    // opacity: 1;
-    // visibility: visible;
   }
   .form__checkbox:checked ~ & .footer {
-    margin-left: 0;
-    // opacity: 1;
-    // visibility: visible;
+    transform: translateX(0);
   }
 }
