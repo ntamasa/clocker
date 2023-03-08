@@ -1,0 +1,18 @@
+.shadow {
+  // Placing it in the right grid cell, behind main element
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+
+  // Alignment to center of grid cell
+  justify-self: center;
+
+  // Filling the whole cell
+  width: 90%;
+  height: 100%;
+  // background-color: red;
+
+  background-image: radial-gradient(
+    rgba($black, 0.75),
+    $color-primary-light-1 70%
+  );
+}
