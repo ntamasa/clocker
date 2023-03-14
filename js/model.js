@@ -15,57 +15,94 @@ export const clock = {
   },
 };
 
-export const getPosition = async function () {
-  if (navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(
-      this.loadData.bind(this),
-      function () {
-        alert("Could not get your position");
-      }
-    );
+export const _getPosition = async function () {
+  if (!navigator.geolocation) {
+    console.log("Geolocation is not supported by your browser!");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    this._loadData.bind(this),
+    function () {
+      alert("Could not get your location!");
+    }
+  );
 };
 
-export const loadData = async function (data) {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+export const _loadData = async function (data) {
+  // prettier-ignore
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
   const { latitude } = data.coords;
   const { longitude } = data.coords;
 
-  console.log(clock);
-
-  const now = new Date();
-  console.log(now);
+  const date = new Date();
 
   //////////////////////////
 
   clock.coords = [latitude, longitude];
 
-  clock.time = {
-    hour: now.getHours(),
-    minute: now.getMinutes(),
-  };
+  // if (
+  //   clock.time.hour !== date.getHours() ||
+  //   clock.time.minute !== date.getMinutes()
+  // ) {
 
-  clock.zone = now.getTimezoneOffset();
+  clock.time = {
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+  };
+  // }
+
+  // exports -60 so take 2nd number out if it is 0
+  clock.zone = date.getTimezoneOffset();
 
   // clock.country = ipGeolocationAPI
 
   clock.date = {
-    month: months[now.getMonth()],
-    day: now.toString().split(" ")[2],
+    month: months[date.getMonth()],
+    day: date.toString().split(" ")[2],
   };
 
   console.log(clock);
 };
+
+///////////////
+// API
+export const _API = function (apiKey) {
+  fetch(`https://extreme-ip-lookup.com/json/?key=${apiKey}`)
+    .then((res) => res.json())
+    .then((response) => {
+      clock.country = response.country;
+      console.log("Country: ", response.country, "\n", "City: ", response.city);
+    })
+    .catch((data, status) => {
+      console.log("Request failed");
+    });
+
+  console.log(clock);
+};
+
+///////////////
+// IP Geolocation API
+
+// import IPGeolocationAPI from "/node_modules/ip-geolocation-api-javascript-sdk/IPGeolocationAPI.js";
+
+// export const _API = function (apiKey) {
+//   // Basic setup based of API Documentation
+
+//   var TimezoneParams = require("ip-geolocation-api-javascript-sdk/TimezoneParams.js");
+
+//   // const IPGeolocationAPI = require("ip-geolocation-api-javascript-sdk");
+//   // const ipgeolocationApi = new IPGeolocationAPI(apiKey, false);
+
+//   // Function to handle response from API
+//   function _handleResponse(json) {
+//     console.log(json);
+//   }
+
+//   var GeolocationParams = require("ip-geolocation-api-javascript-sdk/GeolocationParams.js");
+//   ipgeolocationApi.getGeolocation(_handleResponse);
+
+//   // Finish
+//   ipgeolocationApi.getGeolocation(_handleResponse, geolocationParams);
+// };
