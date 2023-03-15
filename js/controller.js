@@ -10,7 +10,7 @@ const controlLocalTime = async function () {
 controlLocalTime();
 
 const controlWorldTime = async function () {
-  // await model._getWorldClock(API_KEY);
+  await model._getWorldClock(API_KEY);
 };
 controlWorldTime();
 

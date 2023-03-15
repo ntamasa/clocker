@@ -101,3 +101,39 @@ export const _getLocalClock = async function (apiKey) {
     }
   );
 };
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+
+// Function for getting World Time data
+export const _getWorldClock = async function (apiKey) {
+  // API request for to get every data for global clock
+  const response = await AJAX(
+    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
+  );
+
+  // Helper variables for better readability
+  const dateRes = response.formatted.split(" ")[0].split("-");
+  const timeRes = response.formatted.split(" ")[1].split(":");
+
+  // Setting clock object's property values
+  clocks.global.time = {
+    hour: +timeRes[0],
+    minute: +timeRes[1],
+    second: +timeRes[2],
+  };
+  clocks.global.zone = response.gmtOffset / 3600;
+  // Outputs London (As if it is WORLD time, sites often refer to London)
+  clocks.global.country = response.zoneName.split("/")[1];
+  clocks.global.date = {
+    month: months[+dateRes[1]],
+    day: +dateRes[2],
+  };
+
+  // TEST
+  console.log(clocks.global);
+};
