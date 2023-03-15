@@ -1,11 +1,20 @@
 import * as model from "./model.js";
-import { API_KEY_GEO } from "./config.js";
+import { API_KEY } from "./config.js";
 
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
-const controlCurrentLocation = async function () {
-  await model._getPosition();
-  model._API(API_KEY_GEO);
+const controlLocalTime = async function () {
+  await model._getLocalClock(API_KEY);
 };
-controlCurrentLocation();
+controlLocalTime();
+
+const controlWorldTime = async function () {
+  // await model._getWorldClock(API_KEY);
+};
+controlWorldTime();
+
+const controlAddedTime = async function () {
+  // await model._getAddedClock();
+};
+controlAddedTime();
