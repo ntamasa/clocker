@@ -15,6 +15,6 @@ const controlWorldTime = async function () {
 controlWorldTime();
 
 const controlAddedTime = async function () {
-  // await model._getAddedClock();
+  await model._getAddedClock(API_KEY);
 };
 controlAddedTime();
