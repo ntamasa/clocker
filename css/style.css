@@ -352,8 +352,6 @@ body {
   grid-column: 1 / -1;
   align-self: center;
   justify-self: center; }
-  .form__checkbox {
-    display: none; }
   .form__btn {
     height: 7.5rem;
     width: 7.5rem;
@@ -362,6 +360,7 @@ body {
     right: 3.5rem;
     background-color: #644abd;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     z-index: 9998;
     box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3); }
@@ -374,14 +373,10 @@ body {
       transform: translate(-50%, -50%); }
     .form__icon--add {
       height: 5rem;
-      width: 5rem;
-      opacity: 1;
-      visibility: visible; }
+      width: 5rem; }
     .form__icon--close {
       height: 5rem;
-      width: 5rem;
-      opacity: 0;
-      visibility: hidden; }
+      width: 5rem; }
   .form__background {
     height: 6.5rem;
     width: 6.5rem;

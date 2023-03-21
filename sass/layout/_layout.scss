@@ -82,10 +82,6 @@
   ///////////////////////////////
   /// Form button ///////////////
   ///////////////////////////////
-  &__checkbox {
-    // Hide original checkbox
-    display: none;
-  }
 
   &__btn {
     // Sizing
@@ -99,6 +95,7 @@
     // Background and rounding of the box
     background-color: $color-primary;
     border-radius: 50%;
+    border: none;
 
     // Button cursor
     cursor: pointer;
@@ -126,18 +123,11 @@
     &--add {
       // General styling
       @include square(5rem);
-
-      // Visibility
-      opacity: 1;
-      visibility: visible;
     }
 
     &--close {
       // General styling
       @include square(5rem);
-
-      // Visibility
-      @include hidden;
     }
   }
 
