@@ -41,6 +41,7 @@ export const clocks = {
     },
     zone: "",
     country: "",
+    city: "",
     date: {
       month: "",
       day: 0,
@@ -403,19 +404,17 @@ export const _getAddedClock = async function (apiKey) {
   const month = document.querySelector(".curved-text__middle--month");
   const day = document.querySelector(".curved-text__middle--day");
 
-  const formCountry = document.querySelector(".form-box__country").value;
-  const formCity = document.querySelector(".form-box__city").value;
+  const formBox = document.querySelector(".form-box");
 
   const btn = document.querySelector(".form__btn");
   const btnIcon = document.querySelector(".form__icon");
 
   const formBackground = document.querySelector(".form__background");
-  const formHeading = document.querySelector(".form__heading");
-  const formContent = document.querySelector(".form__content");
-  const formMap = document.querySelector(".form__map");
+  const formHeading = document.querySelector(".form-box__heading");
+  const formContent = document.querySelector(".form-box__content");
+  const formMap = document.querySelector(".form-box__map");
   const footer = document.querySelector(".footer");
 
-  // const generateFormIcon = function (addClose) {
   const markupPlus = `
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -450,23 +449,47 @@ export const _getAddedClock = async function (apiKey) {
             </svg>
             `;
 
-  //   if (addClose === "add") return markupPlus;
-  //   return markupTick;
-  // };
+  const btnActive = function () {
+    formBackground.style.transform = "scale(80)";
+    formHeading.style.transform = "translateY(0)";
+    formContent.style.transform = "translateX(0)";
+    formMap.style.width = "70rem";
+    formMap.style.border = "1px solid $color-primary-dark-1";
+    footer.style.transform = "translateX(0)";
+  };
+
+  const btnInactive = function () {
+    formBackground.style.transform = "scale(1)";
+    formHeading.style.transform = "translateY(-200rem)";
+    formContent.style.transform = "translateX(-200rem)";
+    formMap.style.width = "0";
+    formMap.style.border = "none";
+    footer.style.transform = "translateX(-200rem)";
+  };
 
   btn.addEventListener("click", () => {
     btnIcon.textContent = "";
-    // btnIcon.innerHTML = generateFormIcon(
-    //   "add" ? btnIcon.classList.contains("add") : ""
-    // );
-
-    btnIcon.innerHTML = markupTick;
-    // ? btnIcon.classList.contains("add")
-    // : markupTick;
-
     btnIcon.classList.toggle("add");
+    btnIcon.innerHTML = btnIcon.classList.contains("add")
+      ? markupTick
+      : markupPlus;
+    formBox.classList.toggle("hidden");
+    formBox.classList.contains("hidden") ? btnInactive() : btnActive();
+
+    // console.log(formCity);
   });
-  // const formZone = document.querySelector(".form-box__zone");
+
+  function ass() {
+    const formCountry = document.querySelector(".form-box__country").value;
+    const formCity = document.querySelector(".form-box__city").value;
+    const formContinent = document.querySelector(".form-box__continent").value;
+
+    alert(formCity, formCountry, formContinent);
+  }
+
+  addEventListener("keydown", (e) => {
+    if (e.shiftKey) console.log(formCity, formCountry, formContinent);
+  });
 
   // formCity = "";
   // formCountry = "";
@@ -484,5 +507,11 @@ export const _getAddedClock = async function (apiKey) {
   // clocks.added.time = ;
   // clocks.added.zone = ;
   // clocks.added.country = ;
+  // clocks.added.city = formCity;
   // clocks.added.date = ;
+
+  const asd = await (
+    await fetch("http://worldtimeapi.org/api/timezone/Europe/Budapest")
+  ).json();
+  console.log(asd);
 };
