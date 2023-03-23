@@ -358,7 +358,7 @@
         <div class="form__background">&nbsp;</div>
 
         <!-- The form itself -->
-        <form action="#" class="form-box">
+        <form action="#" class="form-box hidden">
           <h2 class="heading-secondary form-box__heading">
             Choose a country or city to add a time zone to
             <span class="brand">clocker</span>
@@ -375,7 +375,7 @@
                 type="text"
                 id="form-box__country"
                 class="form-box__country"
-                placeholder="Please add a country  (UK)"
+                placeholder="Please add a country (United States)"
               />
             </div>
 
@@ -386,22 +386,24 @@
                 type="text"
                 id="form-box__city"
                 class="form-box__city"
-                placeholder="Please add a city (London)"
+                placeholder="Please add a capital city (Chicago)"
               />
             </div>
 
             <!-- A single input for the form with label -->
             <div class="form-box__content-item">
-              <label for="form-box__zone" class="form-box__label"
-                >Time zone</label
+              <label for="form-box__continent" class="form-box__label"
+                >Continent</label
               >
               <input
                 type="text"
-                id="form__zone"
-                class="form-box__zone"
-                placeholder="Please add a time zone (UTC-6)"
+                id="form-box__continent"
+                class="form-box__continent"
+                placeholder="Please add a continent (America)"
               />
             </div>
+
+            <input type="submit" onclick="ass();" />
           </div>
 
           <!-- Footer with copyright -->

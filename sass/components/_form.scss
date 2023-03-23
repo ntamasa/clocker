@@ -1,6 +1,6 @@
 .form-box {
   // Hiding all of them on non checked state
-  @include hidden;
+  // @include hidden;
 
   // transition: all 1s;
   transition: all 1s;
@@ -65,7 +65,7 @@
 
   &__country,
   &__city,
-  &__zone {
+  &__continent {
     // Dimensions of input elements
     height: 4rem;
     width: 30rem;
@@ -124,25 +124,5 @@
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
-  }
-
-  .form__checkbox:checked ~ & {
-    // Checked state visibility
-    @include visible;
-  }
-
-  // Checked state changes
-  .form__checkbox:checked ~ & &__heading {
-    transform: translateY(0);
-  }
-  .form__checkbox:checked ~ & &__content {
-    transform: translateX(0);
-  }
-  .form__checkbox:checked ~ & &__map {
-    width: 70rem;
-    border: 1px solid $color-primary-dark-1;
-  }
-  .form__checkbox:checked ~ & .footer {
-    transform: translateX(0);
   }
 }

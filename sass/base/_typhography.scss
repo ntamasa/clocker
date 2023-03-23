@@ -113,7 +113,7 @@ body {
 .form-box {
   &__country,
   &__city,
-  &__zone {
+  &__continent {
     // General styling
     font-size: 1.6rem;
     font-weight: 400;
@@ -122,7 +122,7 @@ body {
 
   &__country::placeholder,
   &__city::placeholder,
-  &__zone::placeholder {
+  &__continent::placeholder {
     // General styling
     font-size: 1.6rem;
     font-weight: 400;
