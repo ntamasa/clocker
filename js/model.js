@@ -41,6 +41,7 @@ export const clocks = {
     },
     zone: "",
     country: "",
+    code: "",
     city: "",
     continent: "",
     date: {
@@ -489,7 +490,32 @@ export const _getAddedClock = async function (apiKey) {
   // Array for checking that the given country is located in the given continent
   const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
 
-  // TEST
+  const getCountryCode = function (country) {
+    for (const [key, value] of Object.entries(countryList)) {
+      if (country.toLowerCase() === key.toLowerCase()) {
+        clocks.added.code = value;
+      }
+    }
+
+    // e --> ['Czech Republic', 'CZ']
+    // i --> hanyadik elem 0, 1, 2
+
+    // Object.entries(countryList).some((e, i) => {
+    //   console.log(country.toLowerCase());
+    //   console.log(e[0].toLowerCase());
+
+    //   console.log(country.toLowerCase() === e[0].toLowerCase());
+    // });
+
+    // if (
+    // Object.keys(countryList).some((e, i) => {
+    //   country.toLowerCase() === e.toLowerCase()
+    //     ? (clocks.added.code = Object.values(countryList)[i])
+    //     : console.log("error");
+    // });
+    // )
+  };
+  getCountryCode("hungary");
 
   btn.addEventListener("click", () => {
     btnIcon.textContent = "";
@@ -508,26 +534,36 @@ export const _getAddedClock = async function (apiKey) {
         +zoneArr[1] === 0 ? +zoneArr[0] : +zoneArr[0] + +zoneArr[1] / 100;
 
       // Setting city property a value
-      for (const item of regions) {
-        if (
-          formCity.value.toLowerCase() ===
-          (item.split("/")[1] + "").toLowerCase()
-        ) {
-          clocks.added.city = formCity.value;
-          // return;
-          // exit running with .some()
-        }
-      }
+      if (
+        regions.some(
+          (e) =>
+            formCity.value.toLowerCase() ===
+            (e.split("/")[1] + "").toLowerCase()
+        )
+      )
+        clocks.added.city = formCity.value;
 
       // Setting country property a value
-      for (const [key] of Object.entries(countryList)) {
-        if (formCountry.value.toLowerCase() === key.toLowerCase()) {
-          clocks.added.country = formCountry.value;
-          // return;
-        }
-      }
+      if (
+        Object.entries(countryList).some(
+          (e) => formCountry.value.toLowerCase() === e[0].toLowerCase()
+        )
+      )
+        clocks.added.country = formCountry.value;
 
       // Setting continent property a value
+      if (
+        regions.some(
+          (e) =>
+            formContinent.value.toLowerCase() ===
+            (e.split("/")[0] + "").toLowerCase()
+        )
+      )
+        clocks.added.continent = formContinent.value;
+
+      // Setting code property a value
+      getCountryCode(clocks.added.country);
+
       console.log(clocks.added);
     }
   });
