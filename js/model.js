@@ -42,6 +42,7 @@ export const clocks = {
     zone: "",
     country: "",
     city: "",
+    continent: "",
     date: {
       month: "",
       day: 0,
@@ -85,7 +86,11 @@ export const _getLocalClock = async function (apiKey) {
         minute: +timeRes[1],
         second: +timeRes[2],
       };
-      clocks.local.zone = response.gmtOffset / 3600;
+      clocks.local.zone =
+        response.gmtOffset % 3600 === 0 //false
+          ? response.gmtOffset / 3600 // nem fut le
+          : Math.floor(response.gmtOffset / 3600) + // 8
+            0.6 * ((response.gmtOffset % 3600) / 3600); // 60 * 0.75
       clocks.local.country = response.countryName;
 
       clocks.local.date = {
@@ -114,7 +119,7 @@ export const _getLocalClock = async function (apiKey) {
 export const _getWorldClock = async function (apiKey) {
   // API request for to get every data for global clock
   const response = await AJAX(
-    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
+    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Australia/Eucla`
   );
 
   // Helper variables for better readability
@@ -127,7 +132,12 @@ export const _getWorldClock = async function (apiKey) {
     minute: +timeRes[1],
     second: +timeRes[2],
   };
-  clocks.global.zone = response.gmtOffset / 3600;
+  clocks.global.zone =
+    response.gmtOffset % 3600 === 0 //false
+      ? response.gmtOffset / 3600 // nem fut le
+      : Math.floor(response.gmtOffset / 3600) + // 8
+        0.6 * ((response.gmtOffset % 3600) / 3600); // 60 * 0.75
+
   // Outputs London (As if it is WORLD time, sites often refer to London)
   clocks.global.country = response.zoneName.split("/")[1];
   clocks.global.date = {
@@ -406,6 +416,10 @@ export const _getAddedClock = async function (apiKey) {
 
   const formBox = document.querySelector(".form-box");
 
+  const formCountry = document.querySelector(".form-box__country");
+  const formCity = document.querySelector(".form-box__city");
+  const formContinent = document.querySelector(".form-box__continent");
+
   const btn = document.querySelector(".form__btn");
   const btnIcon = document.querySelector(".form__icon");
 
@@ -467,6 +481,16 @@ export const _getAddedClock = async function (apiKey) {
     footer.style.transform = "translateX(-200rem)";
   };
 
+  const response = await AJAX(
+    "http://worldtimeapi.org/api/timezone/Australia/Eucla"
+  );
+  console.log(response);
+
+  // Array for checking that the given country is located in the given continent
+  const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
+
+  // TEST
+
   btn.addEventListener("click", () => {
     btnIcon.textContent = "";
     btnIcon.classList.toggle("add");
@@ -476,28 +500,49 @@ export const _getAddedClock = async function (apiKey) {
     formBox.classList.toggle("hidden");
     formBox.classList.contains("hidden") ? btnInactive() : btnActive();
 
-    // console.log(formCity);
+    // Code that only runs if form is visible
+    if (formBox.classList.contains("hidden")) {
+      // Setting zone property a value
+      const zoneArr = response.utc_offset.split(":");
+      clocks.added.zone =
+        +zoneArr[1] === 0 ? +zoneArr[0] : +zoneArr[0] + +zoneArr[1] / 100;
+
+      // Setting city property a value
+      for (const item of regions) {
+        if (
+          formCity.value.toLowerCase() ===
+          (item.split("/")[1] + "").toLowerCase()
+        ) {
+          clocks.added.city = formCity.value;
+          // return;
+          // exit running with .some()
+        }
+      }
+
+      // Setting country property a value
+      for (const [key] of Object.entries(countryList)) {
+        if (formCountry.value.toLowerCase() === key.toLowerCase()) {
+          clocks.added.country = formCountry.value;
+          // return;
+        }
+      }
+
+      // Setting continent property a value
+      console.log(clocks.added);
+    }
   });
 
-  function ass() {
-    const formCountry = document.querySelector(".form-box__country").value;
-    const formCity = document.querySelector(".form-box__city").value;
-    const formContinent = document.querySelector(".form-box__continent").value;
-
-    alert(formCity, formCountry, formContinent);
-  }
-
-  addEventListener("keydown", (e) => {
-    if (e.shiftKey) console.log(formCity, formCountry, formContinent);
-  });
+  ////////////////////////
+  ////////////////////////
+  ////////////////////////
+  ////////////////////////
+  ////////////////////////
 
   // formCity = "";
   // formCountry = "";
 
-  // formCountry = countryList.formCountry;
-
   // const res = await AJAX(
-  //   `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&zone=${}&fields=zoneName,gmtOffset`
+  //   `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
   // );
 
   // const response = await AJAX(
@@ -505,13 +550,5 @@ export const _getAddedClock = async function (apiKey) {
   // );
 
   // clocks.added.time = ;
-  // clocks.added.zone = ;
-  // clocks.added.country = ;
-  // clocks.added.city = formCity;
   // clocks.added.date = ;
-
-  const asd = await (
-    await fetch("http://worldtimeapi.org/api/timezone/Europe/Budapest")
-  ).json();
-  console.log(asd);
 };
