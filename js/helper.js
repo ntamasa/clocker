@@ -29,3 +29,5 @@ export const AJAX = async function (url, uploadData = undefined) {
     throw err;
   }
 };
+
+export const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
