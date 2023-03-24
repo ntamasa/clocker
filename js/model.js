@@ -120,7 +120,7 @@ export const _getLocalClock = async function (apiKey) {
 export const _getWorldClock = async function (apiKey) {
   // API request for to get every data for global clock
   const response = await AJAX(
-    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Australia/Eucla`
+    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
   );
 
   // Helper variables for better readability
@@ -158,78 +158,11 @@ export const _getWorldClock = async function (apiKey) {
 ////////////////////////////////////////////////
 
 export const _getAddedClock = async function (apiKey) {
-  const zone = document.querySelector(".curved-text__middle--zone");
-  const country = document.querySelector(".curved-text__middle--country");
-  const time = document.querySelector(".curved-text__middle--time");
-  const month = document.querySelector(".curved-text__middle--month");
-  const day = document.querySelector(".curved-text__middle--day");
-
+  const btn = document.querySelector(".form__btn");
   const formBox = document.querySelector(".form-box");
-
   const formCountry = document.querySelector(".form-box__country");
   const formCity = document.querySelector(".form-box__city");
   const formContinent = document.querySelector(".form-box__continent");
-
-  const btn = document.querySelector(".form__btn");
-  const btnIcon = document.querySelector(".form__icon");
-
-  const formBackground = document.querySelector(".form__background");
-  const formHeading = document.querySelector(".form-box__heading");
-  const formContent = document.querySelector(".form-box__content");
-  const formMap = document.querySelector(".form-box__map");
-  const footer = document.querySelector(".footer");
-
-  const markupPlus = `
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="form__icon--add"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-            `;
-
-  const markupTick = `
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="form__icon--close"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4.5 12.75l6 6 9-13.5"
-              />
-            </svg>
-            `;
-
-  const btnActive = function () {
-    formBackground.style.transform = "scale(80)";
-    formHeading.style.transform = "translateY(0)";
-    formContent.style.transform = "translateX(0)";
-    formMap.style.width = "70rem";
-    formMap.style.border = "1px solid $color-primary-dark-1";
-    footer.style.transform = "translateX(0)";
-  };
-
-  const btnInactive = function () {
-    formBackground.style.transform = "scale(1)";
-    formHeading.style.transform = "translateY(-200rem)";
-    formContent.style.transform = "translateX(-200rem)";
-    formMap.style.width = "0";
-    formMap.style.border = "none";
-    footer.style.transform = "translateX(-200rem)";
-  };
 
   const response = await AJAX(
     "http://worldtimeapi.org/api/timezone/Australia/Eucla"
@@ -240,14 +173,6 @@ export const _getAddedClock = async function (apiKey) {
   const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
 
   btn.addEventListener("click", () => {
-    btnIcon.textContent = "";
-    btnIcon.classList.toggle("add");
-    btnIcon.innerHTML = btnIcon.classList.contains("add")
-      ? markupTick
-      : markupPlus;
-    formBox.classList.toggle("hidden");
-    formBox.classList.contains("hidden") ? btnInactive() : btnActive();
-
     // Code that only runs if form is visible
     if (formBox.classList.contains("hidden")) {
       // Setting zone property a value
@@ -289,6 +214,7 @@ export const _getAddedClock = async function (apiKey) {
       // Setting code property a value
       clocks.added.code = countryList[capitalize(clocks.added.country)];
 
+      // TEST
       console.log(clocks.added);
     }
   });
@@ -298,10 +224,6 @@ export const _getAddedClock = async function (apiKey) {
   ////////////////////////
   ////////////////////////
   ////////////////////////
-
-  // formCity = "";
-  // formCountry = "";
-  // formContinent = "";
 
   // const res = await AJAX(
   //   `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`

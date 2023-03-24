@@ -1,6 +1,8 @@
 import * as model from "./model.js";
 import { API_KEY } from "./config.js";
 
+import view from "./views/view.js";
+
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
