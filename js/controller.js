@@ -9,14 +9,19 @@ import view from "./views/view.js";
 const controlLocalTime = async function () {
   await model._getLocalClock(API_KEY);
 };
-controlLocalTime();
 
 const controlWorldTime = async function () {
   await model._getWorldClock(API_KEY);
 };
-controlWorldTime();
 
 const controlAddedTime = async function () {
   await model._getAddedClock(API_KEY);
+  view.addHandlerForm();
 };
-controlAddedTime();
+
+const init = function () {
+  controlLocalTime();
+  controlWorldTime();
+  controlAddedTime();
+};
+init();

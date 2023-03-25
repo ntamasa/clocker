@@ -174,7 +174,7 @@ export const _getAddedClock = async function (apiKey) {
 
   btn.addEventListener("click", () => {
     // Code that only runs if form is visible
-    if (formBox.classList.contains("hidden")) {
+    if (!formBox.classList.contains("hidden")) {
       // Setting zone property a value
       const zoneArr = response.utc_offset.split(":");
       clocks.added.zone =
@@ -188,7 +188,7 @@ export const _getAddedClock = async function (apiKey) {
             (e.split("/")[1] + "").toLowerCase()
         )
       )
-        clocks.added.city = formCity.value;
+        clocks.added.city = formCity.value.toLowerCase();
 
       // Setting country property a value
       if (
@@ -196,7 +196,7 @@ export const _getAddedClock = async function (apiKey) {
           (e) => formCountry.value.toLowerCase() === e[0].toLowerCase()
         )
       )
-        clocks.added.country = formCountry.value;
+        clocks.added.country = formCountry.value.toLowerCase();
 
       // Setting continent property a value
       if (
@@ -206,7 +206,7 @@ export const _getAddedClock = async function (apiKey) {
             (e.split("/")[0] + "").toLowerCase()
         )
       )
-        clocks.added.continent = formContinent.value;
+        clocks.added.continent = formContinent.value.toLowerCase();
 
       // Setting country property a value
       countryList[getKeyByValue(countryList, capitalize(formCountry.value))];
@@ -217,6 +217,28 @@ export const _getAddedClock = async function (apiKey) {
       // TEST
       console.log(clocks.added);
     }
+
+    const getTime = async function (apiKey, countryCode) {
+      let zoneName;
+
+      if (countryCode) {
+        const {
+          zones: [res],
+        } = await AJAX(
+          `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
+        );
+        console.log(res);
+
+        zoneName = res.zoneName;
+
+        if (
+          zoneName.toLowerCase() ===
+          `${clocks.added.continent}/${clocks.added.city}`
+        ) {
+        }
+      }
+    };
+    getTime(apiKey, clocks.added.code);
   });
 
   ////////////////////////
@@ -224,10 +246,6 @@ export const _getAddedClock = async function (apiKey) {
   ////////////////////////
   ////////////////////////
   ////////////////////////
-
-  // const res = await AJAX(
-  //   `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
-  // );
 
   // const response = await AJAX(
   //   `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
