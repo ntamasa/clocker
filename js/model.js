@@ -233,9 +233,29 @@ export const _getAddedClock = async function (apiKey) {
 
         if (
           zoneName.toLowerCase() ===
-          `${clocks.added.continent}/${clocks.added.city}`
+            `${clocks.added.continent}/${clocks.added.city}` &&
+          res.countryCode === clocks.added.code
         ) {
-        }
+          const response = await AJAX(
+            `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${zoneName}`
+          );
+
+          clocks.added.time.hour = response.formatted
+            .split(" ")[1]
+            .split(":")[0];
+          clocks.added.time.minute = response.formatted
+            .split(" ")[1]
+            .split(":")[1];
+
+          clocks.added.date.month =
+            months[+response.formatted.split(" ")[0].split("-")[1] - 1];
+
+          clocks.added.date.day = response.formatted
+            .split(" ")[0]
+            .split("-")[2];
+
+          console.log(response);
+        } else alert("Some of your given data isn't matching with the others");
       }
     };
     getTime(apiKey, clocks.added.code);
