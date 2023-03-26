@@ -1,4 +1,10 @@
-import { AJAX, capitalize, getKeyByValue, countryList } from "./helper.js";
+import {
+  AJAX,
+  capitalize,
+  getKeyByValue,
+  countryList,
+  months,
+} from "./helper.js";
 
 // Object to store every clock's data
 export const clocks = {
@@ -49,16 +55,11 @@ export const clocks = {
   },
 };
 
-// Array for month names
-// prettier-ignore
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
 // Function for getting Local Time data
 export const _getLocalClock = async function (apiKey) {
   // Checking if the user's browser supports Geolocation API
   if (!navigator.geolocation) {
-    console.log("Geolocation is not supported by your browser!");
-    return;
+    throw new Error("Geolocation is not supported by your browser!");
   }
 
   navigator.geolocation.getCurrentPosition(
@@ -132,10 +133,10 @@ export const _getWorldClock = async function (apiKey) {
     second: +timeRes[2],
   };
   clocks.global.zone =
-    response.gmtOffset % 3600 === 0 //false
-      ? response.gmtOffset / 3600 // nem fut le
-      : Math.floor(response.gmtOffset / 3600) + // 8
-        0.6 * ((response.gmtOffset % 3600) / 3600); // 60 * 0.75
+    response.gmtOffset % 3600 === 0
+      ? response.gmtOffset / 3600
+      : Math.floor(response.gmtOffset / 3600) +
+        0.6 * ((response.gmtOffset % 3600) / 3600);
 
   // Outputs London (As if it is WORLD time, sites often refer to London)
   clocks.global.country = response.zoneName.split("/")[1];
@@ -156,99 +157,114 @@ export const _getWorldClock = async function (apiKey) {
 ////////////////////////////////////////////////
 
 export const _getAddedClock = async function (apiKey) {
-  // Get DOM elements to store data to request time
-  const btn = document.querySelector(".form__btn");
-  const formBox = document.querySelector(".form-box");
-  const formCountry = document.querySelector(".form-box__country");
-  const formCity = document.querySelector(".form-box__city");
-  const formContinent = document.querySelector(".form-box__continent");
+  try {
+    // Get DOM elements to store data to request time
+    const btn = document.querySelector(".form__btn");
+    const formBox = document.querySelector(".form-box");
+    const formCountry = document.querySelector(".form-box__country");
+    const formCity = document.querySelector(".form-box__city");
+    const formContinent = document.querySelector(".form-box__continent");
 
-  // Array for checking that the given country is located in the given continent
-  const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
+    // Array for checking that the given country is located in the given continent
+    const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
+    // const capitals = regions.map((e) =>
+    //   e.split("/").length > 2 ? e.split("/")[2] : e.split("/")[1]
+    // );
 
-  btn.addEventListener("click", async () => {
-    // Code after only runs if form is visible (Guard Clause)
-    if (formBox.classList.contains("hidden")) return;
+    btn.addEventListener("click", async () => {
+      // Code after only runs if form is visible (Guard Clause)
+      if (formBox.classList.contains("hidden")) return;
 
-    // Setting city property a value
-    if (
-      regions.some(
-        (e) =>
-          formCity.value.toLowerCase() === (e.split("/")[1] + "").toLowerCase()
+      // Handle error if given city isn't located in the given continent
+      if (
+        regions.every(
+          (e) =>
+            `${formContinent.value.toLowerCase()}/${formCity.value.toLowerCase()}` !==
+            e.toLowerCase()
+        )
       )
-    )
+        throw new Error(
+          `Given '${capitalize(
+            formCity.value
+          )}' city is not located in '${capitalize(formContinent.value)}'`
+        );
+
+      // Setting city, continent property a value
       clocks.added.city = formCity.value.toLowerCase();
-
-    // Setting country property a value
-    if (
-      Object.entries(countryList).some(
-        (e) => formCountry.value.toLowerCase() === e[0].toLowerCase()
-      )
-    )
-      clocks.added.country = formCountry.value.toLowerCase();
-
-    // Setting continent property a value
-    if (
-      regions.some(
-        (e) =>
-          formContinent.value.toLowerCase() ===
-          (e.split("/")[0] + "").toLowerCase()
-      )
-    )
       clocks.added.continent = formContinent.value.toLowerCase();
 
-    // Setting country property a value
-    countryList[getKeyByValue(countryList, capitalize(formCountry.value))];
-
-    // Setting code property a value
-    clocks.added.code = countryList[capitalize(clocks.added.country)];
-
-    // Function to get time data and store it in clocks.added object
-    const getTime = async function (apiKey, countryCode) {
-      // API request for
-
-      if (!countryCode) return console.log("Invalid Country given");
-
-      // if (countryCode) {
-      const {
-        zones: [res],
-      } = await AJAX(
-        `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
-      );
-
+      // Handle error if given country is invalid
       if (
-        res.zoneName.toLowerCase() ===
-          `${clocks.added.continent}/${clocks.added.city}` &&
-        res.countryCode === countryCode
-      ) {
+        Object.entries(countryList).every(
+          (e) => formCountry.value.toLowerCase() !== e[0].toLowerCase()
+        )
+      )
+        throw new Error(
+          `Invalid Country '${formCountry.value}' given, please enter a valid Country`
+        );
+
+      // Setting country property a value
+      clocks.added.country = formCountry.value.toLowerCase();
+
+      // Setting code property a value
+      clocks.added.code = countryList[capitalize(clocks.added.country)];
+
+      // Function to get time data and store it in clocks.added object
+      const getTime = async function (apiKey, countryCode) {
+        if (!countryCode) throw new Error("Invalid Country given");
+
+        // API request for checking if given Continent/Capital is matching with given Country
+        // BUG if a country has more time zones it only gives back the first it gets
+        const {
+          zones: [res],
+        } = await AJAX(
+          `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
+        );
+
+        // Handle error if given country isn't located in the given location (continent/capital)
+        if (
+          res.zoneName.toLowerCase() !==
+          `${clocks.added.continent}/${clocks.added.city}`
+        )
+          throw new Error(
+            `Invalid Country '${capitalize(
+              clocks.added.country
+            )}' paired with location '${capitalize(
+              clocks.added.continent
+            )}/${capitalize(clocks.added.city)}'`
+          );
+
+        // API request for getting time data via zone (continent/capital)
         const response = await AJAX(
           `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${res.zoneName}`
         );
 
-        clocks.added.time.hour = response.formatted.split(" ")[1].split(":")[0];
-        clocks.added.time.minute = response.formatted
-          .split(" ")[1]
-          .split(":")[1];
+        // Set property values of time object
+        const timeArr = response.formatted.split(" ")[1].split(":");
 
+        clocks.added.time.hour = timeArr[0];
+        clocks.added.time.minute = timeArr[1];
+        clocks.added.time.second = timeArr[2];
+
+        // Set property values of date object
         clocks.added.date.month =
           months[+response.formatted.split(" ")[0].split("-")[1] - 1];
 
         clocks.added.date.day = response.formatted.split(" ")[0].split("-")[2];
 
-        // API request for
-        const zoneRes = await AJAX(
-          `http://worldtimeapi.org/api/timezone/${res.zoneName}`
-        );
-
         // Setting zone property a value
-        const zoneArr = zoneRes.utc_offset.split(":");
         clocks.added.zone =
-          +zoneArr[1] === 0 ? +zoneArr[0] : +zoneArr[0] + +zoneArr[1] / 100;
-      } else alert("Some of your given data isn't matching with the others");
-      // }
-    };
-    await getTime(apiKey, clocks.added.code);
-    // TEST
-    console.log(clocks.added);
-  });
+          response.gmtOffset % 3600 === 0
+            ? response.gmtOffset / 3600
+            : Math.floor(response.gmtOffset / 3600) +
+              0.6 * ((response.gmtOffset % 3600) / 3600);
+      };
+      await getTime(apiKey, clocks.added.code);
+
+      // TEST
+      console.log(clocks.added);
+    });
+  } catch (err) {
+    throw err;
+  }
 };

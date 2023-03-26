@@ -45,6 +45,10 @@ export const capitalize = (s) =>
 export const getKeyByValue = (obj, val) =>
   Object.keys(obj).find((key) => obj[key] === val);
 
+// Array for month names
+// prettier-ignore
+export const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
 export const countryList = {
   Afghanistan: "AF",
   "Aland Islands": "AX",
