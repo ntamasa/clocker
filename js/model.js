@@ -14,6 +14,7 @@ export const clocks = {
     time: {
       hour: 0,
       minute: 0,
+      second: 0,
     },
     zone: "",
     country: "",
@@ -28,6 +29,7 @@ export const clocks = {
     time: {
       hour: 0,
       minute: 0,
+      second: 0,
     },
     zone: "",
     country: "",
@@ -42,6 +44,7 @@ export const clocks = {
     time: {
       hour: 0,
       minute: 0,
+      second: 0,
     },
     zone: "",
     country: "",
@@ -57,55 +60,59 @@ export const clocks = {
 
 // Function for getting Local Time data
 export const _getLocalClock = async function (apiKey) {
-  // Checking if the user's browser supports Geolocation API
-  if (!navigator.geolocation) {
-    throw new Error("Geolocation is not supported by your browser!");
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    async function (data) {
-      // Getting coordinates of current location
-      const { latitude } = data.coords;
-      const { longitude } = data.coords;
-
-      // Setting coords for local clock
-      clocks.local.coords = { lat: latitude, lng: longitude };
-
-      // API request for to get every other data for local clock
-      const response = await AJAX(
-        `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${clocks.local.coords.lat}&lng=${clocks.local.coords.lng}`
-      );
-
-      // Helper variables for better readability
-      const dateRes = response.formatted.split(" ")[0].split("-");
-      const timeRes = response.formatted.split(" ")[1].split(":");
-
-      // Setting clock object's property values
-      clocks.local.time = {
-        hour: +timeRes[0],
-        minute: +timeRes[1],
-        second: +timeRes[2],
-      };
-      clocks.local.zone =
-        response.gmtOffset % 3600 === 0 //false
-          ? response.gmtOffset / 3600 // nem fut le
-          : Math.floor(response.gmtOffset / 3600) + // 8
-            0.6 * ((response.gmtOffset % 3600) / 3600); // 60 * 0.75
-      clocks.local.country = response.countryName;
-
-      clocks.local.date = {
-        month: months[+dateRes[1]],
-        day: +dateRes[2],
-      };
-
-      // TEST
-      console.log(clocks.local);
-    },
-    // Error branch
-    function () {
-      alert("Could not get your location!");
+  try {
+    // Checking if the user's browser supports Geolocation API
+    if (!navigator.geolocation) {
+      throw new Error("Geolocation is not supported by your browser!");
     }
-  );
+
+    navigator.geolocation.getCurrentPosition(
+      async function (data) {
+        // Getting coordinates of current location
+        const { latitude } = data.coords;
+        const { longitude } = data.coords;
+
+        // Setting coords for local clock
+        clocks.local.coords = { lat: latitude, lng: longitude };
+
+        // API request for to get every other data for local clock
+        const response = await AJAX(
+          `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${clocks.local.coords.lat}&lng=${clocks.local.coords.lng}`
+        );
+
+        // Helper variables for better readability
+        const dateRes = response.formatted.split(" ")[0].split("-");
+        const timeRes = response.formatted.split(" ")[1].split(":");
+
+        // Setting clock object's property values
+        clocks.local.time = {
+          hour: +timeRes[0],
+          minute: +timeRes[1],
+          second: +timeRes[2],
+        };
+        clocks.local.zone =
+          response.gmtOffset % 3600 === 0
+            ? response.gmtOffset / 3600
+            : Math.floor(response.gmtOffset / 3600) +
+              0.6 * ((response.gmtOffset % 3600) / 3600);
+        clocks.local.country = response.countryName;
+
+        clocks.local.date = {
+          month: months[+dateRes[1]],
+          day: +dateRes[2],
+        };
+
+        // TEST
+        console.log(clocks.local);
+      },
+      // Error branch
+      function () {
+        throw new Error("Could not get your location!");
+      }
+    );
+  } catch (err) {
+    throw err;
+  }
 };
 
 ////////////////////////////////////////////////
@@ -117,36 +124,40 @@ export const _getLocalClock = async function (apiKey) {
 
 // Function for getting World Time data
 export const _getWorldClock = async function (apiKey) {
-  // API request for to get every data for global clock
-  const response = await AJAX(
-    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
-  );
+  try {
+    // API request for to get every data for global clock
+    const response = await AJAX(
+      `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
+    );
 
-  // Helper variables for better readability
-  const dateRes = response.formatted.split(" ")[0].split("-");
-  const timeRes = response.formatted.split(" ")[1].split(":");
+    // Helper variables for better readability
+    const dateRes = response.formatted.split(" ")[0].split("-");
+    const timeRes = response.formatted.split(" ")[1].split(":");
 
-  // Setting clock object's property values
-  clocks.global.time = {
-    hour: +timeRes[0],
-    minute: +timeRes[1],
-    second: +timeRes[2],
-  };
-  clocks.global.zone =
-    response.gmtOffset % 3600 === 0
-      ? response.gmtOffset / 3600
-      : Math.floor(response.gmtOffset / 3600) +
-        0.6 * ((response.gmtOffset % 3600) / 3600);
+    // Setting clock object's property values
+    clocks.global.time = {
+      hour: +timeRes[0],
+      minute: +timeRes[1],
+      second: +timeRes[2],
+    };
+    clocks.global.zone =
+      response.gmtOffset % 3600 === 0
+        ? response.gmtOffset / 3600
+        : Math.floor(response.gmtOffset / 3600) +
+          0.6 * ((response.gmtOffset % 3600) / 3600);
 
-  // Outputs London (As if it is WORLD time, sites often refer to London)
-  clocks.global.country = response.zoneName.split("/")[1];
-  clocks.global.date = {
-    month: months[+dateRes[1]],
-    day: +dateRes[2],
-  };
+    // Outputs London (As if it is WORLD time, sites often refer to London)
+    clocks.global.country = response.zoneName.split("/")[1];
+    clocks.global.date = {
+      month: months[+dateRes[1]],
+      day: +dateRes[2],
+    };
 
-  // TEST
-  console.log(clocks.global);
+    // TEST
+    console.log(clocks.global);
+  } catch (err) {
+    throw err;
+  }
 };
 
 ////////////////////////////////////////////////
