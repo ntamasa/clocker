@@ -19,7 +19,6 @@ export const clocks = {
 
   // Global clock's data
   global: {
-    coords: {},
     time: {
       hour: 0,
       minute: 0,
@@ -34,7 +33,6 @@ export const clocks = {
 
   // Added clock's data
   added: {
-    coords: {},
     time: {
       hour: 0,
       minute: 0,
@@ -158,119 +156,99 @@ export const _getWorldClock = async function (apiKey) {
 ////////////////////////////////////////////////
 
 export const _getAddedClock = async function (apiKey) {
+  // Get DOM elements to store data to request time
   const btn = document.querySelector(".form__btn");
   const formBox = document.querySelector(".form-box");
   const formCountry = document.querySelector(".form-box__country");
   const formCity = document.querySelector(".form-box__city");
   const formContinent = document.querySelector(".form-box__continent");
 
-  const response = await AJAX(
-    "http://worldtimeapi.org/api/timezone/Australia/Eucla"
-  );
-  console.log(response);
-
   // Array for checking that the given country is located in the given continent
   const regions = await AJAX("http://worldtimeapi.org/api/timezone"); // Continent/Capital
 
-  btn.addEventListener("click", () => {
-    // Code that only runs if form is visible
-    if (!formBox.classList.contains("hidden")) {
-      // Setting zone property a value
-      const zoneArr = response.utc_offset.split(":");
-      clocks.added.zone =
-        +zoneArr[1] === 0 ? +zoneArr[0] : +zoneArr[0] + +zoneArr[1] / 100;
+  btn.addEventListener("click", async () => {
+    // Code after only runs if form is visible (Guard Clause)
+    if (formBox.classList.contains("hidden")) return;
 
-      // Setting city property a value
-      if (
-        regions.some(
-          (e) =>
-            formCity.value.toLowerCase() ===
-            (e.split("/")[1] + "").toLowerCase()
-        )
+    // Setting city property a value
+    if (
+      regions.some(
+        (e) =>
+          formCity.value.toLowerCase() === (e.split("/")[1] + "").toLowerCase()
       )
-        clocks.added.city = formCity.value.toLowerCase();
+    )
+      clocks.added.city = formCity.value.toLowerCase();
 
-      // Setting country property a value
-      if (
-        Object.entries(countryList).some(
-          (e) => formCountry.value.toLowerCase() === e[0].toLowerCase()
-        )
+    // Setting country property a value
+    if (
+      Object.entries(countryList).some(
+        (e) => formCountry.value.toLowerCase() === e[0].toLowerCase()
       )
-        clocks.added.country = formCountry.value.toLowerCase();
+    )
+      clocks.added.country = formCountry.value.toLowerCase();
 
-      // Setting continent property a value
-      if (
-        regions.some(
-          (e) =>
-            formContinent.value.toLowerCase() ===
-            (e.split("/")[0] + "").toLowerCase()
-        )
+    // Setting continent property a value
+    if (
+      regions.some(
+        (e) =>
+          formContinent.value.toLowerCase() ===
+          (e.split("/")[0] + "").toLowerCase()
       )
-        clocks.added.continent = formContinent.value.toLowerCase();
+    )
+      clocks.added.continent = formContinent.value.toLowerCase();
 
-      // Setting country property a value
-      countryList[getKeyByValue(countryList, capitalize(formCountry.value))];
+    // Setting country property a value
+    countryList[getKeyByValue(countryList, capitalize(formCountry.value))];
 
-      // Setting code property a value
-      clocks.added.code = countryList[capitalize(clocks.added.country)];
+    // Setting code property a value
+    clocks.added.code = countryList[capitalize(clocks.added.country)];
 
-      // TEST
-      console.log(clocks.added);
-    }
-
+    // Function to get time data and store it in clocks.added object
     const getTime = async function (apiKey, countryCode) {
-      let zoneName;
+      // API request for
 
-      if (countryCode) {
-        const {
-          zones: [res],
-        } = await AJAX(
-          `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
+      if (!countryCode) return console.log("Invalid Country given");
+
+      // if (countryCode) {
+      const {
+        zones: [res],
+      } = await AJAX(
+        `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
+      );
+
+      if (
+        res.zoneName.toLowerCase() ===
+          `${clocks.added.continent}/${clocks.added.city}` &&
+        res.countryCode === countryCode
+      ) {
+        const response = await AJAX(
+          `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${res.zoneName}`
         );
-        console.log(res);
 
-        zoneName = res.zoneName;
+        clocks.added.time.hour = response.formatted.split(" ")[1].split(":")[0];
+        clocks.added.time.minute = response.formatted
+          .split(" ")[1]
+          .split(":")[1];
 
-        if (
-          zoneName.toLowerCase() ===
-            `${clocks.added.continent}/${clocks.added.city}` &&
-          res.countryCode === clocks.added.code
-        ) {
-          const response = await AJAX(
-            `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${zoneName}`
-          );
+        clocks.added.date.month =
+          months[+response.formatted.split(" ")[0].split("-")[1] - 1];
 
-          clocks.added.time.hour = response.formatted
-            .split(" ")[1]
-            .split(":")[0];
-          clocks.added.time.minute = response.formatted
-            .split(" ")[1]
-            .split(":")[1];
+        clocks.added.date.day = response.formatted.split(" ")[0].split("-")[2];
 
-          clocks.added.date.month =
-            months[+response.formatted.split(" ")[0].split("-")[1] - 1];
+        // API request for
+        const zoneRes = await AJAX(
+          `http://worldtimeapi.org/api/timezone/${res.zoneName}`
+        );
 
-          clocks.added.date.day = response.formatted
-            .split(" ")[0]
-            .split("-")[2];
-
-          console.log(response);
-        } else alert("Some of your given data isn't matching with the others");
-      }
+        // Setting zone property a value
+        const zoneArr = zoneRes.utc_offset.split(":");
+        clocks.added.zone =
+          +zoneArr[1] === 0 ? +zoneArr[0] : +zoneArr[0] + +zoneArr[1] / 100;
+      } else alert("Some of your given data isn't matching with the others");
+      // }
     };
-    getTime(apiKey, clocks.added.code);
+    await getTime(apiKey, clocks.added.code);
+    // TEST
+    console.log(clocks.added);
   });
-
-  ////////////////////////
-  ////////////////////////
-  ////////////////////////
-  ////////////////////////
-  ////////////////////////
-
-  // const response = await AJAX(
-  //   `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
-  // );
-
-  // clocks.added.time = ;
-  // clocks.added.date = ;
 };
