@@ -45,6 +45,13 @@ export const capitalize = s =>
 export const getKeyByValue = (obj, val) =>
   Object.keys(obj).find(key => obj[key] === val);
 
+// Function to format numbers always 2 digit
+export const numberDigit2 = num =>
+  num.toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  });
+
 // Array for month names
 // prettier-ignore
 export const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];

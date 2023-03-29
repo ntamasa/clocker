@@ -4,7 +4,8 @@ import {
   getKeyByValue,
   countryList,
   months,
-} from "./helper.js";
+  numberDigit2,
+} from './helper.js';
 
 // Object to store every clock's data
 export const clocks = {
@@ -16,10 +17,10 @@ export const clocks = {
       minute: 0,
       second: 0,
     },
-    zone: "",
-    country: "",
+    zone: '',
+    country: '',
     date: {
-      month: "",
+      month: '',
       day: 0,
     },
   },
@@ -31,10 +32,10 @@ export const clocks = {
       minute: 0,
       second: 0,
     },
-    zone: "",
-    country: "",
+    zone: '',
+    country: '',
     date: {
-      month: "",
+      month: '',
       day: 0,
     },
   },
@@ -46,13 +47,13 @@ export const clocks = {
       minute: 0,
       second: 0,
     },
-    zone: "",
-    country: "",
-    code: "",
-    city: "",
-    continent: "",
+    zone: '',
+    country: '',
+    code: '',
+    city: '',
+    continent: '',
     date: {
-      month: "",
+      month: '',
       day: 0,
     },
   },
@@ -67,14 +68,14 @@ const createClocksObject = function (data) {
   const response = data;
 
   // Helper variables for better readability
-  const dateRes = response.formatted.split(" ")[0].split("-");
-  const timeRes = response.formatted.split(" ")[1].split(":");
+  const dateRes = response.formatted.split(' ')[0].split('-');
+  const timeRes = response.formatted.split(' ')[1].split(':');
 
   return {
     time: {
-      hour: +timeRes[0],
-      minute: +timeRes[1],
-      second: +timeRes[2],
+      hour: numberDigit2(timeRes[0]),
+      minute: numberDigit2(timeRes[1]),
+      second: numberDigit2(timeRes[2]),
     },
     zone:
       response.gmtOffset % 3600 === 0
@@ -83,8 +84,8 @@ const createClocksObject = function (data) {
           0.6 * ((response.gmtOffset % 3600) / 3600),
     country: response.countryName,
     code: countryList[response.countryName],
-    city: response.zoneName.split("/")[1],
-    continent: response.zoneName.split("/")[0],
+    city: response.zoneName.split('/')[1],
+    continent: response.zoneName.split('/')[0],
     date: {
       month: months[+dateRes[1]],
       day: +dateRes[2],
@@ -96,7 +97,7 @@ export const loadLocation = async function () {
   try {
     // Checking if the user's browser supports Geolocation API
     if (!navigator.geolocation)
-      throw new Error("Geolocation is not supported by your browser!");
+      throw new Error('Geolocation is not supported by your browser!');
 
     // Getting and setting coordinates of current location
     const pos = await new Promise((resolve, reject) => {
@@ -122,28 +123,7 @@ export const _getLocalClock = async function (
       `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=position&lat=${lat}&lng=${lng}`
     );
 
-    // // Helper variables for better readability
-    // const dateRes = response.formatted.split(" ")[0].split("-");
-    // const timeRes = response.formatted.split(" ")[1].split(":");
-
-    // // Setting clock object's property values
-    // clocks.local.time = {
-    //   hour: +timeRes[0],
-    //   minute: +timeRes[1],
-    //   second: +timeRes[2],
-    // };
-    // clocks.local.zone =
-    //   response.gmtOffset % 3600 === 0
-    //     ? response.gmtOffset / 3600
-    //     : Math.floor(response.gmtOffset / 3600) +
-    //       0.6 * ((response.gmtOffset % 3600) / 3600);
-    // clocks.local.country = response.countryName;
-
-    // clocks.local.date = {
-    //   month: months[+dateRes[1]],
-    //   day: +dateRes[2],
-    // };
-
+    // Fill up 'local' object
     state.clocks.local = createClocksObject(data);
 
     // TEST

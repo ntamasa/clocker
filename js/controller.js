@@ -1,7 +1,6 @@
 import * as model from './model.js';
 import { API_KEY } from './config.js';
 
-import view from './views/viewOLD.js';
 import viewview from './views/View.js';
 import btnView from './views/btnView.js';
 import localClockView from './views/localClockView.js';
@@ -19,11 +18,18 @@ const controlLocalTime = async function () {
   // Render local objcet to the DOM
   localClockView.renderAll(model.state.clocks.local);
 };
-controlLocalTime();
 
 const controlWorldTime = async function () {
-  await model._getWorldClock(API_KEY);
+  // Load global time (UK/London time zone)
+  await model.loadGlobalTime(API_KEY);
+
+  // Load global time
+  // await model.loadGlobalTime();
+
+  // Render local object to the DOM
+  // globalClockView.render(model.state.clocks.global);
 };
+controlWorldTime();
 
 const controlAddedTime = async function () {
   await model._getAddedClock(API_KEY);
@@ -31,6 +37,7 @@ const controlAddedTime = async function () {
 };
 
 const init = function () {
+  localClockView.addHandlerRender(controlLocalTime);
   // btnView.addHandlerRender(controlAddedTime);
   // controlLocalTime();
   // controlWorldTime();
