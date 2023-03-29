@@ -188,6 +188,7 @@
                 <textPath
                   alignment-baseline="top"
                   xlink:href="#curve__middle--zone"
+                  class="curve__middle curve__middle--zone"
                 >
                   UTC+1
                 </textPath>
@@ -212,6 +213,7 @@
                 <textPath
                   alignment-baseline="top"
                   xlink:href="#curve__middle--country"
+                  class="curve__middle curve__middle--country"
                 >
                   Hungary
                 </textPath>
@@ -236,6 +238,7 @@
                 <textPath
                   alignment-baseline="top"
                   xlink:href="#curve__middle--time"
+                  class="curve__middle curve__middle--time"
                 >
                   01:00
                 </textPath>
@@ -260,6 +263,7 @@
                 <textPath
                   alignment-baseline="top"
                   xlink:href="#curve__middle--month"
+                  class="curve__middle curve__middle--month"
                 >
                   március
                 </textPath>
@@ -284,6 +288,7 @@
                 <textPath
                   alignment-baseline="top"
                   xlink:href="#curve__middle--day"
+                  class="curve__middle curve__middle--day"
                 >
                   31.
                 </textPath>
@@ -294,27 +299,28 @@
           <!-- Inner circle -->
           <div class="clocks--3">
             <!-- Bottom line of elements (time-zone, country) -->
-            <div class="clocks__details">
-              <span class="clocks__zone clocks__zone-global">UTC+1</span>
-              <span class="clocks__country clocks__country-global"
-                >Hungary</span
-              >
+            <div class="clocks__data">
+              <div class="clocks__details">
+                <span class="clocks__zone clocks__zone-global">UTC+1</span>
+                <span class="clocks__country clocks__country-global"
+                  >Hungary</span
+                >
+              </div>
+
+              <!-- Month -->
+              <span class="clocks__date clocks__date-global">március 1.</span>
+
+              <!-- Time -->
+              <span class="clocks__time clocks__time-global">05:00</span>
             </div>
-
-            <!-- Month -->
-            <span class="clocks__date clocks__date-global">március 1.</span>
-
-            <!-- Time -->
-            <span class="clocks__time clocks__time-global">05:00</span>
-
             <!-- Curved "WORLD" text in the circle -->
-            <span class="clocks__type">
+            <div class="clocks__type">
               <span class="clocks__type--1">W</span>
               <span class="clocks__type--2">o</span>
               <span class="clocks__type--3">r</span>
               <span class="clocks__type--4">l</span>
               <span class="clocks__type--5">d</span>
-            </span>
+            </div>
           </div>
         </div>
       </section>

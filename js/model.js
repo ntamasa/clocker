@@ -140,6 +140,22 @@ export const _getLocalClock = async function (
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
+export const loadGlobalTime = async function (apiKey) {
+  try {
+    // API request for to get every data for global clock
+    const data = await AJAX(
+      `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=Europe/London`
+    );
+
+    state.clocks.global = createClocksObject(data);
+
+    // TEST
+    console.log(state.clocks.global);
+  } catch (err) {
+    throw err;
+  }
+};
+
 // // Function for getting World Time data
 // export const _getWorldClock = async function (apiKey) {
 //   try {

@@ -155,8 +155,10 @@ body {
   .clocks__details {
     margin: 0 auto;
     transform: translateY(17.5rem); }
-    .clocks__details .clocks__details__zone {
-      margin-right: 2rem; }
+    .clocks__details .clocks__zone {
+      margin-right: 0.5rem; }
+    .clocks__details .clocks__country {
+      margin-left: 0.5rem; }
   .clocks__date {
     top: 50%;
     right: 50%;
@@ -166,7 +168,7 @@ body {
     right: 50%;
     transform: translateX(50%); }
     .clocks__time-global::after {
-      content: "";
+      content: '';
       display: block;
       height: 2px;
       width: 18rem;

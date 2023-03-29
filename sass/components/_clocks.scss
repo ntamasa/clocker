@@ -47,8 +47,12 @@
     margin: 0 auto;
     transform: translateY(17.5rem);
 
-    & &__zone {
-      margin-right: 2rem;
+    & .clocks__zone {
+      margin-right: 0.5rem;
+    }
+
+    & .clocks__country {
+      margin-left: 0.5rem;
     }
   }
 
@@ -64,7 +68,7 @@
     transform: translateX(50%);
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       height: 2px;
       width: 18rem;
