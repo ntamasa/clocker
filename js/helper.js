@@ -1,5 +1,9 @@
 import { TIMEOUT_SEC } from './config.js';
 
+const formCountry = document.querySelector('.form-box__country');
+const formCity = document.querySelector('.form-box__city');
+const formContinent = document.querySelector('.form-box__continent');
+
 // Function for timeout error
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -38,7 +42,7 @@ export const capitalize = s =>
   s
     .toLowerCase()
     .split(' ')
-    .map(e => e[0].toUpperCase() + e.slice(1))
+    .map(e => e[0].toUpperCase() + e.toLowerCase().slice(1))
     .join(' ');
 
 // Function to get a key of an object by its value
@@ -51,6 +55,37 @@ export const numberDigit2 = num =>
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
+
+// Function to get searched zone object if a country has more than 1
+export const currentZone = function (
+  dataArr,
+  continent = formContinent.value,
+  city = formCity.value,
+  country = formCountry.value
+) {
+  // let current = {}
+
+  dataArr.forEach(object => {
+    if (
+      object.zoneName
+        .toLowerCase()
+        .replace('_', ' ')
+        .includes(city.toLowerCase())
+    ) {
+      if (object.countryName.toLowerCase() === country.toLowerCase()) {
+        return object;
+      }
+      return new Error(
+        `Given zone (${continent}, ${city}) is not located in given country (${country})`
+      );
+      // current = object
+    }
+    return new Error(
+      `Given city (${city}) is not located in the given continent (${continent})!`
+    );
+  });
+  // return current
+};
 
 // Array for month names
 // prettier-ignore

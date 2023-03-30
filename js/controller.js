@@ -9,16 +9,24 @@ import globalClockView from './views/globalClockView.js';
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
-const controlBtn = async function () {
+const controlBtn = function () {
+  document
+    .querySelector('.form__btn')
+    .addEventListener('click', btnView.render);
   // Load form
+  // Render form to the DOM
+  // Check if every data needed is given
+  // YES --> Hide form, controlAddedTime
+  // NO --> Error alert, stay on form
 };
+controlBtn();
 
 const controlLocalTime = async function () {
-  // Loading current location
+  // Load current location
   await model.loadLocation();
 
-  // Loading local time
-  await model._getLocalClock(API_KEY);
+  // Load local time
+  await model.getLocalClock(API_KEY);
 
   // Render local objcet to the DOM
   localClockView.renderAll(model.state.clocks.local);
@@ -33,9 +41,13 @@ const controlWorldTime = async function () {
 };
 
 const controlAddedTime = async function () {
-  await model._getAddedClock(API_KEY);
+  // Load added clock
+  await model.getAddedClock(API_KEY);
+  // Render added clock to the DOM
+  // await model._getAddedClock(API_KEY);
   // view.addHandlerForm();
 };
+// controlAddedTime();
 
 const init = function () {
   localClockView.addHandlerRender(controlLocalTime);

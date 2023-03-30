@@ -8,7 +8,7 @@ class btnView extends View {
     window.addEventListener('load', handler);
   }
 
-  generateMarkup() {
+  _generateMarkup() {
     return this._parentElement.innerHTML
       ? `
         <svg
