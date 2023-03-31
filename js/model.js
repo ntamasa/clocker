@@ -5,7 +5,7 @@ import {
   countryList,
   months,
   numberDigit2,
-  // currentZone,
+  currentZone,
 } from './helper.js';
 
 // Get DOM elements to store data to request time
@@ -20,38 +20,47 @@ export const state = {
   coords: [{ latitude: '', longitude: '' }],
 };
 
-const createAddedClocksObject = async function (data) {
-  const response = data;
+const createAddedClocksObject = async function (data, apiKey) {
+  try {
+    const response = data;
 
-  const timeDateData = await AJAX(
-    `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${
-      currentZone(response).zoneName
-    }`
-  );
+    // On wrong data given
+    if (!currentZone(response).zoneName) throw new Error('ANYÁD');
 
-  const dateRes = timeDateData.formatted.split(' ')[0].split('-');
-  const timeRes = timeDateData.formatted.split(' ')[0].split(':');
+    const timeDateData = await AJAX(
+      `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${
+        currentZone(response).zoneName
+      }`
+    );
+    console.log(currentZone(response).zoneName);
+    console.log(timeDateData);
 
-  return {
-    time: {
-      hour: numberDigit2(timeRes[0]),
-      minute: numberDigit2(timeRes[1]),
-      second: numberDigit2(timeRes[2]),
-    },
-    zone:
-      currentZone(response).gmtOffset % 3600 === 0
-        ? currentZone(response).gmtOffset / 3600
-        : Math.floor(currentZone(response).gmtOffset / 3600) +
-          0.6 * ((currentZone(response).gmtOffset % 3600) / 3600),
-    country: capitalize(formCountry.value), //*
-    code: countryList[capitalize(formCountry.value)], //*
-    city: capitalize(formCity.value), //*
-    continent: capitalize(formContinent.value), //*
-    date: {
-      month: months[+dateRes[1]],
-      day: +dateRes[2],
-    },
-  };
+    const dateRes = timeDateData.formatted.split(' ')[0].split('-');
+    const timeRes = timeDateData.formatted.split(' ')[1].split(':');
+
+    return {
+      time: {
+        hour: numberDigit2(timeRes[0]),
+        minute: numberDigit2(timeRes[1]),
+        second: numberDigit2(timeRes[2]),
+      },
+      zone:
+        currentZone(response).gmtOffset % 3600 === 0
+          ? currentZone(response).gmtOffset / 3600
+          : Math.floor(currentZone(response).gmtOffset / 3600) +
+            0.6 * ((currentZone(response).gmtOffset % 3600) / 3600),
+      country: capitalize(formCountry.value), //*
+      code: countryList[capitalize(formCountry.value)], //*
+      city: capitalize(formCity.value), //*
+      continent: capitalize(formContinent.value), //*
+      date: {
+        month: months[+dateRes[1] - 1],
+        day: +dateRes[2],
+      },
+    };
+  } catch (err) {
+    throw err;
+  }
 };
 
 const createClocksObject = function (data, added = false) {
@@ -93,7 +102,7 @@ const createClocksObject = function (data, added = false) {
     city: response.zoneName.split('/')[1],
     continent: response.zoneName.split('/')[0],
     date: {
-      month: months[+dateRes[1]],
+      month: months[+dateRes[1] - 1],
       day: +dateRes[2],
     },
   };
@@ -185,18 +194,15 @@ export const loadAddedClock = async function (apiKey) {
         `Invalid Country '${formCountry.value}' given, please enter a valid Country`
       );
 
-    // API request for checking if given Continent/Capital is matching with given Country
-    // BUG if a country has more time zones it only gives back the first it gets
+    const countryCode = countryList[capitalize(formCountry.value)];
 
-    const countryCode = capitalize(countryList[capitalize(formCountry.value)]);
-    const countryCodeTEST = countryList['United States'];
-    console.log(countryCodeTEST);
     const { zones: data } = await AJAX(
       `http://api.timezonedb.com/v2.1/list-time-zone?key=${apiKey}&format=json&country=${countryCode}`
     );
 
-    state.clocks.added = createAddedClocksObject(data);
+    state.clocks.added = await createAddedClocksObject(data, apiKey);
 
+    return state.clocks.added;
     // TEST
     console.log(state.clocks.added);
   } catch (err) {

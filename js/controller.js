@@ -10,17 +10,6 @@ import addedClockView from './views/addedClockView.js';
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
-const controlBtn = function () {
-  // On click shows form if not visible
-  btnView.toggleForm();
-  btnView.toggleInputPos();
-  // On click if visible
-  ///// if data is invalid give error and still show form, do not call model.loadAddedClock
-  ///// if data is valid hide form with animations, call model.loadAddedClock, clear input fields in the background
-  // Load added clock to the DOM
-};
-// controlBtn();
-
 const controlLocalTime = async function () {
   // Load current location
   await model.loadLocation();
@@ -30,6 +19,8 @@ const controlLocalTime = async function () {
 
   // Render local objcet to the DOM
   localClockView.renderAll(model.state.clocks.local);
+
+  // Update clock
 };
 
 const controlWorldTime = async function () {
@@ -38,21 +29,38 @@ const controlWorldTime = async function () {
 
   // Render local object to the DOM
   globalClockView.render(model.state.clocks.global);
+
+  // Update clock
 };
 
 const controlAddedTime = async function () {
   // Load added clock
   await model.loadAddedClock(API_KEY);
   // Render added clock to the DOM
-  // await model._getAddedClock(API_KEY);
-  // view.addHandlerForm();
+  // if (!model.state.added) return -1;
+  addedClockView.renderAll(model.state.clocks.added);
+
+  // Update clock
 };
-// controlAddedTime();
+
+const controlBtn = function () {
+  // On click shows form if not visible
+  btnView.toggleForm();
+  btnView.toggleInputPos();
+  // Change icon
+  btnView.render();
+
+  // On click if visible
+  ///// if data is invalid give error and still show form, do not call model.loadAddedClock
+  ///// if data is valid hide form with animations, call model.loadAddedClock, clear input fields in the background
+  // Load added clock to the DOM
+};
+// controlBtn();
 
 const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
   globalClockView.addHandlerRender(controlWorldTime);
   btnView.addHandlerRender(controlBtn);
-  // addedClockView.addHandlerRender(controlAddedTime)
+  addedClockView.addHandlerRender(controlAddedTime);
 };
 init();

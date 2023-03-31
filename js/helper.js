@@ -60,31 +60,40 @@ export const numberDigit2 = num =>
 export const currentZone = function (
   dataArr,
   continent = formContinent.value,
-  city = formCity.value,
+  city = document.querySelector('.form-box__city').value,
   country = formCountry.value
 ) {
-  // let current = {}
+  try {
+    let current;
 
-  dataArr.forEach(object => {
-    if (
-      object.zoneName
-        .toLowerCase()
-        .replace('_', ' ')
-        .includes(city.toLowerCase())
-    ) {
-      if (object.countryName.toLowerCase() === country.toLowerCase()) {
-        return object;
-      }
-      return new Error(
-        `Given zone (${continent}, ${city}) is not located in given country (${country})`
-      );
-      // current = object
-    }
-    return new Error(
-      `Given city (${city}) is not located in the given continent (${continent})!`
-    );
-  });
-  // return current
+    dataArr.forEach(object => {
+      if (
+        !object.zoneName
+          .toLowerCase()
+          .replace('_', ' ')
+          .includes(city.toLowerCase())
+      )
+        return new Error(
+          `Given city (${city}) is not located in the given continent (${continent})!`
+        );
+
+      if (object.countryName.toLowerCase() !== country.toLowerCase())
+        return new Error(
+          `Given zone (${continent}, ${city}) is not located in given country (${country})`
+        );
+
+      if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
+        return new Error(
+          `Given country (${country}) is not located in the given continent (${continent})`
+        );
+
+      current = object;
+      console.log(current);
+    });
+    return current ? current : new Error('😂😂😂');
+  } catch (err) {
+    throw err;
+  }
 };
 
 // Array for month names
