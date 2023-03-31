@@ -5,7 +5,29 @@ class btnView extends View {
   _errorMessage = 'ERROR MESSAGE';
 
   addHandlerRender(handler) {
-    window.addEventListener('load', handler);
+    document.querySelector('.form__btn').addEventListener('click', handler);
+  }
+
+  // Method to toggle the position of input fields in form
+  toggleInputPos() {
+    document
+      .querySelector('.form__background')
+      .classList.toggle('form__background--active');
+    document
+      .querySelector('.form-box__heading')
+      .classList.toggle('form-box__heading--active');
+    document
+      .querySelector('.form-box__content')
+      .classList.toggle('form-box__content--active');
+    document
+      .querySelector('.form-box__map')
+      .classList.toggle('form-box__map--active');
+    document.querySelector('.footer').classList.toggle('footer--active');
+  }
+
+  // Method to toggle form visibility
+  toggleForm() {
+    document.querySelector('.form-box').classList.toggle('hidden');
   }
 
   _generateMarkup() {

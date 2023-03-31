@@ -118,7 +118,7 @@ export const loadLocation = async function () {
 };
 
 // Function for getting Local Time data
-export const getLocalClock = async function (
+export const loadLocalClock = async function (
   apiKey,
   lat = state.coords.latitude,
   lng = state.coords.longitude
@@ -169,7 +169,7 @@ export const loadGlobalTime = async function (apiKey) {
 // ////////////////////////////////////////////////
 // ////////////////////////////////////////////////
 
-export const getAddedClock = async function (apiKey) {
+export const loadAddedClock = async function (apiKey) {
   try {
     // If one of the input fields is empty
     if (!formCountry || !formCity || !formContinent)

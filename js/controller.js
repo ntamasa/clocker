@@ -5,28 +5,28 @@ import viewview from './views/View.js';
 import btnView from './views/btnView.js';
 import localClockView from './views/localClockView.js';
 import globalClockView from './views/globalClockView.js';
+import addedClockView from './views/addedClockView.js';
 
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
 const controlBtn = function () {
-  document
-    .querySelector('.form__btn')
-    .addEventListener('click', btnView.render);
-  // Load form
-  // Render form to the DOM
-  // Check if every data needed is given
-  // YES --> Hide form, controlAddedTime
-  // NO --> Error alert, stay on form
+  // On click shows form if not visible
+  btnView.toggleForm();
+  btnView.toggleInputPos();
+  // On click if visible
+  ///// if data is invalid give error and still show form, do not call model.loadAddedClock
+  ///// if data is valid hide form with animations, call model.loadAddedClock, clear input fields in the background
+  // Load added clock to the DOM
 };
-controlBtn();
+// controlBtn();
 
 const controlLocalTime = async function () {
   // Load current location
   await model.loadLocation();
 
   // Load local time
-  await model.getLocalClock(API_KEY);
+  await model.loadLocalClock(API_KEY);
 
   // Render local objcet to the DOM
   localClockView.renderAll(model.state.clocks.local);
@@ -42,7 +42,7 @@ const controlWorldTime = async function () {
 
 const controlAddedTime = async function () {
   // Load added clock
-  await model.getAddedClock(API_KEY);
+  await model.loadAddedClock(API_KEY);
   // Render added clock to the DOM
   // await model._getAddedClock(API_KEY);
   // view.addHandlerForm();
@@ -52,5 +52,7 @@ const controlAddedTime = async function () {
 const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
   globalClockView.addHandlerRender(controlWorldTime);
+  btnView.addHandlerRender(controlBtn);
+  // addedClockView.addHandlerRender(controlAddedTime)
 };
 init();
