@@ -1,5 +1,5 @@
 .form-box {
-  // Hiding all of them on non checked state
+  // Hiding all of them on Inactive state
   // @include hidden;
 
   // transition: all 1s;
@@ -25,13 +25,18 @@
     // Horizontal alignment
     justify-self: center;
 
-    // Non checked state
+    // Inactive state
     transform: translateY(-200rem);
 
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
     backdrop-filter: none;
+
+    // Active state
+    &--active {
+      transform: translateY(0);
+    }
   }
 
   &__content {
@@ -50,7 +55,7 @@
     // Spacing between flex-items
     gap: 10rem;
 
-    // Non checked state
+    // Inactive state
     transform: translateX(-200rem);
 
     // Animation
@@ -60,6 +65,11 @@
     &-item {
       display: flex;
       flex-direction: column;
+    }
+
+    // Active state
+    &--active {
+      transform: translateX(0);
     }
   }
 
@@ -100,13 +110,19 @@
     // Having a more center looking alignment
     transform: translateY(-2rem);
 
-    // Non checked state
+    // Inactive state
     width: 0;
     border: 0px solid $color-primary-dark-1;
 
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
+
+    // Active state
+    &--active {
+      width: 70rem;
+      border: 1px solid $color-primary-dark-1;
+    }
   }
 
   .footer {
@@ -118,11 +134,16 @@
     justify-self: center;
     align-self: center;
 
-    // Non checked state
+    // Inactive state
     transform: translateX(-200rem);
 
     // Animation
     transition: all 0.8s;
     transition-delay: 0.8s;
+
+    // Active state
+    &--active {
+      transform: translateX(0);
+    }
   }
 }

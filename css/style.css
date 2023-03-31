@@ -255,6 +255,8 @@ body {
     transition: all 0.8s;
     transition-delay: 0.8s;
     backdrop-filter: none; }
+    .form-box__heading--active {
+      transform: translateY(0); }
   .form-box__content {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -269,6 +271,8 @@ body {
     .form-box__content-item {
       display: flex;
       flex-direction: column; }
+    .form-box__content--active {
+      transform: translateX(0); }
   .form-box__country, .form-box__city, .form-box__continent {
     height: 4rem;
     width: 30rem;
@@ -288,6 +292,9 @@ body {
     border: 0px solid #3f2d79;
     transition: all 0.8s;
     transition-delay: 0.8s; }
+    .form-box__map--active {
+      width: 70rem;
+      border: 1px solid #3f2d79; }
   .form-box .footer {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -296,6 +303,8 @@ body {
     transform: translateX(-200rem);
     transition: all 0.8s;
     transition-delay: 0.8s; }
+    .form-box .footer--active {
+      transform: translateX(0); }
 
 .shadow {
   grid-row: 2 / 3;
@@ -379,6 +388,8 @@ body {
     border-radius: 50%;
     z-index: 9997;
     transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
+    .form__background--active {
+      transform: scale(80); }
 
 body {
   background-color: #e3def3; }
