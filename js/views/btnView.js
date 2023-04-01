@@ -32,7 +32,8 @@ class btnView extends View {
 
   _generateMarkup() {
     return this._parentElement.innerHTML.includes('form__icon--close')
-      ? `
+      ? // IF (plus icon)
+        `
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -48,7 +49,8 @@ class btnView extends View {
           />
        </svg>
        `
-      : `
+      : // ELSE (tick icon)
+        `
       <svg
         xmlns="http://www.w3.org/2000/svg"
           fill="none"

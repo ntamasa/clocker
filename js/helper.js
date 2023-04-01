@@ -47,7 +47,7 @@ export const capitalize = s =>
 
 // Function to get a key of an object by its value
 export const getKeyByValue = (obj, val) =>
-  Object.keys(obj).find(key => obj[key] === val);
+  Object.keys(obj).find(key => obj[key] === val); // returns object key that given OBJECT's value is equal to given VALUE
 
 // Function to format numbers always 2 digit
 export const numberDigit2 = num =>
@@ -63,43 +63,57 @@ export const currentZone = function (
   city = document.querySelector('.form-box__city').value,
   country = formCountry.value
 ) {
-  try {
-    let current;
+  // Variable to store object that passes later conditions
+  let current;
 
-    dataArr.forEach(object => {
-      if (
-        !object.zoneName
-          .toLowerCase()
-          .replace('_', ' ')
-          .includes(city.toLowerCase())
-      )
-        return new Error(
-          `Given city (${city}) is not located in the given continent (${continent})!`
-        );
+  dataArr.forEach(object => {
+    // If one of the input field is empty
+    if (!country || !city || !continent)
+      return console.error('Please fill in all of the fields!');
 
-      if (object.countryName.toLowerCase() !== country.toLowerCase())
-        return new Error(
-          `Given zone (${continent}, ${city}) is not located in given country (${country})`
-        );
+    // If given city is not located in the given contintnt
+    if (
+      !object.zoneName
+        .toLowerCase()
+        .replace('_', ' ')
+        .includes(city.toLowerCase())
+    )
+      return console.error(
+        `Given city (${city}) is not located in the given continent (${continent})!`
+      );
 
-      if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
-        return new Error(
-          `Given country (${country}) is not located in the given continent (${continent})`
-        );
+    // If given zone is not locaed in given country
+    if (object.countryName.toLowerCase() !== country.toLowerCase())
+      return console.error(
+        `Given zone (${continent}, ${city}) is not located in given country (${country})`
+      );
 
-      current = object;
-      console.log(current);
-    });
-    return current ? current : new Error('😂😂😂');
-  } catch (err) {
-    throw err;
-  }
+    // If given country is not located in given continent
+    if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
+      return console.error(
+        `Given country (${country}) is not located in the given continent (${continent})`
+      );
+    current = object; // current is now the object that passes every condition
+    console.log(current);
+  });
+  // if current is not falsey then return current (object) esle it returns an error
+  return current ? current : console.error('');
 };
+
+// Function to get zone
+export const getZone = data =>
+  data.gmtOffset % 3600 === 0 // if its a round number
+    ? // if TRUE
+      data.gmtOffset / 3600
+    : // if FALSE
+      Math.floor(data.gmtOffset / 3600) + // returns the hour part (need Math.floor to round from decimals)
+      0.6 * ((data.gmtOffset % 3600) / 3600); // from devidance leftover calculate minutes (100% = 60)
 
 // Array for month names
 // prettier-ignore
 export const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+// Object for countries and its 2 digit country codes
 export const countryList = {
   Afghanistan: 'AF',
   'Aland Islands': 'AX',
