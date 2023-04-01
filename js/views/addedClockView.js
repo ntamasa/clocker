@@ -2,6 +2,7 @@ import View from './View.js';
 
 class addedClockView extends View {
   _parentElement = document.querySelectorAll('.curve__middle');
+  _formElement = document.querySelector('.form-box');
   _errorMessage = 'error message';
 
   addHandlerRender(handler) {

@@ -21,6 +21,7 @@ const controlLocalTime = async function () {
   localClockView.renderAll(model.state.clocks.local);
 
   // Update clock
+  localClockView.updateTime(model.state.clocks.local);
 };
 
 const controlWorldTime = async function () {
@@ -31,6 +32,7 @@ const controlWorldTime = async function () {
   globalClockView.render(model.state.clocks.global);
 
   // Update clock
+  globalClockView.updateTime(model.state.clocks.global);
 };
 
 const controlAddedTime = async function () {
@@ -41,6 +43,7 @@ const controlAddedTime = async function () {
   addedClockView.renderAll(model.state.clocks.added);
 
   // Update clock
+  addedClockView.updateTime(model.state.clocks.added);
 };
 
 const controlBtn = function () {

@@ -56,6 +56,19 @@ export const numberDigit2 = num =>
     useGrouping: false,
   });
 
+// Function to check if argument is nodelist or not RETURNS: true/false
+export const isNodeList = function (nodes) {
+  const stringRepr = Object.prototype.toString.call(nodes);
+
+  return (
+    typeof nodes === 'object' &&
+    /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
+    typeof nodes.length === 'number' &&
+    (nodes.length === 0 ||
+      (typeof nodes[0] === 'object' && nodes[0].nodeType > 0))
+  );
+};
+
 // Function to get searched zone object if a country has more than 1
 export const currentZone = function (
   dataArr,
@@ -94,7 +107,6 @@ export const currentZone = function (
         `Given country (${country}) is not located in the given continent (${continent})`
       );
     current = object; // current is now the object that passes every condition
-    console.log(current);
   });
   // if current is not falsey then return current (object) esle it returns an error
   return current ? current : console.error('');
