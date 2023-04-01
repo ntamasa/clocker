@@ -10,14 +10,18 @@ class addedClockView extends View {
 
   _generateMarkup() {
     // If wrong data is given, middle circle turns blank
-    if (Object.keys(this._data).length === Object.keys({}).length)
-      // If blank object is given in controller
-      this._iterationCount === 1 // iteration is at the second element (country) return string
-        ? // IF
-          `Click the button in the top right, to add a time zone`
-        : // ELSE
-          '&nbsp;';
-    // --NOT DONE-- Last successful form data from browser locale storage
+    if (Object.keys(this._data).length === Object.keys({}).length) {
+      if (this._iterationCount === 1)
+        // iteration is at the second element (country)
+        return `Click the button in the top right, to add a time zone`; // If blank object is given in controller
+      // ELSE
+      return '&nbsp;';
+      // --NOT DONE-- Last successful form data from browser locale storage
+    }
+
+    this._iterationCount === 1 // IF // iteration is at the second element (country) return string
+      ? `Click the button in the top right, to add a time zone`
+      : '&nbsp;';
 
     // First element (zone)
     if (!this._iterationCount)
