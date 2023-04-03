@@ -2,7 +2,7 @@ import View from './View.js';
 
 class addedClockView extends View {
   _parentElement = document.querySelectorAll('.curve__middle');
-  _formElement = document.querySelector('.form-box');
+  _btnIcon = document.querySelector('.icon');
   _errorMessage = 'error message';
 
   addHandlerRender(handler) {
@@ -12,9 +12,11 @@ class addedClockView extends View {
   _generateMarkup() {
     // If wrong data is given, middle circle turns blank
     if (Object.keys(this._data).length === Object.keys({}).length) {
-      if (this._iterationCount === 1)
+      if (this._iterationCount === 1) {
+        console.error('Wrong data given please try again!');
         // iteration is at the second element (country)
         return `Click the button in the top right, to add a time zone`; // If blank object is given in controller
+      }
       // ELSE
       return '&nbsp;';
       // --NOT DONE-- Last successful form data from browser locale storage

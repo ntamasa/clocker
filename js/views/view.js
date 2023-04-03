@@ -26,7 +26,7 @@ export default class View {
   }
 
   // Method to render data to the DOM
-  render(data, render = true) {
+  render(data) {
     this._data = data;
 
     // Generate markup
@@ -68,6 +68,9 @@ export default class View {
       `${numberDigit2(data.time.hour)}:${numberDigit2(data.time.minute)}`;
 
     setInterval(() => {
+      // Bug: first input --> good, second --> not good --> THEN default message is shown but either do time
+      if (Object.keys(data).length === Object.keys({}).length) return;
+
       let markup;
       // When it has to be midnight (0:00)
       console.log(data.time);
@@ -122,5 +125,11 @@ export default class View {
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
       }
     }, 1000);
+  }
+
+  // Class to check if the given element containse the given class contains - returns TRUE/FALSE
+  hasClass(el, cl) {
+    console.log(el, '+', cl);
+    return el.classList.contains(`${cl}`);
   }
 }

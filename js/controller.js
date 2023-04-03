@@ -10,6 +10,9 @@ import addedClockView from './views/addedClockView.js';
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 
+// Variable to keep track of btn clicks
+let btnCounter = 0;
+
 const controlLocalTime = async function () {
   // Load current location
   await model.loadLocation();
@@ -64,6 +67,14 @@ const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
   globalClockView.addHandlerRender(controlWorldTime);
   btnView.addHandlerRender(controlBtn);
-  addedClockView.addHandlerRender(controlAddedTime);
+
+  // On button click and if form is visible controlAddedTime is called
+  document.querySelector('.form__btn').addEventListener('click', () => {
+    // if form is visible (btn click isn't even nor 0)
+    if (btnCounter % 2 !== 0) {
+      controlAddedTime();
+    }
+    btnCounter++;
+  });
 };
 init();

@@ -40,7 +40,7 @@ class btnView extends View {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="form__icon--add"
+          class="icon form__icon--add"
         >
           <path
             stroke-linecap="round"
@@ -57,7 +57,7 @@ class btnView extends View {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="form__icon--close"
+          class="icon form__icon--close"
       >
         <path
           stroke-linecap="round"

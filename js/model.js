@@ -60,7 +60,7 @@ const createAddedClocksObject = async function (data, apiKey) {
     const response = data;
 
     // On wrong data given (guard clause)
-    if (typeof currentZone(response) !== 'object') return -1;
+    if (typeof currentZone(response) !== 'object') return {};
 
     // API call to get date, time information
     const timeDateData = await AJAX(

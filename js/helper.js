@@ -80,36 +80,49 @@ export const currentZone = function (
   let current;
 
   dataArr.forEach(object => {
-    // If one of the input field is empty
-    if (!country || !city || !continent)
-      return console.error('Please fill in all of the fields!');
-
-    // If given city is not located in the given contintnt
     if (
-      !object.zoneName
+      (country || city || continent) &&
+      object.zoneName
         .toLowerCase()
         .replace('_', ' ')
-        .includes(city.toLowerCase())
-    )
-      return console.error(
-        `Given city (${city}) is not located in the given continent (${continent})!`
-      );
-
-    // If given zone is not locaed in given country
-    if (object.countryName.toLowerCase() !== country.toLowerCase())
-      return console.error(
-        `Given zone (${continent}, ${city}) is not located in given country (${country})`
-      );
-
-    // If given country is not located in given continent
-    if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
-      return console.error(
-        `Given country (${country}) is not located in the given continent (${continent})`
-      );
-    current = object; // current is now the object that passes every condition
+        .includes(city.toLowerCase()) &&
+      object.countryName.toLowerCase() === country.toLowerCase() &&
+      object.zoneName.toLowerCase().includes(continent.toLowerCase())
+    ) {
+      current = object;
+    }
   });
-  // if current is not falsey then return current (object) esle it returns an error
-  return current ? current : console.error('');
+  return current ? current : console.error('heloka');
+  //     // If one of the input field is empty
+  //     if (!country || !city || !continent)
+  //       return console.error('Please fill in all of the fields!');
+
+  //     // If given city is not located in the given contintnt
+  //     if (
+  //       !object.zoneName
+  //         .toLowerCase()
+  //         .replace('_', ' ')
+  //         .includes(city.toLowerCase())
+  //     )
+  //       return console.error(
+  //         `Given city (${city}) is not located in the given continent (${continent})!`
+  //       );
+
+  //     // If given zone is not locaed in given country
+  //     if (object.countryName.toLowerCase() !== country.toLowerCase())
+  //       return console.error(
+  //         `Given zone (${continent}, ${city}) is not located in given country (${country})`
+  //       );
+
+  //     // If given country is not located in given continent
+  //     if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
+  //       return console.error(
+  //         `Given country (${country}) is not located in the given continent (${continent})`
+  //       );
+  //     current = object; // current is now the object that passes every condition
+  //   });
+  //   // if current is not falsey then return current (object) esle it returns an error
+  //   return current ? current : console.error('');
 };
 
 // Function to get zone
