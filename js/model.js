@@ -7,6 +7,7 @@ import {
   numberDigit2,
   currentZone,
   getZone,
+  runEverySec,
 } from './helper.js';
 
 // Get DOM elements to store data to request time
@@ -36,10 +37,11 @@ const createClocksObject = function (data) {
   const timeRes = response.formatted.split(' ')[1].split(':');
 
   return {
+    // Empty strings because they are loaded later in loadTime, but still has to create here
     time: {
-      hour: numberDigit2(timeRes[0]), // returns 2 digit number
-      minute: numberDigit2(timeRes[1]),
-      second: numberDigit2(timeRes[2]),
+      hour: '',
+      minute: '',
+      second: '',
     },
     zone: getZone(response),
     country: response.countryName,
@@ -47,8 +49,9 @@ const createClocksObject = function (data) {
     city: response.zoneName.split('/')[1],
     continent: response.zoneName.split('/')[0],
     date: {
-      month: months[+dateRes[1] - 1],
-      day: +dateRes[2],
+      // Empty strings because they are loaded later in loadTime, but still has to create here
+      month: '',
+      day: '',
     },
   };
 };
@@ -74,10 +77,11 @@ const createAddedClocksObject = async function (data, apiKey) {
     const timeRes = timeDateData.formatted.split(' ')[1].split(':');
 
     return {
+      // Empty strings because they are loaded later in loadTime, but still has to create here
       time: {
-        hour: numberDigit2(timeRes[0]), // returns 2 digit number
-        minute: numberDigit2(timeRes[1]),
-        second: numberDigit2(timeRes[2]),
+        hour: '',
+        minute: '',
+        second: '',
       },
       zone: getZone(currentZone(response)),
       country: capitalize(formCountry.value),
@@ -85,8 +89,9 @@ const createAddedClocksObject = async function (data, apiKey) {
       city: capitalize(formCity.value),
       continent: capitalize(formContinent.value),
       date: {
-        month: months[+dateRes[1] - 1],
-        day: +dateRes[2],
+        // Empty strings because they are loaded later in loadTime, but still has to create here
+        month: '',
+        day: '',
       },
     };
   } catch (err) {
@@ -197,4 +202,38 @@ export const loadAddedClock = async function (apiKey) {
   } catch (err) {
     throw err;
   }
+};
+export const loadTime = function (data) {
+  const getTime = function () {
+    const date = new Date(); // get local date
+    const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // convert local date to utc date
+    const zonedDate = new Date(
+      utcDate.getTime() + data.zone * 60 * 60000 // convert utc date to a specific timezone date
+    );
+
+    // Fill up state object
+    data.time.hour = zonedDate.getHours();
+    data.time.minute = zonedDate.getMinutes();
+    data.time.second = zonedDate.getSeconds();
+  };
+
+  const getDate = function () {
+    const date = new Date(); // get local date
+    const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // convert local date to utc date
+    const zonedDate = new Date(
+      utcDate.getTime() + data.zone * 60 * 60000 // convert utc date to a specific timezone date
+    );
+
+    // Fill up state object
+    data.date.month = months[zonedDate.getMonth()];
+    data.date.day = zonedDate.getDate();
+  };
+
+  // Need to call them first for an immediate time request
+  getTime();
+  getDate();
+
+  // Calling the getTime and getDate functions in every second
+  runEverySec(getTime);
+  runEverySec(getDate);
 };

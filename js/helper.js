@@ -81,50 +81,21 @@ export const currentZone = function (
 
   dataArr.forEach(object => {
     if (
-      (country || city || continent) &&
+      (country || city || continent) && // If one of the input field is empty
       object.zoneName
         .toLowerCase()
         .replace('_', ' ')
-        .includes(city.toLowerCase()) &&
-      object.countryName.toLowerCase() === country.toLowerCase() &&
-      object.zoneName.toLowerCase().includes(continent.toLowerCase())
+        .includes(city.toLowerCase()) && // If given city is not located in the given continent
+      object.countryName.toLowerCase() === country.toLowerCase() && // If given zone is not locaed in given country
+      object.zoneName.toLowerCase().includes(continent.toLowerCase()) // If given country is not located in given continent
     ) {
       current = object;
     }
   });
-  return current ? current : console.error('heloka');
-  //     // If one of the input field is empty
-  //     if (!country || !city || !continent)
-  //       return console.error('Please fill in all of the fields!');
-
-  //     // If given city is not located in the given contintnt
-  //     if (
-  //       !object.zoneName
-  //         .toLowerCase()
-  //         .replace('_', ' ')
-  //         .includes(city.toLowerCase())
-  //     )
-  //       return console.error(
-  //         `Given city (${city}) is not located in the given continent (${continent})!`
-  //       );
-
-  //     // If given zone is not locaed in given country
-  //     if (object.countryName.toLowerCase() !== country.toLowerCase())
-  //       return console.error(
-  //         `Given zone (${continent}, ${city}) is not located in given country (${country})`
-  //       );
-
-  //     // If given country is not located in given continent
-  //     if (!object.zoneName.toLowerCase().includes(continent.toLowerCase()))
-  //       return console.error(
-  //         `Given country (${country}) is not located in the given continent (${continent})`
-  //       );
-  //     current = object; // current is now the object that passes every condition
-  //   });
-  //   // if current is not falsey then return current (object) esle it returns an error
-  //   return current ? current : console.error('');
+  return current
+    ? current
+    : console.error('Invalid data given! Please try again'); // If current is falsey --> error, if truthy returns current object
 };
-
 // Function to get zone
 export const getZone = data =>
   data.gmtOffset % 3600 === 0 // if its a round number
@@ -133,6 +104,13 @@ export const getZone = data =>
     : // if FALSE
       Math.floor(data.gmtOffset / 3600) + // returns the hour part (need Math.floor to round from decimals)
       0.6 * ((data.gmtOffset % 3600) / 3600); // from devidance leftover calculate minutes (100% = 60)
+
+// Function that runs the argument the function was called with every second
+export const runEverySec = f => {
+  setInterval(() => {
+    f();
+  }, 1000);
+};
 
 // Array for month names
 // prettier-ignore
