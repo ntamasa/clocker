@@ -1,4 +1,5 @@
 import View from './View.js';
+import { numberDigit2, runEverySec } from '../helper.js';
 
 class globalClockView extends View {
   _parentElement = document.querySelector('.clocks__data');
@@ -29,6 +30,39 @@ class globalClockView extends View {
             this._data.time.hour
           }:${this._data.time.minute}</span>
     `;
+  }
+
+  // Function to update time in the DOM
+  updateTime(data) {
+    // Time, date elements in html
+    const timeElement = document.querySelector('.clocks__time-global');
+    const dateElement = document.querySelector('.clocks__date-global');
+
+    // Function to update DOM
+    const updateDOM = function () {
+      // Clear
+      timeElement.innerHTML = '';
+      dateElement.innerHTML = '';
+
+      // Render current time to the DOM
+      timeElement.insertAdjacentHTML(
+        'afterbegin',
+        `${numberDigit2(data.time.hour)}:${numberDigit2(
+          data.time.minute
+        )}:${numberDigit2(data.time.second)}`
+      );
+
+      // Render current date to the DOM
+      dateElement.insertAdjacentHTML(
+        'afterbegin',
+        `${data.date.month} ${data.date.day}`
+      );
+    };
+    // Need to call once for immediate DOM update
+    updateDOM();
+
+    // Calling it in every second for the correct displayal of the time
+    runEverySec(updateDOM);
   }
 }
 

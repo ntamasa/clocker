@@ -1,4 +1,5 @@
 import View from './View.js';
+import { runEverySec, numberDigit2 } from '../helper.js';
 
 class addedClockView extends View {
   _parentElement = document.querySelectorAll('.curve__middle');
@@ -22,10 +23,6 @@ class addedClockView extends View {
       // --NOT DONE-- Last successful form data from browser locale storage
     }
 
-    this._iterationCount === 1 // IF // iteration is at the second element (country) return string
-      ? `Click the button in the top right, to add a time zone`
-      : '&nbsp;';
-
     // First element (zone)
     if (!this._iterationCount)
       return `
@@ -37,19 +34,39 @@ class addedClockView extends View {
       return `
       ${this._data.country}
     `; // Hungary
+  }
 
-    // Third element (time)
-    if (this._iterationCount === 2)
-      return `
-    ${this._data.time.hour}:${this._data.time.minute}`; // 18:01
+  // Function to update time in the DOM
+  updateTime(data) {
+    // Time, date elements in html
+    const timeElement = document.querySelector('.curve__middle--time');
+    const monthElement = document.querySelector('.curve__middle--month');
+    const dayElement = document.querySelector('.curve__middle--day');
 
-    // Fourth element (month)
-    if (this._iterationCount === 3)
-      return `
-      ${this._data.date.month}`; // March
+    // Function to update DOM
+    const updateDOM = function () {
+      // Clear
+      timeElement.innerHTML = '';
+      monthElement.innerHTML = '';
+      dayElement.innerHTML = '';
 
-    // Fifth element (day)
-    return `${this._data.date.day}`; // 21
+      // Render current time to the DOM
+      timeElement.insertAdjacentHTML(
+        'afterbegin',
+        `${numberDigit2(data.time.hour)}:${numberDigit2(
+          data.time.minute
+        )}:${numberDigit2(data.time.second)}`
+      );
+
+      // Render current date to the DOM
+      monthElement.insertAdjacentHTML('afterbegin', `${data.date.month}`);
+      dayElement.insertAdjacentHTML('afterbegin', `${data.date.day}`);
+    };
+    // Need to call once for immediate DOM update
+    updateDOM();
+
+    // Calling it in every second for the correct displayal of the time
+    runEverySec(updateDOM);
   }
 }
 

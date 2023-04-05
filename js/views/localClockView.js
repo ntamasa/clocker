@@ -1,4 +1,5 @@
 import View from './View.js';
+import { numberDigit2, runEverySec } from '../helper.js';
 
 class localClockView extends View {
   _parentElement = document.querySelectorAll('.curve__outer');
@@ -22,21 +23,38 @@ class localClockView extends View {
       ${this._data.country}
     `;
     }
+  }
 
-    // Third element (time)
-    if (this._iterationCount === 2) {
-      return `
-    ${this._data.time.hour}:${this._data.time.minute}`;
+  updateTime(data) {
+    // Time, date elements in html
+    const timeElement = document.querySelector('.curve__outer--time');
+    const monthElement = document.querySelector('.curve__outer--month');
+    const dayElement = document.querySelector('.curve__outer--day');
+
+    // Function to update DOM
+    function updateDOM() {
+      // Clear
+      timeElement.innerHTML = '';
+      monthElement.innerHTML = '';
+      dayElement.innerHTML = '';
+
+      // Render current time to the DOM
+      timeElement.insertAdjacentHTML(
+        'afterbegin',
+        `${numberDigit2(data.time.hour)}:${numberDigit2(
+          data.time.minute
+        )}:${numberDigit2(data.time.second)}`
+      );
+
+      // Render current date to the DOM
+      monthElement.insertAdjacentHTML('afterbegin', `${data.date.month}`);
+      dayElement.insertAdjacentHTML('afterbegin', `${data.date.day}`);
     }
+    // Need to call once for immediate DOM update
+    updateDOM();
 
-    // Fourth element (month)
-    if (this._iterationCount === 3) {
-      return `
-      ${this._data.date.month}`;
-    }
-
-    // Fifth element (day)
-    return `${this._data.date.day}`;
+    // Calling it in every second for the correct displayal of the time
+    runEverySec(updateDOM);
   }
 }
 
