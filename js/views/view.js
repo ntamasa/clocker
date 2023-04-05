@@ -41,48 +41,4 @@ export default class View {
   _clear() {
     this._parentElement.innerHTML = '';
   }
-
-  // // Function to update time in the DOM
-  // updateTime(data) {
-  //   const _generateGlobalMarkup = () => `
-  //     <div class="clocks__details">
-  //       <span class="clocks__zone clocks__zone-global">UTC${
-  //         this._data.zone >= 0 ? '+' : '-'
-  //       }${this._data.zone}</span>
-  //             <span class="clocks__country clocks__country-global"
-  //               >${this._data.country}</span
-  //             >
-  //       </div>
-
-  //       <!-- Month -->
-  //       <span class="clocks__date clocks__date-global">${
-  //         this._data.date.month
-  //       } ${this._data.date.day}</span>
-
-  //       <!-- Time -->
-  //       <span class="clocks__time clocks__time-global">${numberDigit2(
-  //         data.time.hour
-  //       )}:${numberDigit2(data.time.minute)}</span>`;
-
-  //   const _generateMarkup = () =>
-  //     `${numberDigit2(data.time.hour)}:${numberDigit2(data.time.minute)}`;
-
-  //   const updateDOM = function () {
-  //     if (isNodeList(this._parentElement))
-  //       // if parent element is more elements (local, added)
-  //       this._parentElement.insertAdjacentHTML('afterbegin', _generateMarkup);
-
-  //     if (!isNodeList(this._parentElement))
-  //       // if parent element is only 1 element (global clock)
-  //       this._parentElement.insertAdjacentHTML(
-  //         'afterbegin',
-  //         _generateGlobalMarkup
-  //       );
-  //   };
-  //   // Need to call once for immediate DOM update
-  //   updateDOM();
-
-  //   // Calling it in every second for the correct displayal of the time
-  //   runEverySec(updateDOM);
-  // }
 }
