@@ -38,7 +38,12 @@ const controlLocalTime = async function () {
     localClockView.updateTime(model.state.clocks.local);
   } catch (err) {
     console.error(err);
+
+    // Render error to the DOM
     localClockView.renderError();
+
+    // Remove spinner from the DOM
+    localClockView.clearSpinner();
   }
 };
 
@@ -63,7 +68,12 @@ const controlWorldTime = async function () {
     globalClockView.updateTime(model.state.clocks.global);
   } catch (err) {
     console.error(err);
+
+    // Render error to the DOM
     globalClockView.renderError();
+
+    // Remove spinner from the DOM
+    globalClockView.clearSpinner();
   }
 };
 
@@ -87,7 +97,12 @@ const controlAddedTime = async function () {
     addedClockView.updateTime(model.state.clocks.added);
   } catch (err) {
     console.error(err);
+
+    // Render error to the DOM
     addedClockView.renderError();
+
+    // Remove spinner from the DOM
+    addedClockView.clearSpinner();
   }
 };
 
