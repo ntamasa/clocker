@@ -25,12 +25,17 @@
   // Spacing between columns
   gap: 1.5rem;
 
+  // Position
   position: absolute;
-  top: 5rem;
   left: 50%;
   transform: translateX(-50%);
 
+  // On top of everything
   z-index: 99999;
+
+  @include hidden;
+
+  animation: popUpMessage 5s;
 
   &__logo {
     &-img {
@@ -63,4 +68,26 @@
   // General styling
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+@keyframes popUpMessage {
+  0% {
+    @include hidden;
+    top: -10rem;
+  }
+
+  10% {
+    @include visible;
+    top: 5rem;
+  }
+
+  90% {
+    @include visible;
+    top: 5rem;
+  }
+
+  100% {
+    @include hidden;
+    top: 5rem;
+  }
 }
