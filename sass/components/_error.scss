@@ -1,20 +1,66 @@
 .error {
+  // Dimensions of main container of error message
   width: 30rem;
   height: 15rem;
+
+  // Border
+  border: 1px solid $black;
+  border-radius: 2rem;
+
+  // Shadows
+  box-shadow: 0 0.5rem 1rem rgba($black, 0.25);
+
+  // Background
   background-image: linear-gradient(
-    to bottom right,
-    $color-dark-1,
-    $color-primary
+    to left top,
+    $color-primary,
+    $color-primary-light-1
   );
+
+  // Flex element to responsively place content to the center
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Spacing between columns
+  gap: 1.5rem;
+
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 99999;
 
   &__logo {
     &-img {
+      // Logo sizing
+      width: 7.5rem;
+      height: 7.5rem;
+
+      // Logo color
+      stroke: $color-error;
     }
   }
   &__text {
+    // Typography of error text
+    font-family: 'Inter', sans-serif;
+    // color: $color-primary-dark-1;
+    color: $color-grey-dark;
+
+    // Making it a flex element to create spacing between lines of text
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 .invalid-data {
+  // General styling
+  font-size: 2.2rem;
+  font-weight: 600;
 }
 .try-again {
+  // General styling
+  font-size: 1.6rem;
+  font-weight: 500;
 }
