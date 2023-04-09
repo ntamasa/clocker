@@ -35,7 +35,7 @@
 
   @include hidden;
 
-  animation: popUpMessage 5s;
+  animation: popUpMessage 3s;
 
   &__logo {
     &-img {
@@ -70,23 +70,28 @@
   font-weight: 500;
 }
 
+// Popup animation
 @keyframes popUpMessage {
   0% {
+    // At start it is hidden and moved up
     @include hidden;
     top: -10rem;
   }
 
   10% {
+    // At 10% (to avoid using up full animations half time only to get in position) it reaches its final position
     @include visible;
     top: 5rem;
   }
 
   90% {
+    // At 90% (to avouid using other half animation time to fade out) it is still in its position and fully visible
     @include visible;
     top: 5rem;
   }
 
   100% {
+    // At 100% it is hidden and in the same place
     @include hidden;
     top: 5rem;
   }

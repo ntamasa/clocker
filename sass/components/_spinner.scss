@@ -1,10 +1,23 @@
 .spinner {
+  width: 100vw;
+  height: 100vh;
+
   margin: 5rem auto;
   text-align: center;
 
+  z-index: 9999;
+
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba($black, 0.5);
+
   &__logo {
-    height: 6rem;
-    width: 6rem;
+    height: 15rem;
+    width: 15rem;
 
     stroke: $color-primary-light-2;
     animation: rotate 2s infinite linear;
