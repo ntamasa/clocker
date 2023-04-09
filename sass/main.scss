@@ -1,16 +1,17 @@
-@import "./abstracts/functions";
-@import "./abstracts/mixins";
-@import "./abstracts/variables";
+@import './abstracts/functions';
+@import './abstracts/mixins';
+@import './abstracts/variables';
 
-@import "./base/base";
-@import "./base/typhography";
-@import "./base/utilities";
+@import './base/base';
+@import './base/typhography';
+@import './base/utilities';
 
-@import "./components/logo";
-@import "./components/clocks";
-@import "./components/form";
-@import "./components/shadow";
+@import './components/logo';
+@import './components/clocks';
+@import './components/form';
+@import './components/shadow';
+@import './components/error';
 
-@import "./layout/layout";
+@import './layout/layout';
 
-@import "./page/home";
+@import './page/home';
