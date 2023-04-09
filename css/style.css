@@ -326,10 +326,12 @@ body {
   align-items: center;
   gap: 1.5rem;
   position: absolute;
-  top: 5rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 99999; }
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  animation: popUpMessage 3s; }
   .error__logo-img {
     width: 7.5rem;
     height: 7.5rem;
@@ -349,12 +351,38 @@ body {
   font-size: 1.6rem;
   font-weight: 500; }
 
+@keyframes popUpMessage {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    top: -10rem; }
+  10% {
+    opacity: 1;
+    visibility: visible;
+    top: 5rem; }
+  90% {
+    opacity: 1;
+    visibility: visible;
+    top: 5rem; }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    top: 5rem; } }
+
 .spinner {
+  width: 100vw;
+  height: 100vh;
   margin: 5rem auto;
-  text-align: center; }
+  text-align: center;
+  z-index: 9999;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); }
   .spinner__logo {
-    height: 6rem;
-    width: 6rem;
+    height: 15rem;
+    width: 15rem;
     stroke: #e3def3;
     animation: rotate 2s infinite linear; }
 
@@ -442,7 +470,8 @@ body {
       transform: scale(80); }
 
 body {
-  background-color: #e3def3; }
+  background-color: #e3def3;
+  position: relative; }
 
 .container {
   background-color: #c8bfe7;

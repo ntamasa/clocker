@@ -15,47 +15,80 @@ import { runEverySec } from './helper.js';
 let btnCounter = 0;
 
 const controlLocalTime = async function () {
-  // Load current location
-  await model.loadLocation();
+  try {
+    // Render spinner, and be visible until data is loaded
+    localClockView.renderSpinner();
 
-  // Load local clock object
-  await model.loadLocalClock(API_KEY);
+    // Load current location
+    await model.loadLocation();
 
-  // Render local objcet to the DOM
-  localClockView.renderAll(model.state.clocks.local);
+    // Load local clock object
+    await model.loadLocalClock(API_KEY);
 
-  // Load time
-  model.loadTime(model.state.clocks.local);
+    // Render local objcet to the DOM
+    localClockView.renderAll(model.state.clocks.local);
 
-  // Update clock
-  localClockView.updateTime(model.state.clocks.local);
+    // Load time
+    model.loadTime(model.state.clocks.local);
+
+    // Remove spinner from the DOM
+    localClockView.clearSpinner();
+
+    // Update clock
+    localClockView.updateTime(model.state.clocks.local);
+  } catch (err) {
+    console.error(err);
+    localClockView.renderError();
+  }
 };
 
 const controlWorldTime = async function () {
-  // Load global time (UK/London time zone)
-  await model.loadGlobalTime(API_KEY);
+  try {
+    // Render spinner, and be visible until data is loaded
+    globalClockView.renderSpinner();
 
-  // Render local object to the DOM
-  globalClockView.render(model.state.clocks.global);
+    // Load global time (UK/London time zone)
+    await model.loadGlobalTime(API_KEY);
 
-  // Load time
-  model.loadTime(model.state.clocks.global);
+    // Render local object to the DOM
+    globalClockView.render(model.state.clocks.global);
 
-  // Update clock
-  globalClockView.updateTime(model.state.clocks.global);
+    // Load time
+    model.loadTime(model.state.clocks.global);
+
+    // Remove spinner from the DOM
+    globalClockView.clearSpinner();
+
+    // Update clock
+    globalClockView.updateTime(model.state.clocks.global);
+  } catch (err) {
+    console.error(err);
+    globalClockView.renderError();
+  }
 };
 
 const controlAddedTime = async function () {
-  // Load added clock
-  await model.loadAddedClock(API_KEY);
-  // Render added clock to the DOM
-  addedClockView.renderAll(model.state.clocks.added);
+  try {
+    // Render spinner, and be visible until data is loaded
+    addedClockView.renderSpinner();
 
-  // Load time
-  model.loadTime(model.state.clocks.added);
+    // Load added clock
+    await model.loadAddedClock(API_KEY);
+    // Render added clock to the DOM
+    addedClockView.renderAll(model.state.clocks.added);
 
-  // Update clock
-  addedClockView.updateTime(model.state.clocks.added);
+    // Load time
+    model.loadTime(model.state.clocks.added);
+
+    // Remove spinner from the DOM
+    addedClockView.clearSpinner();
+
+    // Update clock
+    addedClockView.updateTime(model.state.clocks.added);
+  } catch (err) {
+    console.error(err);
+    addedClockView.renderError();
+  }
 };
 
 const controlBtn = function () {
