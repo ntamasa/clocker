@@ -6,7 +6,7 @@ export default class View {
   _iterationCount;
 
   // Method to render all data to the DOM (needed if parent element isn't one element but a few)
-  renderAll(data, render = true) {
+  renderAll(data) {
     this._data = data;
 
     // Count iteration so we can decide what to load to DOM when (curved text)
@@ -30,10 +30,11 @@ export default class View {
     this._data = data;
 
     // Generate markup
-
     const markup = this._generateMarkup();
+
     // Clear parent element
     this._clear();
+
     // Insert markup to parent element
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }

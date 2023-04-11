@@ -3,8 +3,8 @@ import { numberDigit2, runEverySec } from '../helper.js';
 
 class localClockView extends View {
   _parentElement = document.querySelectorAll('.curve__outer');
-  _errorMessage = "Couldn't get your position";
-  _errorRequest = 'Please refresh the page and enable location ';
+  _errorMessage = "Couldn't get your position"; // On error rendered to the UI the 'heading' part
+  _errorRequest = 'Please refresh the page and enable location '; // On error rendered to the UI the 'sub' part
 
   addHandlerRender(handler) {
     window.addEventListener('load', handler);

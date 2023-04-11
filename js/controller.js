@@ -6,6 +6,7 @@ import btnView from './views/btnView.js';
 import localClockView from './views/localClockView.js';
 import globalClockView from './views/globalClockView.js';
 import addedClockView from './views/addedClockView.js';
+import storedView from './views/storedView.js';
 import { runEverySec } from './helper.js';
 
 // import "core-js/stable";
@@ -95,6 +96,9 @@ const controlAddedTime = async function () {
 
     // Update clock
     addedClockView.updateTime(model.state.clocks.added);
+
+    // Save current to local storage
+    model.saveZone(model.state.clocks.added);
   } catch (err) {
     console.error(err);
 
@@ -110,10 +114,13 @@ const controlBtn = function () {
   // On click shows form if not visible
   btnView.toggleForm();
   btnView.toggleInputPos();
+
   // Change icon
   btnView.render();
+
+  // Render saved ones
+  storedView.render();
 };
-// controlBtn();
 
 const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
@@ -130,3 +137,12 @@ const init = function () {
   });
 };
 init();
+
+// localStorage.clear();
+
+// const res = Object.keys(localStorage);
+// res.shift();
+// console.log(res);
+
+// const res = localStorage.getItem('New York');
+// console.log(res.split(',')[1]);

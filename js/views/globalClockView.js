@@ -3,8 +3,8 @@ import { numberDigit2, runEverySec } from '../helper.js';
 
 class globalClockView extends View {
   _parentElement = document.querySelector('.clocks__data');
-  _errorMessage = 'Too many requests';
-  _errorRequest = 'Please wait a little, then refresh the page!';
+  _errorMessage = 'Too many requests'; // On error rendered to the UI the 'heading' part
+  _errorRequest = 'Please wait a little, then refresh the page!'; // On error rendered to the UI the 'sub' part
 
   addHandlerRender(handler) {
     window.addEventListener('load', handler);

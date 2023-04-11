@@ -97,6 +97,8 @@
   }
 
   &__list {
+    height: 80%;
+
     // Positioning it in the box
     grid-column: 2 / 3;
     grid-row: 2 / 4;
@@ -121,8 +123,8 @@
     transition: all 0.8s;
     transition-delay: 0.8s;
 
-    // Hide overflow of list-items
-    overflow: hidden;
+    // Hide overflow of list-items but be scrollable
+    overflow: scroll;
 
     // Active state
     &--active {
@@ -154,7 +156,6 @@
     // Hover state
     &:hover {
       background-color: $color-primary-light-2;
-      transform: scale(1.15);
       border: none;
     }
   }

@@ -288,6 +288,7 @@ body {
   .form-box__label {
     padding: 0.5rem 2rem; }
   .form-box__list {
+    height: 80%;
     grid-column: 2 / 3;
     grid-row: 2 / 4;
     border-radius: 10px;
@@ -298,7 +299,7 @@ body {
     border: 0px solid #3f2d79;
     transition: all 0.8s;
     transition-delay: 0.8s;
-    overflow: hidden; }
+    overflow: scroll; }
     .form-box__list--active {
       width: 70rem;
       border: 1px solid #3f2d79; }
@@ -313,7 +314,6 @@ body {
     transition: all 0.5s; }
     .form-box__list-item:hover {
       background-color: #e3def3;
-      transform: scale(1.15);
       border: none; }
   .form-box .footer {
     grid-column: 1 / 2;
@@ -508,5 +508,5 @@ body {
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  grid-template-rows: 1fr max-content 1fr;
+  grid-template-rows: 1fr min-content 1fr;
   position: relative; }

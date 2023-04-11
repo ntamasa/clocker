@@ -237,3 +237,18 @@ export const loadTime = function (data) {
   runEverySec(getTime);
   runEverySec(getDate);
 };
+
+export const saveZone = function (data) {
+  // Guard clause (if wrong data given then returns)
+  if (Object.keys(data).length === Object.keys({}).length) return;
+
+  // Store data in localStorage
+  localStorage.setItem(
+    data.city,
+    `${data.country},${data.city},UTC${
+      data.zone >= 0
+        ? `+${data.zone}` // If positive then UTC+VALUE, if negative then UTC-VALUE
+        : data.zone
+    }`
+  );
+};

@@ -4,12 +4,8 @@ import { runEverySec, numberDigit2 } from '../helper.js';
 class addedClockView extends View {
   _parentElement = document.querySelectorAll('.curve__middle');
   _btnIcon = document.querySelector('.icon');
-  _errorMessage = 'Wrong data given';
-  _errorRequest = 'Please try again!';
-
-  addHandlerRender(handler) {
-    document.querySelector('.form__btn').addEventListener('click', handler);
-  }
+  _errorMessage = 'Wrong data given'; // On error rendered to the UI the 'heading' part
+  _errorRequest = 'Please try again!'; // On error rendered to the UI the 'sub' part
 
   _generateMarkup() {
     // If wrong data is given, middle circle turns blank
