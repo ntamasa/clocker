@@ -1,5 +1,5 @@
 body {
-  font-family: "Dosis", "serif";
+  font-family: 'Dosis', 'serif';
 }
 
 /////////////////////////////////
@@ -134,5 +134,12 @@ body {
     font-size: 1.6rem;
     font-weight: 300;
     color: $white;
+  }
+
+  &__list-item {
+    // General styling
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $color-grey-dark;
   }
 }

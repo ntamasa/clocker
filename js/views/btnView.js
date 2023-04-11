@@ -20,8 +20,8 @@ class btnView extends View {
       .querySelector('.form-box__content')
       .classList.toggle('form-box__content--active');
     document
-      .querySelector('.form-box__map')
-      .classList.toggle('form-box__map--active');
+      .querySelector('.form-box__list')
+      .classList.toggle('form-box__list--active');
     document.querySelector('.footer').classList.toggle('footer--active');
   }
 
