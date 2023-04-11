@@ -105,6 +105,19 @@
 
     // Shadows
     box-shadow: 0 1rem 4rem rgba($black, 0.3);
+
+    // Animation
+    transition: all 0.3s;
+
+    &:hover {
+      // Scale up a little on mouse hover
+      transform: scale(1.1);
+    }
+
+    &:active {
+      // Scale down to default and move a little bit down on mouse click
+      transform: scale(1) translateY(0.5rem);
+    }
   }
 
   &__icon {

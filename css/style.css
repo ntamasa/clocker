@@ -442,7 +442,12 @@ body {
     border: none;
     cursor: pointer;
     z-index: 9998;
-    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3); }
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
+    transition: all 0.3s; }
+    .form__btn:hover {
+      transform: scale(1.1); }
+    .form__btn:active {
+      transform: scale(1) translateY(0.5rem); }
   .form__icon {
     transition: all 0.8s; }
     .form__icon--add, .form__icon--close {
