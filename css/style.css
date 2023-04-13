@@ -299,7 +299,7 @@ body {
     border: 0px solid #3f2d79;
     transition: all 0.8s;
     transition-delay: 0.8s;
-    overflow: scroll; }
+    overflow-y: scroll; }
     .form-box__list--active {
       width: 70rem;
       border: 1px solid #3f2d79; }
@@ -411,6 +411,17 @@ body {
     transform: rotate(0); }
   100% {
     transform: rotate(360deg); } }
+
+.form-box__list::-webkit-scrollbar {
+  width: 1.2rem; }
+
+.form-box__list::-webkit-scrollbar-track {
+  background: #c8bfe7; }
+
+.form-box__list::-webkit-scrollbar-thumb {
+  background-color: #644abd;
+  border-radius: 20px;
+  border: 3px solid #c8bfe7; }
 
 .logo-box {
   position: absolute;

@@ -124,7 +124,7 @@
     transition-delay: 0.8s;
 
     // Hide overflow of list-items but be scrollable
-    overflow: scroll;
+    overflow-y: scroll;
 
     // Active state
     &--active {
