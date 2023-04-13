@@ -21,8 +21,10 @@ body {
 
   // Grid Layout
   display: grid;
-  grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  grid-template-rows: 1fr min-content 1fr;
+  grid-template-columns:
+    minmax(1px, 1fr) [content-start] minmax(85rem, max-content)
+    [content-end] minmax(1px, 1fr);
+  grid-template-rows: minmax(1px, 1fr) min-content minmax(1px, 1fr);
 
   // For the logo positioning
   position: relative;

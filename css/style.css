@@ -125,7 +125,8 @@ body {
 
 .hidden {
   opacity: 0;
-  visibility: hidden; }
+  visibility: hidden;
+  position: absolute; }
 
 .logo {
   height: 5rem;
@@ -288,13 +289,12 @@ body {
   .form-box__label {
     padding: 0.5rem 2rem; }
   .form-box__list {
-    height: 80%;
+    height: 48rem;
     grid-column: 2 / 3;
     grid-row: 2 / 4;
     border-radius: 10px;
     background-color: #c8bfe7;
     box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
-    transform: translateY(-2rem);
     width: 0;
     border: 0px solid #3f2d79;
     transition: all 0.8s;
@@ -419,7 +419,7 @@ body {
 
 .clock-box {
   background-image: radial-gradient(#3f2d79 1%, #4a3594 30%, #644abd 70%);
-  height: 100%;
+  max-height: 100%;
   grid-column: content-start / content-end;
   grid-row: 2 / 3;
   align-self: center;
@@ -432,7 +432,7 @@ body {
   z-index: 100; }
 
 .globe-box {
-  height: 85.5%;
+  max-height: 85.5%;
   grid-column: content-start / content-end;
   grid-row: 2 / 3;
   align-self: center;
@@ -442,7 +442,7 @@ body {
   position: relative;
   z-index: 200; }
   .globe-box img {
-    height: 100%;
+    width: 75.25%;
     border-radius: 50%;
     clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
 
@@ -507,6 +507,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.15);
   display: grid;
-  grid-template-columns: 1fr [content-start] minmax(85rem, max-content) [content-end] 1fr;
-  grid-template-rows: 1fr min-content 1fr;
+  grid-template-columns: minmax(1px, 1fr) [content-start] minmax(85rem, max-content) [content-end] minmax(1px, 1fr);
+  grid-template-rows: minmax(1px, 1fr) min-content minmax(1px, 1fr);
   position: relative; }
