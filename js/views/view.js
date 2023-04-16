@@ -36,7 +36,11 @@ export default class View {
     this._clear();
 
     // Insert markup to parent element
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    typeof markup === 'object'
+      ? markup.forEach(
+          el => this._parentElement.insertAdjacentHTML('afterbegin', el) // When markup is an array (saved time zones data)
+        )
+      : this._parentElement.insertAdjacentHTML('afterbegin', markup); // When markup is only a string
   }
 
   _clear() {

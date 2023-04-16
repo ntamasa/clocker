@@ -39,5 +39,9 @@ class storedView extends View {
     // Returns the array
     return arr;
   }
+
+  // importSavedZone() {
+
+  // }
 }
 export default new storedView();

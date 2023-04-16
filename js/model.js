@@ -245,7 +245,7 @@ export const saveZone = function (data) {
   // Store data in localStorage
   localStorage.setItem(
     data.city,
-    `${data.country},${data.city},UTC${
+    `${data.country},${data.city},${data.continent},UTC${
       data.zone >= 0
         ? `+${data.zone}` // If positive then UTC+VALUE, if negative then UTC-VALUE
         : data.zone
