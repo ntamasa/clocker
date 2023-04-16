@@ -117,15 +117,21 @@ const controlBtn = function () {
 
   // Change icon
   btnView.render();
+};
 
+const controlSavedZones = function () {
   // Render saved ones
   storedView.render();
+
+  // On click of element, load data to input fields
+  storedView.loadSavedZone();
 };
 
 const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
   globalClockView.addHandlerRender(controlWorldTime);
   btnView.addHandlerRender(controlBtn);
+  storedView.addHandlerRender(controlSavedZones);
 
   // On button click and if form is visible controlAddedTime is called
   document.querySelector('.form__btn').addEventListener('click', () => {
@@ -137,6 +143,8 @@ const init = function () {
   });
 };
 init();
+
+// storedView.importSavedZone();
 
 // localStorage.clear();
 

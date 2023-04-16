@@ -7,6 +7,10 @@ class storedView extends View {
   _errorMessage = `Couldn't save your zone`;
   _errorRequest = 'Please try again!';
 
+  addHandlerRender(handler) {
+    window.addEventListener('load', handler);
+  }
+
   // Array to get keys of local storage
   _getKeys() {
     // Storing all keys in a variable
@@ -40,8 +44,22 @@ class storedView extends View {
     return arr;
   }
 
-  // importSavedZone() {
+  loadSavedZone() {
+    // Get every element of list
+    document.querySelectorAll('.form-box__list-item').forEach(item => {
+      // List element on 'click' event
+      item.addEventListener('click', () => {
+        // Store all saved data of clicked element in a variable
+        const data = localStorage
+          .getItem(item.children[1].textContent) // City value of saved item (localStorage key)
+          .split(','); // Making it an array
 
-  // }
+        // Import value into input field
+        document.querySelector('.form-box__country').value = data[0];
+        document.querySelector('.form-box__city').value = data[1];
+        document.querySelector('.form-box__continent').value = data[2];
+      });
+    });
+  }
 }
 export default new storedView();
