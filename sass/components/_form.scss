@@ -142,6 +142,7 @@
     // Grid element to place every item's subitems in position
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
 
     // Vertical, horizontal alignment
     align-items: center;
@@ -149,6 +150,9 @@
 
     // Animation
     transition: all 0.5s;
+
+    // Needed for icon positioning
+    position: relative;
 
     // Hover state
     &:hover {
@@ -171,6 +175,25 @@
       // Vertical, horizontal alignment
       align-items: center;
       justify-items: center;
+    }
+
+    &-icon {
+      @include square(2.5rem);
+
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+
+      stroke: $color-primary;
+
+      cursor: pointer;
+
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.2) translateY(-50%);
+      }
     }
   }
 

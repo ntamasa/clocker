@@ -309,9 +309,11 @@ body {
     border-bottom: 1px solid #999;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
     align-items: center;
     justify-items: center;
-    transition: all 0.5s; }
+    transition: all 0.5s;
+    position: relative; }
     .form-box__list-item:hover {
       background-color: #e3def3;
       border: none; }
@@ -323,6 +325,18 @@ body {
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
       justify-items: center; }
+    .form-box__list-item-icon {
+      height: 2.5rem;
+      width: 2.5rem;
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      stroke: #644abd;
+      cursor: pointer;
+      transition: all 0.3s; }
+      .form-box__list-item-icon:hover {
+        transform: scale(1.2) translateY(-50%); }
   .form-box .footer {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
