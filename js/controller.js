@@ -3,6 +3,7 @@ import { API_KEY } from './config.js';
 
 import View from './views/View.js';
 import btnView from './views/btnView.js';
+import clearBtnView from './views/clearBtnView.js';
 import localClockView from './views/localClockView.js';
 import globalClockView from './views/globalClockView.js';
 import addedClockView from './views/addedClockView.js';
@@ -119,6 +120,13 @@ const controlBtn = function () {
   btnView.render();
 };
 
+const controlClearBtn = function () {
+  // On click clears whole list
+  clearBtnView.clearList();
+
+  clearBtnView.render();
+};
+
 const controlSavedZones = function () {
   // Render saved ones
   storedView.render();
@@ -131,10 +139,11 @@ const init = function () {
   localClockView.addHandlerRender(controlLocalTime);
   globalClockView.addHandlerRender(controlWorldTime);
   btnView.addHandlerRender(controlBtn);
+  clearBtnView.addHandlerRender(controlClearBtn);
   storedView.addHandlerRender(controlSavedZones);
 
   // On button click and if form is visible controlAddedTime is called
-  document.querySelector('.form__btn').addEventListener('click', () => {
+  document.querySelector('.btn__form').addEventListener('click', () => {
     // if form is visible (btn click isn't even nor 0)
     if (btnCounter % 2 !== 0) {
       controlAddedTime();
