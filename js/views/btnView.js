@@ -27,6 +27,12 @@ class btnView extends View {
       .classList.toggle('btn__clear--active');
   }
 
+  clearInput() {
+    document.querySelector('.form-box__country').value = '';
+    document.querySelector('.form-box__city').value = '';
+    document.querySelector('.form-box__continent').value = '';
+  }
+
   // Method to toggle form visibility
   toggleForm() {
     document.querySelector('.form-box').classList.toggle('hidden');

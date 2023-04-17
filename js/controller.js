@@ -100,6 +100,9 @@ const controlAddedTime = async function () {
 
     // Save current to local storage
     model.saveZone(model.state.clocks.added);
+
+    // On button click input fields are emptied
+    btnView.clearInput();
   } catch (err) {
     console.error(err);
 
@@ -118,17 +121,21 @@ const controlBtn = function () {
 
   // Change icon
   btnView.render();
+
+  // // Render saved zones here also, to also show list when cleared and instantly added
+  storedView.render();
 };
 
 const controlClearBtn = function () {
   // On click clears whole list
   clearBtnView.clearList();
 
+  // Make list blank
   clearBtnView.render();
 };
 
 const controlSavedZones = function () {
-  // Render saved ones
+  // Render saved zones
   storedView.render();
 
   // On click of element, load data to input fields

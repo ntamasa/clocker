@@ -8,7 +8,7 @@ class storedView extends View {
   _errorRequest = 'Please try again!';
 
   addHandlerRender(handler) {
-    window.addEventListener('load', handler);
+    document.querySelector('.btn__form').addEventListener('click', handler); // need to be click because on window loaded it calls loadSavedZone before data is rendered
   }
 
   // Array to get keys of local storage
@@ -30,7 +30,6 @@ class storedView extends View {
 
     // Getting keys of local storage
     const keys = this._getKeys();
-
     // Fill up array where 1 element of the array is the markup of the zone
     keys.forEach(key => {
       arr.push(`<div class="form-box__list-item">
@@ -47,8 +46,10 @@ class storedView extends View {
   loadSavedZone() {
     // Get every element of list
     document.querySelectorAll('.form-box__list-item').forEach(item => {
+      console.log(item);
       // List element on 'click' event
       item.addEventListener('click', () => {
+        console.log(item + 'clicked');
         // Store all saved data of clicked element in a variable
         const data = localStorage
           .getItem(item.children[1].textContent) // City value of saved item (localStorage key)
