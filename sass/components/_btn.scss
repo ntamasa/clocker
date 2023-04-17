@@ -1,0 +1,48 @@
+.btn {
+  // Background
+  background-color: $color-primary;
+
+  // Button cursor
+  cursor: pointer;
+
+  // Shadows
+  box-shadow: 0 1rem 4rem rgba($black, 0.3);
+
+  // Animation
+  transition: all 0.3s;
+
+  &:active {
+    // Scale down to default and move a little bit down on mouse click
+    transform: translateY(0.5rem);
+  }
+
+  &__form {
+    // Sizing
+    @include square(7.5rem);
+
+    // Position
+    position: absolute;
+    top: 2.5rem;
+    right: 3.5rem;
+
+    // Border and roundiness
+    border-radius: 50%;
+    border: none;
+
+    // Making it on top of everything but not its elements
+    z-index: 9998;
+
+    &:hover {
+      // Scale up a little on mouse hover
+      transform: scale(1.1);
+    }
+
+    &:active {
+      // Scale down to default and move a little bit down on mouse click
+      transform: scale(1) translateY(0.5rem);
+    }
+  }
+
+  &__clear {
+  }
+}
