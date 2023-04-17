@@ -2,14 +2,13 @@ import View from './View.js';
 
 class btnView extends View {
   _parentElement = document.querySelector('.form__icon');
-  _errorMessage = 'ERROR MESSAGE';
 
   addHandlerRender(handler) {
-    document.querySelector('.form__btn').addEventListener('click', handler);
+    document.querySelector('.btn__form').addEventListener('click', handler);
   }
 
-  // Method to toggle the position of input fields in form
-  toggleInputPos() {
+  // Method to toggle the position of elements in form
+  togglePos() {
     document
       .querySelector('.form__background')
       .classList.toggle('form__background--active');
@@ -23,6 +22,9 @@ class btnView extends View {
       .querySelector('.form-box__list')
       .classList.toggle('form-box__list--active');
     document.querySelector('.footer').classList.toggle('footer--active');
+    document
+      .querySelector('.btn__clear')
+      .classList.toggle('btn__clear--active');
   }
 
   // Method to toggle form visibility

@@ -443,6 +443,22 @@ body {
       transform: scale(1.1); }
     .btn__form:active {
       transform: scale(1) translateY(0.5rem); }
+  .btn__clear {
+    font-size: 2rem;
+    color: #e3def3;
+    height: min-content;
+    width: min-content;
+    padding: 1.5rem 4rem;
+    border: none;
+    border-radius: 1rem;
+    position: absolute;
+    top: -3.2rem;
+    right: -3rem;
+    transition: all 0.8s;
+    transition-delay: 0.8s;
+    transform: translateX(200rem); }
+    .btn__clear--active {
+      transform: translateX(0); }
 
 .logo-box {
   position: absolute;

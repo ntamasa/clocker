@@ -113,7 +113,7 @@ const controlAddedTime = async function () {
 const controlBtn = function () {
   // On click shows form if not visible
   btnView.toggleForm();
-  btnView.toggleInputPos();
+  btnView.togglePos();
 
   // Change icon
   btnView.render();

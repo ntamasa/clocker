@@ -44,5 +44,36 @@
   }
 
   &__clear {
+    // General styling
+    font-size: 2rem;
+    color: $color-primary-light-2;
+
+    // Sizing
+    height: min-content;
+    width: min-content;
+
+    // Spacing
+    padding: 1.5rem 4rem;
+
+    // Border and roundiness
+    border: none;
+    border-radius: 1rem;
+
+    // Position
+    position: absolute;
+    top: -3.2rem;
+    right: -3rem;
+
+    // Animation
+    transition: all 0.8s;
+    transition-delay: 0.8s;
+
+    // Inactive state
+    transform: translateX(200rem);
+
+    // Active state
+    &--active {
+      transform: translateX(0);
+    }
   }
 }
