@@ -62,10 +62,8 @@ class storedView extends View {
   loadSavedZone() {
     // Get every element of list
     document.querySelectorAll('.form-box__list-item').forEach(item => {
-      console.log(item);
       // List element on 'click' event
       item.addEventListener('click', () => {
-        console.log(item + 'clicked');
         // Store all saved data of clicked element in a variable
         const data = localStorage
           .getItem(item.children[1].textContent) // City value of saved item (localStorage key)

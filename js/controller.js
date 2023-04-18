@@ -4,6 +4,7 @@ import { API_KEY } from './config.js';
 import View from './views/View.js';
 import btnView from './views/btnView.js';
 import clearBtnView from './views/clearBtnView.js';
+import deleteZoneView from './views/deleteZoneView.js';
 import localClockView from './views/localClockView.js';
 import globalClockView from './views/globalClockView.js';
 import addedClockView from './views/addedClockView.js';
@@ -124,6 +125,8 @@ const controlBtn = function () {
 
   // // Render saved zones here also, to also show list when cleared and instantly added
   storedView.render();
+
+  deleteZoneView.removeItem();
 };
 
 const controlClearBtn = function () {
@@ -132,6 +135,13 @@ const controlClearBtn = function () {
 
   // Make list blank
   clearBtnView.render();
+};
+
+const controlRemoveBtn = function () {
+  // On click removes item from localStorage
+  // deleteZoneView.removeItem();
+  // Renders localStorage items to the DOM
+  // storedView.render()
 };
 
 const controlSavedZones = function () {
@@ -147,6 +157,7 @@ const init = function () {
   globalClockView.addHandlerRender(controlWorldTime);
   btnView.addHandlerRender(controlBtn);
   clearBtnView.addHandlerRender(controlClearBtn);
+  deleteZoneView.addHandlerRender(controlRemoveBtn);
   storedView.addHandlerRender(controlSavedZones);
 
   // On button click and if form is visible controlAddedTime is called
