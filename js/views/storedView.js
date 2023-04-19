@@ -33,10 +33,15 @@ class storedView extends View {
     // Fill up array where 1 element of the array is the markup of the zone
     keys.forEach(key => {
       arr.push(`<div class="form-box__list-item">
+      <div class="data-box">
+      
         <span class="country">${localStorage.getItem(key).split(',')[0]}</span>
         <span class="city">${localStorage.getItem(key).split(',')[1]}</span>
         <span class="zone">${localStorage.getItem(key).split(',')[3]}</span>
-      <div class="icon-box">
+    </div>
+      
+      
+        <div class="icon-box">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -63,7 +68,7 @@ class storedView extends View {
     // Get every element of list
     document.querySelectorAll('.data-box').forEach(item => {
       // List element on 'click' event
-      item.addEventListener('click', () => {
+      item.addEventListener('click', e => {
         // Store all saved data of clicked element in a variable
         const data = localStorage
           .getItem(item.children[1].textContent) // City value of saved item (localStorage key)
@@ -73,6 +78,22 @@ class storedView extends View {
         document.querySelector('.form-box__country').value = data[0];
         document.querySelector('.form-box__city').value = data[1];
         document.querySelector('.form-box__continent').value = data[2];
+      });
+    });
+
+    this._deleteSavedZone();
+  }
+
+  _deleteSavedZone() {
+    document.querySelectorAll('.form-box__list-item-icon').forEach(btn => {
+      btn.addEventListener('click', e => {
+        // CLICK NOT RECOGNISED
+        const key = e.target.closest('.form-box__list-item').childNodes[1]
+          .childNodes[3].textContent; // get city
+
+        localStorage.removeItem(key);
+
+        this.render();
       });
     });
   }

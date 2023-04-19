@@ -308,7 +308,7 @@ body {
     height: 7rem;
     border-bottom: 1px solid #999;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr min-content;
     grid-template-rows: 1fr;
     align-items: center;
     justify-items: center;
@@ -317,21 +317,9 @@ body {
     .form-box__list-item:hover {
       background-color: #e3def3;
       border: none; }
-    .form-box__list-item--preview {
-      width: 100%;
-      height: 7rem;
-      border-bottom: 1px solid #999;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      align-items: center;
-      justify-items: center; }
     .form-box__list-item-icon {
       height: 2.5rem;
       width: 2.5rem;
-      position: absolute;
-      top: 50%;
-      right: 1rem;
-      transform: translateY(-50%);
       stroke: #644abd;
       cursor: pointer;
       transition: all 0.3s; }
@@ -347,6 +335,12 @@ body {
     transition-delay: 0.8s; }
     .form-box .footer--active {
       transform: translateX(0); }
+
+.data-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center; }
 
 .shadow {
   grid-row: 2 / 3;
