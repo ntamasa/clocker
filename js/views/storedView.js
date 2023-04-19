@@ -33,9 +33,9 @@ class storedView extends View {
     // Fill up array where 1 element of the array is the markup of the zone
     keys.forEach(key => {
       arr.push(`<div class="form-box__list-item">
-      <span class="country">${localStorage.getItem(key).split(',')[0]}</span>
-      <span class="city">${localStorage.getItem(key).split(',')[1]}</span>
-      <span class="zone">${localStorage.getItem(key).split(',')[2]}</span>
+        <span class="country">${localStorage.getItem(key).split(',')[0]}</span>
+        <span class="city">${localStorage.getItem(key).split(',')[1]}</span>
+        <span class="zone">${localStorage.getItem(key).split(',')[3]}</span>
       <div class="icon-box">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ class storedView extends View {
 
   loadSavedZone() {
     // Get every element of list
-    document.querySelectorAll('.form-box__list-item').forEach(item => {
+    document.querySelectorAll('.data-box').forEach(item => {
       // List element on 'click' event
       item.addEventListener('click', () => {
         // Store all saved data of clicked element in a variable
