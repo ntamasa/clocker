@@ -141,7 +141,7 @@
 
     // Grid element to place every item's subitems in position
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr min-content;
     grid-template-rows: 1fr;
 
     // Vertical, horizontal alignment
@@ -162,11 +162,6 @@
 
     &-icon {
       @include square(2.5rem);
-
-      position: absolute;
-      top: 50%;
-      right: 1rem;
-      transform: translateY(-50%);
 
       stroke: $color-primary;
 
@@ -201,4 +196,14 @@
       transform: translateX(0);
     }
   }
+}
+
+.data-box {
+  // Size to fit whole container
+  width: 100%;
+
+  // Grid to place every subitem exaclty to a position on any width
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
 }
