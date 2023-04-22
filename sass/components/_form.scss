@@ -137,7 +137,7 @@
     height: 7rem;
 
     // Border that splits every item from each other
-    border-bottom: 1px solid $color-grey;
+    outline: 1px solid $color-grey;
 
     // Grid element to place every item's subitems in position
     display: grid;
@@ -157,21 +157,23 @@
     // Hover state
     &:hover {
       background-color: $color-primary-light-2;
-      border: none;
     }
 
     &-icon {
+      // Sizing
       @include square(2.5rem);
 
+      // Color
       stroke: $color-primary;
 
+      // Pointer cursor
       cursor: pointer;
 
+      // Animation
       transition: all 0.3s;
 
-      &:hover {
-        transform: scale(1.2) translateY(-50%);
-      }
+      // On top of hover background
+      z-index: 1;
     }
   }
 
@@ -206,4 +208,56 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+}
+
+.icon-box {
+  padding: 1rem;
+
+  &::after {
+    content: '';
+
+    // Block so it is visible
+    display: block;
+
+    // Sizing
+    @include square(3.5rem);
+
+    // Color
+    background-color: rgba($color-grey, 0.3);
+
+    // Circle
+    border: none;
+    border-radius: 50%;
+
+    // Positioning
+    position: absolute;
+    top: 48%;
+    right: 0.5rem;
+    transform: translate(0, -50%) scale(0.5);
+
+    // Hidden at start
+    opacity: 0;
+    visibility: hidden;
+
+    // Animation
+    transition: all 0.3s;
+  }
+
+  // On mouse hover
+  &:hover {
+    &::after {
+      // Scales up
+      transform: translate(0, -50%) scale(1);
+
+      // Visible
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &:active {
+    .form-box__list-item-icon {
+      transform: scale(0.8);
+    }
+  }
 }

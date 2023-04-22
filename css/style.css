@@ -306,7 +306,7 @@ body {
   .form-box__list-item {
     width: 100%;
     height: 7rem;
-    border-bottom: 1px solid #999;
+    outline: 1px solid #999;
     display: grid;
     grid-template-columns: 1fr min-content;
     grid-template-rows: 1fr;
@@ -315,16 +315,14 @@ body {
     transition: all 0.5s;
     position: relative; }
     .form-box__list-item:hover {
-      background-color: #e3def3;
-      border: none; }
+      background-color: #e3def3; }
     .form-box__list-item-icon {
       height: 2.5rem;
       width: 2.5rem;
       stroke: #644abd;
       cursor: pointer;
-      transition: all 0.3s; }
-      .form-box__list-item-icon:hover {
-        transform: scale(1.2) translateY(-50%); }
+      transition: all 0.3s;
+      z-index: 1; }
   .form-box .footer {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -341,6 +339,30 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center; }
+
+.icon-box {
+  padding: 1rem; }
+  .icon-box::after {
+    content: '';
+    display: block;
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: rgba(153, 153, 153, 0.3);
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 48%;
+    right: 0.5rem;
+    transform: translate(0, -50%) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s; }
+  .icon-box:hover::after {
+    transform: translate(0, -50%) scale(1);
+    opacity: 1;
+    visibility: visible; }
+  .icon-box:active .form-box__list-item-icon {
+    transform: scale(0.8); }
 
 .shadow {
   grid-row: 2 / 3;
