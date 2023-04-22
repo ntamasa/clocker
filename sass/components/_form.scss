@@ -172,8 +172,13 @@
       // Animation
       transition: all 0.3s;
 
-      // On top of hover background
-      z-index: 1;
+      &:hover {
+        transform: scale(1.2);
+      }
+
+      &:active {
+        transform: scale(1.2) translateY(-0.25);
+      }
     }
   }
 
@@ -211,53 +216,6 @@
 }
 
 .icon-box {
+  // Spacing
   padding: 1rem;
-
-  &::after {
-    content: '';
-
-    // Block so it is visible
-    display: block;
-
-    // Sizing
-    @include square(3.5rem);
-
-    // Color
-    background-color: rgba($color-grey, 0.3);
-
-    // Circle
-    border: none;
-    border-radius: 50%;
-
-    // Positioning
-    position: absolute;
-    top: 48%;
-    right: 0.5rem;
-    transform: translate(0, -50%) scale(0.5);
-
-    // Hidden at start
-    opacity: 0;
-    visibility: hidden;
-
-    // Animation
-    transition: all 0.3s;
-  }
-
-  // On mouse hover
-  &:hover {
-    &::after {
-      // Scales up
-      transform: translate(0, -50%) scale(1);
-
-      // Visible
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  &:active {
-    .form-box__list-item-icon {
-      transform: scale(0.8);
-    }
-  }
 }

@@ -124,8 +124,6 @@ const controlBtn = function () {
 
   // // Render saved zones here also, to also show list when cleared and instantly added
   storedView.render();
-
-  // storedView.deleteSavedZone();
 };
 
 const controlClearBtn = function () {
@@ -134,13 +132,6 @@ const controlClearBtn = function () {
 
   // Make list blank
   clearBtnView.render();
-};
-
-const controlRemoveBtn = function () {
-  // On click removes item from localStorage
-  // deleteZoneView.removeItem();
-  // Renders localStorage items to the DOM
-  // storedView.render()
 };
 
 const controlSavedZones = function () {
@@ -168,14 +159,3 @@ const init = function () {
   });
 };
 init();
-
-// storedView.importSavedZone();
-
-// localStorage.clear();
-
-// const res = Object.keys(localStorage);
-// res.shift();
-// console.log(res);
-
-// const res = localStorage.getItem('New York');
-// console.log(res.split(',')[1]);
