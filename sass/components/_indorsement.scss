@@ -1,0 +1,87 @@
+// Box for indorsement when delete button is clicked
+.indorsement-box {
+  // General styling
+  font-size: 1.8rem;
+
+  // Sizing
+  width: 17.5rem;
+  height: 8rem;
+
+  // Color
+  background-color: $color-primary;
+  color: $color-primary-light-2;
+
+  // Border
+  border: 2px solid $color-primary-dark-2;
+  border-radius: 1rem;
+
+  // Shadows
+  box-shadow: 0 1rem 4rem rgba($black, 0.2);
+
+  // Grid to position elements
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  // Spacing
+  padding: 1rem;
+  row-gap: 1rem;
+
+  // Horizontal and vertical alignment
+  justify-items: center;
+  align-items: center;
+
+  //TESZT
+  margin: 0 auto;
+
+  &__text {
+    // Position inside grid box
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
+
+  &__btn {
+    // General styling
+    font-size: 1.4rem;
+
+    // Position inside grid box
+    grid-row: 2 / 3;
+
+    // Sizing
+    width: 6rem;
+    height: 2rem;
+
+    // Border
+    border: 1px solid $color-primary-dark-1;
+    border-radius: 0.5rem;
+
+    // Animation
+    transition: all 0.3s;
+
+    &--yes {
+      // Position inside grid box
+      grid-column: 1 / 2;
+
+      // Color
+      background-color: $color-primary-dark-2;
+      color: $color-primary-light-2;
+
+      &:hover {
+        background-color: $color-primary-dark-1;
+      }
+    }
+
+    &--no {
+      // Position inside grid box
+      grid-column: 2 / 3;
+
+      // Color
+      background-color: $color-primary-light-1;
+      color: $color-primary-dark-1;
+
+      &:hover {
+        background-color: $color-primary-light-2;
+      }
+    }
+  }
+}
