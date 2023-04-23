@@ -73,7 +73,7 @@ export const isNodeList = function (nodes) {
 export const currentZone = function (
   dataArr,
   continent = formContinent.value,
-  city = document.querySelector('.form-box__city').value,
+  city = formCity.value,
   country = formCountry.value
 ) {
   // Variable to store object that passes later conditions
@@ -82,10 +82,9 @@ export const currentZone = function (
   dataArr.forEach(object => {
     if (
       (country || city || continent) && // If one of the input field is empty
-      object.zoneName
-        .toLowerCase()
-        .replace('_', ' ')
-        .includes(city.toLowerCase()) && // If given city is not located in the given continent
+      `${object.zoneName.toLowerCase().replace('_', ' ')}_`.includes(
+        `/${city.toLowerCase()}_`
+      ) && // If given city is not located in the given continent
       object.countryName.toLowerCase() === country.toLowerCase() && // If given zone is not locaed in given country
       object.zoneName.toLowerCase().includes(continent.toLowerCase()) // If given country is not located in given continent
     ) {

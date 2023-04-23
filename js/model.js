@@ -32,10 +32,6 @@ const createClocksObject = function (data) {
   // Storing API data in variable
   const response = data;
 
-  // Helper variables for better readability
-  const dateRes = response.formatted.split(' ')[0].split('-');
-  const timeRes = response.formatted.split(' ')[1].split(':');
-
   return {
     // Empty strings because they are loaded later in loadTime, but still has to create here
     time: {
@@ -64,17 +60,6 @@ const createAddedClocksObject = async function (data, apiKey) {
 
     // On wrong data given (guard clause)
     if (typeof currentZone(response) !== 'object') return {};
-
-    // API call to get date, time information
-    const timeDateData = await AJAX(
-      `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiKey}&format=json&by=zone&zone=${
-        currentZone(response).zoneName
-      }`
-    );
-
-    // Helper variables for better readability
-    const dateRes = timeDateData.formatted.split(' ')[0].split('-');
-    const timeRes = timeDateData.formatted.split(' ')[1].split(':');
 
     return {
       // Empty strings because they are loaded later in loadTime, but still has to create here
