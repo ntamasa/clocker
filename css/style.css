@@ -321,8 +321,11 @@ body {
       width: 2.5rem;
       stroke: #644abd;
       cursor: pointer;
-      transition: all 0.3s;
-      z-index: 1; }
+      transition: all 0.3s; }
+      .form-box__list-item-icon:hover {
+        transform: scale(1.2); }
+      .form-box__list-item-icon:active {
+        transform: scale(1.2) translateY(-0.25); }
   .form-box .footer {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -341,28 +344,8 @@ body {
   justify-items: center; }
 
 .icon-box {
-  padding: 1rem; }
-  .icon-box::after {
-    content: '';
-    display: block;
-    height: 3.5rem;
-    width: 3.5rem;
-    background-color: rgba(153, 153, 153, 0.3);
-    border: none;
-    border-radius: 50%;
-    position: absolute;
-    top: 48%;
-    right: 0.5rem;
-    transform: translate(0, -50%) scale(0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s; }
-  .icon-box:hover::after {
-    transform: translate(0, -50%) scale(1);
-    opacity: 1;
-    visibility: visible; }
-  .icon-box:active .form-box__list-item-icon {
-    transform: scale(0.8); }
+  padding: 1rem;
+  position: relative; }
 
 .shadow {
   grid-row: 2 / 3;
@@ -497,6 +480,49 @@ body {
     transform: translateX(200rem); }
     .btn__clear--active {
       transform: translateX(0); }
+
+.indorsement-box {
+  font-size: 1.8rem;
+  width: 17.5rem;
+  height: 8rem;
+  background-color: #644abd;
+  color: #e3def3;
+  border: 2px solid #4a3594;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: 1rem;
+  row-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  z-index: 99999;
+  position: absolute;
+  transform: translateX(-17.5rem); }
+  .indorsement-box__text {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2; }
+  .indorsement-box__btn {
+    font-size: 1.4rem;
+    grid-row: 2 / 3;
+    width: 6rem;
+    height: 2rem;
+    border: 1px solid #3f2d79;
+    border-radius: 0.5rem;
+    transition: all 0.3s; }
+    .indorsement-box__btn--yes {
+      grid-column: 1 / 2;
+      background-color: #4a3594;
+      color: #e3def3; }
+      .indorsement-box__btn--yes:hover {
+        background-color: #3f2d79; }
+    .indorsement-box__btn--no {
+      grid-column: 2 / 3;
+      background-color: #c8bfe7;
+      color: #3f2d79; }
+      .indorsement-box__btn--no:hover {
+        background-color: #e3def3; }
 
 .logo-box {
   position: absolute;

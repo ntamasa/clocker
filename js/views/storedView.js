@@ -1,5 +1,6 @@
 import View from './View.js';
 import { capitalize, countryList } from '../helper.js';
+import addedClockView from './addedClockView.js';
 
 class storedView extends View {
   _parentElement = document.querySelector('.form-box__list');
@@ -80,20 +81,69 @@ class storedView extends View {
         document.querySelector('.form-box__continent').value = data[2];
       });
     });
-
     this._deleteSavedZone();
+  }
+
+  _genIndorsementMarkup() {
+    return `<!-- Box for indorsement when delete button is clicked -->
+    <div class="indorsement-box">
+      <!-- Question -->
+      <p class="indorsement-box__text">Are you sure?</p>
+      <!-- Answer buttons -->
+      <input
+        class="btn indorsement-box__btn indorsement-box__btn--yes"
+        type="button"
+        value="Yes"
+      />
+      <input
+        class="btn indorsement-box__btn indorsement-box__btn--no"
+        type="button"
+        value="No"
+      />
+    </div>`;
   }
 
   _deleteSavedZone() {
     document.querySelectorAll('.form-box__list-item-icon').forEach(btn => {
       btn.addEventListener('click', e => {
-        // CLICK NOT RECOGNISED
-        const key = e.target.closest('.form-box__list-item').childNodes[1]
-          .childNodes[3].textContent; // get city
+        // Get mouse position when clicking delete button
+        const coords = { x: e.clientX, y: e.clientY };
 
-        localStorage.removeItem(key);
+        const rect = e.target.getBoundingClientRect();
 
-        this.render();
+        // Show indorsement box (insert html)
+        document
+          .querySelector('.icon-box')
+          .insertAdjacentHTML('afterbegin', this._genIndorsementMarkup());
+
+        // Position indorsement box to mouse coords
+        document.querySelector('.indorsement-box').style.left =
+          coords.x - rect.left + 'px';
+        document.querySelector('.indorsement-box').style.top =
+          coords.y - rect.top + 'px';
+
+        // Yes button cliced
+        document
+          .querySelector('.indorsement-box__btn--yes')
+          .addEventListener('click', e => {
+            // Get city
+            const key = e.target.closest('.form-box__list-item').childNodes[1]
+              .childNodes[3].textContent;
+
+            // Remove current item from local storage
+            localStorage.removeItem(key);
+
+            // Remove removed zone from list
+            e.target.closest('.form-box__list-item').remove();
+          });
+
+        // No button cliced
+        document
+          .querySelector('.indorsement-box__btn--no')
+          .addEventListener('click', e => {
+            // Hide indorsement box and quit from event listeners
+            e.target.closest('.indorsement-box').remove();
+          });
       });
     });
   }
