@@ -40,6 +40,10 @@ class addedClockView extends View {
     const monthElement = document.querySelector('.curve__middle--month');
     const dayElement = document.querySelector('.curve__middle--day');
 
+    // Btn element and click counter to track number of clicks to stop timer when needed
+    const btn = document.querySelector('.btn__form');
+    let clicks = 0;
+
     // Function to update DOM
     const updateDOM = function () {
       // Clear
@@ -63,7 +67,17 @@ class addedClockView extends View {
     updateDOM();
 
     // Calling it in every second for the correct displayal of the time
-    runEverySec(updateDOM);
+    const updater = setInterval(updateDOM, 1000);
+
+    // Listening for btn click event
+    btn.addEventListener('click', () => {
+      clicks++;
+
+      // If you pressed it while seeing clocks, then it stops updating current time
+      if (clicks % 2 !== 0) {
+        clearInterval(updater);
+      }
+    });
   }
 }
 

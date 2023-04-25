@@ -81,11 +81,18 @@ const controlWorldTime = async function () {
 
 const controlAddedTime = async function () {
   try {
+    if (
+      !document.querySelector('.form-box__country').value ||
+      !document.querySelector('.form-box__city').value ||
+      !document.querySelector('.form-box__continent').value
+    )
+      return addedClockView.renderError();
     // Render spinner, and be visible until data is loaded
     addedClockView.renderSpinner();
 
     // Load added clock
     await model.loadAddedClock(API_KEY);
+
     // Render added clock to the DOM
     addedClockView.renderAll(model.state.clocks.added);
 
