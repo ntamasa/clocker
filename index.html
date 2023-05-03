@@ -18,10 +18,17 @@
 
     <script type="module" src="js/controller.js"></script>
 
+    <!-- Scripts needed to render globe -->
+    <script src="js/views/globe.js" type="module"></script>
+    <script src="//unpkg.com/three"></script>
+    <script src="./node_modules/globe.gl/dist/globe.gl.js"></script>
+
     <!-- CSS link -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <div id="globeViz"></div>
+
     <!-- <div class="spinner">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -65,16 +72,14 @@
 
       <!-- Logo -->
       <section class="logo-box">
-        <img src="/img/logo.png" alt="clocker logo" class="logo" />
+        <img src="/img/logo.png" alt="clocker logo" class="logo visible" />
       </section>
 
       <!-- Shadow for main element -->
       <div class="shadow">&nbsp;</div>
 
       <!-- Globe -->
-      <section class="globe-box">
-        <img src="./img/globe.png" alt="globe" class="globe__img" />
-      </section>
+      <section class="globe-box"></section>
 
       <!-- Clocks that show time in 3 circles -->
       <section class="clock-box">
