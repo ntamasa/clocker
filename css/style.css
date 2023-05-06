@@ -412,7 +412,7 @@ body {
   z-index: 100; }
 
 .globe-box {
-  height: 85.5%;
+  height: 100%;
   grid-column: content-start / content-end;
   grid-row: 2 / 3;
   align-self: center;
@@ -420,11 +420,8 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 200; }
-  .globe-box img {
-    height: 100%;
-    border-radius: 50%;
-    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
+  z-index: 200;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%); }
 
 .form {
   grid-row: 2 / 3;

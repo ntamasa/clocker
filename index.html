@@ -19,15 +19,15 @@
     <script type="module" src="js/controller.js"></script>
 
     <!-- Scripts needed to render globe -->
-    <script src="js/views/globe.js" type="module"></script>
     <script src="//unpkg.com/three"></script>
     <script src="./node_modules/globe.gl/dist/globe.gl.js"></script>
+    <script src="js/views/globe.js" type="module"></script>
 
     <!-- CSS link -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div id="globeViz"></div>
+    <!-- <div id="globeViz"></div> -->
 
     <!-- <div class="spinner">
       <svg
@@ -46,7 +46,9 @@
       </svg>
     </div> -->
     <!-- Main box in the middle on big screens -->
-    <div class="container">
+    <main class="container">
+      <!-- <div class="globe-box"></div> -->
+
       <!-- <figure class="error">
         <div class="error__logo">
           <svg
@@ -453,6 +455,6 @@
           <div class="form-box__map">&nbsp;</div>
         </form>
       </div>
-    </div>
+    </main>
   </body>
 </html>
