@@ -38,6 +38,19 @@ class btnView extends View {
     document.querySelector('.form-box').classList.toggle('hidden');
   }
 
+  toggleIcon() {
+    setTimeout(() => {
+      // Logo element
+      const logo = document.querySelector('.logo');
+
+      // Set src of logo
+      if (logo.classList.contains('visible')) logo.src = './img/logo_light.png';
+      if (!logo.classList.contains('visible')) logo.src = './img/logo.png';
+
+      logo.classList.toggle('visible');
+    }, 450);
+  }
+
   _generateMarkup() {
     return this._parentElement.innerHTML.includes('form__icon--close')
       ? // IF (plus icon)

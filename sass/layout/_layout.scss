@@ -39,11 +39,7 @@
 }
 
 .globe-box {
-  max-height: 85.5%;
-
-  // Other globe image
-  // height: 73rem;
-  // transform: translateX(0.2%);
+  height: 100%;
 
   // Placing it in the right cell of container grid
   grid-column: content-start / content-end;
@@ -61,12 +57,7 @@
   position: relative;
   z-index: 200;
 
-  img {
-    width: 75.25%;
-    border-radius: 50%;
-
-    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-  }
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
 }
 
 //////////////////////////////////////////////
