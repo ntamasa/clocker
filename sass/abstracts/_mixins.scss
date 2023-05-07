@@ -1,18 +1,101 @@
+// MEDIA QUERIES
+
+@mixin big-desktop {
+  @media screen and (max-width: 112.5em) {
+    // 1800px
+    @content;
+  }
+}
+
+@mixin medium-desktop {
+  @media screen and (max-width: 100em) {
+    // 1600px
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: 87.5em) {
+    // 1400px
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 75em) {
+    // 1200px
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 59.375em) {
+    // 950px,
+    @content;
+  }
+}
+
+@mixin mini-tablet {
+  @media screen and (max-width: 53.125em) {
+    // 850px,
+    @content;
+  }
+}
+
+@mixin wide-phone {
+  @media screen and (max-width: 43.75em) {
+    // 700px,
+    @content;
+  }
+}
+
+@mixin big-phone {
+  @media screen and (max-width: 37.5em) {
+    // 600px,
+    @content;
+  }
+}
+
+@mixin big-phone-2 {
+  @media screen and (max-width: 34.375em) {
+    // 550px,
+    @content;
+  }
+}
+
+@mixin phone {
+  @media screen and (max-width: 28.125em) {
+    // 450px,
+    @content;
+  }
+}
+
+@mixin mini-phone {
+  @media screen and (max-width: 21.875em) {
+    // 350px,
+    @content;
+  }
+}
+
+// Mixin to get a square size
 @mixin square($size) {
   height: $size;
   width: $size;
 }
 
+// World text in middle clock letter position
 @mixin worldTextPos($y, $deg) {
   display: inline-block;
   transform: translateY($y) rotate($deg);
 }
 
+// Makes the element hidden
 @mixin hidden {
   opacity: 0;
   visibility: hidden;
 }
 
+// Makes the element visible
 @mixin visible {
   opacity: 1;
   visibility: visible;
