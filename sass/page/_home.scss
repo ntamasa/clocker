@@ -29,3 +29,327 @@ body {
   // For the logo positioning
   position: relative;
 }
+
+@include big-desktop {
+  .btn__clear {
+    top: -3.5rem;
+    right: 4rem;
+  }
+}
+
+@include medium-desktop {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@include desktop {
+  .container {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  // Main button
+  .btn__form {
+    // Sizing
+    @include square(10rem);
+
+    // Position
+    top: 4rem;
+    right: 4rem;
+  }
+
+  // Main button icons
+  .form__icon--add,
+  .form__icon--close {
+    // Sizing
+    @include square(7.5rem);
+  }
+
+  // Behind main button (background of form)
+  .form__background {
+    // Sizing
+    @include square(8rem);
+
+    // Position
+    top: 4.5rem;
+    right: 4.5rem;
+  }
+
+  .btn__clear {
+    top: -2.5rem;
+    right: 6rem;
+
+    padding: 1rem 3rem;
+  }
+
+  // Main icon
+  .logo {
+    // Sizing
+    @include square(10rem);
+
+    // Position
+    top: 2.5rem;
+    left: 2.5rem;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@include laptop {
+  html {
+    font-size: 50%;
+  }
+}
+
+// 1000px
+@include tablet {
+  html {
+    font-size: 62.5%;
+  }
+
+  // FORM LAYOUT CHANGE
+  .form {
+    // Container grid position
+    grid-column: 2 / 3;
+    grid-row: 1 / -1;
+
+    // Make it span through the whole page
+    height: 100%;
+
+    &-box {
+      // New grid for the form elements
+      grid-template-columns: 1fr;
+      grid-template-rows: [heading-start] 1fr [heading-end] 3fr [input-end] 2fr [list-end] 1fr [footer-end];
+
+      // Grid items centered horizontally and vertically
+      justify-items: center;
+      align-items: center;
+
+      // Gap between grid-rows
+      row-gap: 7.5rem;
+
+      // Make it span through whole parent element (form)
+      height: 100%;
+
+      // Spacing
+      padding: 10rem 5rem 5rem 5rem;
+      margin: 0;
+
+      // Heading element
+      &__heading {
+        // Grid poisiton
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+
+        // Dimensions and alignment
+        width: 60%;
+        text-align: center;
+      }
+
+      // Input elements
+      &__content {
+        // Grid poisiton
+        grid-row: 2 / 3;
+        grid-column: 1 / -1;
+      }
+
+      // Saved list element
+      &__list {
+        // Grid poisiton
+        grid-row: 3 / 4;
+        grid-column: 1 / -1;
+
+        // Dimensions
+        height: 24rem;
+      }
+
+      // Footer element
+      .footer {
+        // Grid poisiton
+        grid-row: 4 / 5;
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  // Clear button position
+  .btn__clear {
+    top: 14rem;
+    right: 4rem;
+  }
+
+  // Main logo
+  .logo {
+    // Sizing
+    @include square(7.5rem);
+
+    // Position
+    top: 1.5rem;
+    left: 2rem;
+  }
+
+  // Main button
+  .btn__form {
+    // Sizing
+    @include square(7.5rem);
+
+    // Position
+    top: 3rem;
+    right: 3.5rem;
+  }
+
+  // Main button icons
+  .form__icon--add,
+  .form__icon--close {
+    // Sizing
+    @include square(5rem);
+  }
+
+  // Behind main button (background of form)
+  .form__background {
+    // Sizing
+    @include square(4rem);
+
+    // Position
+    top: 5rem;
+    right: 5.5rem;
+  }
+}
+
+@include mini-tablet {
+  html {
+    font-size: 53.125%;
+  }
+
+  .form__background--active {
+    transform: scale(100);
+  }
+}
+
+@include wide-phone {
+  html {
+    font-size: 50%;
+  }
+}
+
+@include big-phone {
+  html {
+    font-size: 43.75%;
+  }
+}
+
+@include big-phone-2 {
+  html {
+    font-size: 50%;
+  }
+
+  .container {
+    grid-template-columns:
+      minmax(1px, 1fr) [content-start] minmax(55rem, max-content)
+      [content-end] minmax(1px, 1fr);
+  }
+
+  .clocks {
+    &--1 {
+      @include square(55rem);
+    }
+
+    &--2 {
+      @include square(32.5rem);
+    }
+
+    &--3 {
+      @include square(20rem);
+    }
+
+    &__details {
+      font-size: 1rem;
+      transform: translateY(10.5rem);
+    }
+
+    &__date {
+      @include hidden;
+    }
+
+    &__time-global {
+      font-size: 4rem;
+      transform: translate(50%, 0.75rem);
+    }
+
+    &__type {
+      font-size: 1.8rem;
+
+      &--1 {
+        @include worldTextPos(82%, -35deg);
+      }
+
+      &--2 {
+        @include worldTextPos(35%, -12deg);
+        margin-left: -0.3rem;
+      }
+
+      &--3 {
+        @include worldTextPos(20%, 0deg);
+      }
+
+      &--4 {
+        @include worldTextPos(35%, 12deg);
+      }
+
+      &--5 {
+        @include worldTextPos(82%, 35deg);
+      }
+    }
+  }
+  .curved-text {
+    font-size: 1.8rem;
+
+    &__middle {
+      &--time {
+        font-size: 4.4rem;
+      }
+    }
+
+    &__outer {
+      font-size: 1.2rem;
+      &--time {
+        font-size: 2.2rem;
+      }
+    }
+  }
+
+  .shadow {
+    transform: translateY(-2rem);
+    height: 110%;
+  }
+
+  .form-box {
+    row-gap: 2.5rem;
+    &__list {
+      width: 80%;
+    }
+
+    &__content {
+      gap: 5rem;
+    }
+  }
+}
+
+@include phone {
+  html {
+    font-size: 43.75%;
+  }
+
+  .btn__clear {
+    right: 0.5rem;
+  }
+}
+
+@include mini-phone {
+  html {
+    font-size: 31.25%;
+  }
+}
